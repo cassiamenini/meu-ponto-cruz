@@ -38,6 +38,7 @@ src/telas/          conteúdo de cada etapa
 src/seguranca/      verificação dos arquivos enviados (tipo real, tamanho, limites)
 src/imagem/         abrir, reduzir, girar, recortar e ajustar a luz da imagem
 src/cores/          CIELAB e diferença de cor CIEDE2000
+src/processamento/  conversão da imagem em gráfico (e o trabalhador em segundo plano)
 src/catalogo/       catálogo DMC (dmc.json) e de onde veio cada dado (FONTES.md)
 dados/fontes/       cópias das fontes originais usadas no catálogo
 scripts/            montagem e conferência do catálogo
@@ -63,7 +64,11 @@ testes/             testes automáticos
 - **Fase 1, Etapa 2 (concluída):** catálogo de 489 cores DMC com códigos e nomes conferidos
   no site oficial, cores aproximadas conferidas com outra tabela e com as fotos oficiais,
   e cálculo de diferença de cor CIEDE2000. Detalhes em [src/catalogo/FONTES.md](src/catalogo/FONTES.md).
-- Próximo: Etapa 3 (conversão da imagem em pontos).
+- **Fase 1, Etapa 3 (concluída):** conversão da imagem em pontos (média em luz linear,
+  k-means em CIELAB, linha DMC mais próxima por CIEDE2000, limpeza de pontos soltos e
+  cores raras), em segundo plano (Web Worker), e tela 2 com nível, tamanho, tecido,
+  número de cores, limpeza e prévia.
+- Próximo: Etapa 4 (tela 3: gráfico com símbolos, legenda e ampliação).
 
 ## Licenças de terceiros
 

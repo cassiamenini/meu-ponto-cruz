@@ -16,6 +16,7 @@ import {
   type ModoArraste,
 } from '../imagem/ajustes';
 import type { ContextoTela } from './etapas';
+import { caixaDeErro, el } from './dom';
 
 const TIPOS_ACEITOS = 'image/jpeg,image/png,image/webp';
 const LADO_MAX_PREVIA = 1000;
@@ -31,26 +32,6 @@ let entradaArquivo: HTMLInputElement;
 // o trabalho a cada movimento do controle de brilho.
 let girada: HTMLCanvasElement | null = null;
 let previaBase: ImageData | null = null;
-
-// ---------- Pequeno ajudante para criar elementos ----------
-
-function el<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  props: Partial<HTMLElementTagNameMap[K]> = {},
-  ...filhos: (Node | string)[]
-): HTMLElementTagNameMap[K] {
-  const elemento = Object.assign(document.createElement(tag), props);
-  elemento.append(...filhos);
-  return elemento;
-}
-
-function caixaDeErro(mensagem?: string): HTMLParagraphElement {
-  const p = el('p', { className: 'aviso-erro' });
-  p.setAttribute('role', 'alert');
-  if (mensagem) p.textContent = mensagem;
-  else p.hidden = true;
-  return p;
-}
 
 // ---------- Entrada ----------
 
@@ -77,6 +58,7 @@ export function aoContinuarTela1(): string | null {
   if (!estado.imagem) return 'Escolha uma imagem para continuar.';
   try {
     estado.imagemFinal = gerarImagemFinal(estado.imagem, estado.ajustes);
+    estado.grafico = null; // a imagem pode ter mudado: o gráfico será refeito
     return null;
   } catch {
     return 'Não foi possível preparar a imagem neste aparelho. Tente usar uma parte menor da imagem.';

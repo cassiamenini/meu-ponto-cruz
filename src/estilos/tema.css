@@ -543,21 +543,227 @@ h2:focus {
   cursor: pointer;
 }
 
-.figura-miniatura {
-  margin: 0 0 1.5rem;
+/* ---------- Tela 2: personalizar o bordado ---------- */
+
+.layout-bordado {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .layout-bordado {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+  }
+
+  /* a prévia acompanha a rolagem enquanto a pessoa mexe nas opções */
+  .coluna-previa {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+.par-imagens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.par-imagens figure {
+  margin: 0;
   text-align: center;
 }
 
-.miniatura {
-  max-width: 100%;
-  max-height: 14rem;
+.par-imagens figcaption {
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.miniatura-original,
+.previa-pontos {
+  display: block;
+  width: 100%;
+  height: 13rem;
+  object-fit: contain;
+  background: var(--fundo);
   border: 2px solid var(--borda);
   border-radius: 6px;
 }
 
-.figura-miniatura figcaption {
+/* cada ponto aparece como um quadradinho nítido, sem borrar */
+.previa-pontos {
+  image-rendering: pixelated;
+}
+
+.status-previa {
+  margin: 0.75rem 0 0;
+  font-weight: 700;
+  min-height: 1.6em;
+}
+
+.status-previa.ocupado {
   color: var(--texto-suave);
-  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.grupo-opcoes {
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-opcoes legend {
+  margin-bottom: 0.5rem;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--acento-escuro);
+}
+
+.cartao-opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  cursor: pointer;
+}
+
+.cartao-opcao:hover {
+  background: var(--fundo);
+}
+
+.cartao-opcao:has(input:checked) {
+  border-color: var(--acento);
+  border-width: 3px;
+  background: var(--acento-claro);
+}
+
+.cartao-opcao:has(input:focus-visible) {
+  outline: 4px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.cartao-opcao input {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--acento);
+}
+
+/* o contorno de foco já aparece no cartão inteiro */
+.cartao-opcao input:focus-visible {
+  outline: none;
+}
+
+.opcao-textos {
+  display: flex;
+  flex-direction: column;
+}
+
+.opcao-titulo {
+  font-weight: 700;
+}
+
+.grupo-compacto .cartao-opcao {
+  padding: 0.5rem 0.9rem;
+}
+
+.campo-numerico label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.linha-numero {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.botao-passo {
+  width: var(--alvo-toque);
+  height: var(--alvo-toque);
+  font: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.botao-passo:hover {
+  background: var(--acento-claro);
+}
+
+.entrada-numero {
+  width: 5.5ch;
+  height: var(--alvo-toque);
+  padding: 0 0.5rem;
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--texto);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  -moz-appearance: textfield;
+}
+
+.entrada-numero::-webkit-inner-spin-button,
+.entrada-numero::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.unidade {
+  color: var(--texto-suave);
+}
+
+.texto-altura {
+  margin: 0.5rem 0 0;
+}
+
+.quadro-medidas {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.25rem;
+  border-left: 8px solid var(--verde);
+  border-radius: 6px;
+  background: var(--fundo);
+}
+
+.quadro-medidas p {
+  margin: 0.25rem 0;
+}
+
+.mais-opcoes {
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 0 1rem;
+}
+
+.mais-opcoes[open] {
+  padding-bottom: 1rem;
+}
+
+.mais-opcoes summary {
+  min-height: var(--alvo-toque);
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mais-opcoes .campo-numerico {
+  margin: 0.5rem 0 0.25rem;
 }
 
 /* ---------- Botões de navegação ---------- */

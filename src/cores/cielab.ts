@@ -25,7 +25,8 @@ const XN = 0.95047;
 const YN = 1.0;
 const ZN = 1.08883;
 
-function linear(canal: number): number {
+/** Converte um canal sRGB (0 a 255) para luz "linear" (0 a 1). */
+export function linear(canal: number): number {
   const c = canal / 255;
   return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
 }
@@ -37,9 +38,11 @@ function f(t: number): number {
 
 /** Converte uma cor sRGB (0 a 255) para CIELAB. */
 export function rgbParaLab([r, g, b]: Rgb): Lab {
-  const R = linear(r);
-  const G = linear(g);
-  const B = linear(b);
+  return linearParaLab(linear(r), linear(g), linear(b));
+}
+
+/** Converte luz linear (0 a 1 em cada canal) para CIELAB. */
+export function linearParaLab(R: number, G: number, B: number): Lab {
   const X = 0.4124564 * R + 0.3575761 * G + 0.1804375 * B;
   const Y = 0.2126729 * R + 0.7151522 * G + 0.072175 * B;
   const Z = 0.0193339 * R + 0.119192 * G + 0.9503041 * B;
