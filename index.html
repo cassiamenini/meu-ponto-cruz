@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Transforme uma imagem em gráfico de ponto cruz, com apostila em PDF. Gratuito e sem cadastro."
+    />
+    <meta name="theme-color" content="#FBF6EE" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>Meu Ponto Cruz</title>
+  </head>
+  <body>
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+      <div class="cabecalho-interno">
+        <p class="marca">
+          <span class="marca-x" aria-hidden="true">✕</span>
+          Meu Ponto Cruz
+        </p>
+        <div class="tamanho-letra" role="group" aria-label="Tamanho da letra">
+          <button type="button" class="botao-letra" id="letra-menor" aria-label="Diminuir a letra">A−</button>
+          <button type="button" class="botao-letra" id="letra-maior" aria-label="Aumentar a letra">A+</button>
+        </div>
+      </div>
+      <nav aria-label="Etapas">
+        <ol class="etapas" id="lista-etapas"></ol>
+      </nav>
+    </header>
+
+    <main id="conteudo" class="conteudo">
+      <section class="painel" id="painel" aria-labelledby="titulo-etapa"></section>
+
+      <div class="navegacao">
+        <button type="button" class="botao botao-secundario" id="botao-voltar">← Voltar</button>
+        <button type="button" class="botao botao-principal" id="botao-continuar">Continuar →</button>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <p>
+        <strong>Sua imagem não sai do seu aparelho.</strong>
+        Todo o trabalho é feito aqui mesmo, no seu navegador. Gratuito e sem cadastro.
+      </p>
+    </footer>
+
+    <p class="so-leitor" aria-live="polite" id="aviso-leitor"></p>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

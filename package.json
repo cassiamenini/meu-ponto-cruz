@@ -1,0 +1,20 @@
+{
+  "name": "meu-ponto-cruz",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Transforme uma imagem em gráfico de ponto cruz, com apostila em PDF. Gratuito e sem cadastro.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "verificar": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0"
+  }
+}

@@ -1,0 +1,49 @@
+# Publica o site no GitHub Pages sempre que uma nova versão é enviada
+# para o ramo "main". Tudo roda nos computadores do GitHub, de graça.
+name: Publicar site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permite publicar de novo manualmente, pelo site do GitHub
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Se duas publicações começarem juntas, só a mais recente vale.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar bibliotecas
+        run: npm ci
+
+      - name: Verificar erros e gerar o site
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacao.outputs.page_url }}
+    steps:
+      - id: publicacao
+        uses: actions/deploy-pages@v4

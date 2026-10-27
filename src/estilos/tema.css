@@ -1,0 +1,420 @@
+/* =========================================================
+   Meu Ponto Cruz — tema visual
+   Acolhedor (tons de tecido cru e linha vinho), mas sempre
+   com alto contraste e letras grandes.
+   Todas as combinações de texto/fundo passam de 4,5:1 (WCAG AA).
+   ========================================================= */
+
+:root {
+  /* Cores */
+  --fundo: #fbf6ee;          /* tecido cru */
+  --superficie: #ffffff;
+  --texto: #2a211c;          /* marrom quase preto — 15:1 no fundo */
+  --texto-suave: #57473d;    /* 8:1 no fundo */
+  --acento: #9b2c3d;         /* vinho — 7:1 com texto branco */
+  --acento-escuro: #7a1f2e;
+  --acento-claro: #f6e4e3;
+  --verde: #2f5d43;          /* etapas concluídas — 7:1 com branco */
+  --borda: #cdbba5;
+  --borda-forte: #8a7563;    /* bordas de controles — 3:1 no fundo */
+  --foco: #0b4fa3;
+
+  /* Tipografia */
+  --fonte: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+
+  /* Medidas */
+  --raio: 14px;
+  --largura-max: 52rem;
+  --alvo-toque: 3.25rem;     /* ~52 px: botões fáceis de tocar */
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte);
+  font-size: 1.25rem;         /* 20 px no tamanho normal */
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* ---------- Foco bem visível (navegação por teclado) ---------- */
+
+:focus-visible {
+  outline: 4px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1:focus {
+  outline: none;
+}
+
+/* ---------- Utilitários de acessibilidade ---------- */
+
+.so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 10;
+  padding: 0.75rem 1.25rem;
+  background: var(--texto);
+  color: #fff;
+  font-weight: 700;
+  border-radius: var(--raio);
+  text-decoration: none;
+}
+
+.pular-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.cabecalho {
+  background-color: var(--superficie);
+  /* trama de tecido Etamine, bem suave */
+  background-image:
+    linear-gradient(rgba(155, 44, 61, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 44, 61, 0.06) 1px, transparent 1px);
+  background-size: 12px 12px;
+  border-bottom: 2px solid var(--borda);
+  padding: 1rem 1rem 1.25rem;
+}
+
+.cabecalho-interno {
+  max-width: var(--largura-max);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;            /* com letra grande, os botões A−/A+ descem */
+  gap: 0.75rem 1rem;
+}
+
+.marca {
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--acento-escuro);
+}
+
+.marca-x {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 10px;
+  background: var(--acento);
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.tamanho-letra {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.botao-letra {
+  min-width: var(--alvo-toque);
+  min-height: var(--alvo-toque);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.botao-letra:hover:not(:disabled) {
+  background: var(--acento-claro);
+}
+
+.botao-letra:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Indicador de etapas ---------- */
+
+.etapas {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: var(--largura-max);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.25rem;
+  position: relative;
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+  position: relative;
+  color: var(--texto-suave);
+}
+
+/* linha "costurada" ligando as etapas */
+.etapa:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.25rem;
+  left: calc(50% + 1.6rem);
+  right: calc(-50% + 1.6rem);
+  border-top: 3px dashed var(--borda);
+}
+
+.etapa-feita:not(:last-child)::after {
+  border-top-color: var(--verde);
+}
+
+.etapa-numero {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 3px solid var(--borda-forte);
+  background: var(--superficie);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.etapa-nome {
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.etapa-feita .etapa-numero {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+
+.etapa-atual {
+  color: var(--texto);
+}
+
+.etapa-atual .etapa-numero {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--acento-claro);
+}
+
+.etapa-atual .etapa-nome {
+  font-weight: 700;
+}
+
+/* ---------- Conteúdo ---------- */
+
+.conteudo {
+  flex: 1;
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.painel {
+  background: var(--superficie);
+  border: 2px solid var(--borda);
+  border-radius: calc(var(--raio) + 4px);
+  padding: 1.75rem 1.5rem 2rem;
+  box-shadow: 0 2px 0 rgba(42, 33, 28, 0.05);
+}
+
+.passo {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--acento);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.painel h1 {
+  font-size: 2.1rem;
+  color: var(--texto);
+}
+
+.orientacao {
+  margin: 0.75rem 0 1.5rem;
+  font-size: 1.3rem;
+  color: var(--texto-suave);
+}
+
+.cartao-em-breve {
+  border: 3px dashed var(--borda);
+  border-radius: var(--raio);
+  padding: 1.25rem 1.5rem;
+  background: var(--fundo);
+}
+
+.cartao-em-breve h2 {
+  font-size: 1.15rem;
+  color: var(--acento-escuro);
+  margin-bottom: 0.5rem;
+}
+
+.cartao-em-breve ul {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.cartao-em-breve li {
+  margin: 0.35rem 0;
+}
+
+.cartao-em-breve li::marker {
+  content: '✕  ';
+  color: var(--acento);
+  font-weight: 700;
+}
+
+/* ---------- Botões de navegação ---------- */
+
+.navegacao {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.botao {
+  min-height: var(--alvo-toque);
+  padding: 0.75rem 1.75rem;
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: var(--raio);
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.botao-principal {
+  margin-left: auto;
+  background: var(--acento);
+  color: #fff;
+}
+
+.botao-principal:hover {
+  background: var(--acento-escuro);
+}
+
+.botao-secundario {
+  background: var(--superficie);
+  color: var(--texto);
+  border-color: var(--borda-forte);
+}
+
+.botao-secundario:hover {
+  background: var(--acento-claro);
+}
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  border-top: 2px solid var(--borda);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+.rodape p {
+  max-width: var(--largura-max);
+  margin: 0 auto;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width: 34rem) {
+  .marca {
+    font-size: 1.3rem;
+  }
+
+  .marca-x {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* no celular, só os números aparecem; o painel já diz "Passo X de 5" */
+  .etapa-nome {
+    display: none;
+  }
+
+  .etapa:not(:last-child)::after {
+    left: calc(50% + 1.4rem);
+    right: calc(-50% + 1.4rem);
+  }
+
+  .painel {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+
+  .painel h1 {
+    font-size: 1.75rem;
+  }
+
+  /* botão principal ocupa a largura toda e vem primeiro */
+  .navegacao {
+    flex-direction: column-reverse;
+  }
+
+  .botao {
+    width: 100%;
+  }
+}
+
+/* ---------- Movimento reduzido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
