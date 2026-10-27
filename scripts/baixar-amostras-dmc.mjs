@@ -7,7 +7,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
-const oficial = JSON.parse(readFileSync(join(raiz, 'dados/fontes/dmc-oficial-product_data.json'), 'utf8'));
+// A cópia guardada só tem código e nome; os endereços das fotos vêm do site.
+const { origem } = JSON.parse(readFileSync(join(raiz, 'dados/fontes/dmc-oficial-product_data.json'), 'utf8'));
+const oficial = await (await fetch(origem, { headers: { Accept: 'application/json' } })).json();
 const destino = join(raiz, 'dados/amostras-dmc');
 mkdirSync(destino, { recursive: true });
 
