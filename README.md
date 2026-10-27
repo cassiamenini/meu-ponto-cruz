@@ -25,6 +25,7 @@ Depois, abra http://localhost:5173 no navegador.
 | `npm run dev` | Abre o site no computador, atualizando a cada alteração |
 | `npm run verificar` | Procura erros no código |
 | `npm run testar` | Roda os testes automáticos |
+| `npm run catalogo` | Remonta o catálogo DMC a partir de `dados/fontes/` |
 | `npm run build` | Gera a versão final do site na pasta `dist/` |
 
 ## Organização
@@ -36,6 +37,10 @@ src/estado.ts       o que a pessoa escolheu até agora (só na memória do naveg
 src/telas/          conteúdo de cada etapa
 src/seguranca/      verificação dos arquivos enviados (tipo real, tamanho, limites)
 src/imagem/         abrir, reduzir, girar, recortar e ajustar a luz da imagem
+src/cores/          CIELAB e diferença de cor CIEDE2000
+src/catalogo/       catálogo DMC (dmc.json) e de onde veio cada dado (FONTES.md)
+dados/fontes/       cópias das fontes originais usadas no catálogo
+scripts/            montagem e conferência do catálogo
 src/estilos/        cores, fontes e layout
 public/             arquivos copiados sem alteração (ícone)
 testes/             testes automáticos
@@ -55,8 +60,14 @@ testes/             testes automáticos
 - **Fase 1, Etapa 0 (concluída):** casca das 5 etapas, tema acessível, controle de tamanho da letra.
 - **Fase 1, Etapa 1 (concluída):** escolher ou arrastar a foto, verificação de segurança,
   recorte, giro, brilho e contraste.
-- Próximo: Etapa 2 (catálogo DMC verificado).
+- **Fase 1, Etapa 2 (concluída):** catálogo de 489 cores DMC com códigos e nomes conferidos
+  no site oficial, cores aproximadas conferidas com outra tabela e com as fotos oficiais,
+  e cálculo de diferença de cor CIEDE2000. Detalhes em [src/catalogo/FONTES.md](src/catalogo/FONTES.md).
+- Próximo: Etapa 3 (conversão da imagem em pontos).
 
 ## Licenças de terceiros
 
 - Fonte Atkinson Hyperlegible: SIL Open Font License 1.1 (Braille Institute).
+- Cores digitais das linhas DMC: [makebead/craft-color-codes](https://github.com/makebead/craft-color-codes),
+  CC BY 4.0. Tabela de conferência: [sharlagelfand/dmc](https://github.com/sharlagelfand/dmc), MIT.
+- DMC é marca registrada da DMC. Este projeto não tem ligação com a empresa.

@@ -3,3 +3,5 @@ dist/
 *.log
 .DS_Store
 .claude/
+# fotos oficiais da DMC: só para conferência local, não redistribuir
+dados/amostras-dmc/

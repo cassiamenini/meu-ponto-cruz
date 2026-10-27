@@ -615,6 +615,16 @@ h2:focus {
   margin: 0 auto;
 }
 
+.rodape .creditos {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.rodape a {
+  color: var(--acento-escuro);
+  text-underline-offset: 3px;
+}
+
 /* ---------- Celular ---------- */
 
 @media (max-width: 34rem) {

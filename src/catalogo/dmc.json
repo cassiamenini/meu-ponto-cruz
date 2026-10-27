@@ -1,0 +1,5396 @@
+{
+ "produto": "DMC Mouliné Spécial (art. 117), algodão, 6 fios",
+ "geradoEm": "2026-10-27",
+ "aviso": "Os códigos e nomes foram conferidos no site oficial da DMC. As cores na tela (hex/RGB) são aproximações publicadas pela comunidade: a DMC não publica valores digitais. Confira sempre com a linha física.",
+ "fontes": {
+  "codigosENomes": [
+   "https://www.dmc.com/PT/pt/products/mouline-special",
+   "https://www.dmc.com/US/en/products/mouline-special"
+  ],
+  "coresRgb": "makebead/craft-color-codes, data/json/dmc-floss.json — CC BY 4.0 — https://github.com/makebead/craft-color-codes"
+ },
+ "cores": [
+  {
+   "codigo": "01",
+   "nome": "Chuva",
+   "idiomaNome": "pt",
+   "hex": "#E3E3E6",
+   "rgb": [
+    227,
+    227,
+    230
+   ]
+  },
+  {
+   "codigo": "02",
+   "nome": "Bruma",
+   "idiomaNome": "pt",
+   "hex": "#D7D7D8",
+   "rgb": [
+    215,
+    215,
+    216
+   ]
+  },
+  {
+   "codigo": "03",
+   "nome": "Poeira",
+   "idiomaNome": "pt",
+   "hex": "#B8B8BB",
+   "rgb": [
+    184,
+    184,
+    187
+   ]
+  },
+  {
+   "codigo": "04",
+   "nome": "Sombra",
+   "idiomaNome": "pt",
+   "hex": "#AEAEB1",
+   "rgb": [
+    174,
+    174,
+    177
+   ]
+  },
+  {
+   "codigo": "05",
+   "nome": "Vidro Fosco",
+   "idiomaNome": "pt",
+   "hex": "#E3CCBE",
+   "rgb": [
+    227,
+    204,
+    190
+   ]
+  },
+  {
+   "codigo": "06",
+   "nome": "Koala",
+   "idiomaNome": "pt",
+   "hex": "#DCC6B8",
+   "rgb": [
+    220,
+    198,
+    184
+   ]
+  },
+  {
+   "codigo": "07",
+   "nome": "Madeira a Deriva",
+   "idiomaNome": "pt",
+   "hex": "#8F7B6E",
+   "rgb": [
+    143,
+    123,
+    110
+   ]
+  },
+  {
+   "codigo": "08",
+   "nome": "Guaxinim",
+   "idiomaNome": "pt",
+   "hex": "#6A5046",
+   "rgb": [
+    106,
+    80,
+    70
+   ]
+  },
+  {
+   "codigo": "09",
+   "nome": "Castanho Zibelina",
+   "idiomaNome": "pt",
+   "hex": "#55200E",
+   "rgb": [
+    85,
+    32,
+    14
+   ]
+  },
+  {
+   "codigo": "10",
+   "nome": "Sorvete de Limão",
+   "idiomaNome": "pt",
+   "hex": "#EDFED9",
+   "rgb": [
+    237,
+    254,
+    217
+   ]
+  },
+  {
+   "codigo": "11",
+   "nome": "Gota de Limão",
+   "idiomaNome": "pt",
+   "hex": "#E2EDB5",
+   "rgb": [
+    226,
+    237,
+    181
+   ]
+  },
+  {
+   "codigo": "12",
+   "nome": "Amarelo Citrino",
+   "idiomaNome": "pt",
+   "hex": "#CDD99A",
+   "rgb": [
+    205,
+    217,
+    154
+   ]
+  },
+  {
+   "codigo": "13",
+   "nome": "Wasabi",
+   "idiomaNome": "pt",
+   "hex": "#BFF6E0",
+   "rgb": [
+    191,
+    246,
+    224
+   ]
+  },
+  {
+   "codigo": "14",
+   "nome": "Couve-chinesa",
+   "idiomaNome": "pt",
+   "hex": "#D0FBB2",
+   "rgb": [
+    208,
+    251,
+    178
+   ]
+  },
+  {
+   "codigo": "15",
+   "nome": "Cebola de primavera",
+   "idiomaNome": "pt",
+   "hex": "#D1EDA4",
+   "rgb": [
+    209,
+    237,
+    164
+   ]
+  },
+  {
+   "codigo": "16",
+   "nome": "Rebentos",
+   "idiomaNome": "pt",
+   "hex": "#C9C258",
+   "rgb": [
+    201,
+    194,
+    88
+   ]
+  },
+  {
+   "codigo": "17",
+   "nome": "Milho",
+   "idiomaNome": "pt",
+   "hex": "#E5E272",
+   "rgb": [
+    229,
+    226,
+    114
+   ]
+  },
+  {
+   "codigo": "18",
+   "nome": "Espiga de Milho",
+   "idiomaNome": "pt",
+   "hex": "#D9D56D",
+   "rgb": [
+    217,
+    213,
+    109
+   ]
+  },
+  {
+   "codigo": "19",
+   "nome": "Pêssego Suave",
+   "idiomaNome": "pt",
+   "hex": "#F7C95F",
+   "rgb": [
+    247,
+    201,
+    95
+   ]
+  },
+  {
+   "codigo": "20",
+   "nome": "Pêssego",
+   "idiomaNome": "pt",
+   "hex": "#F7AF93",
+   "rgb": [
+    247,
+    175,
+    147
+   ]
+  },
+  {
+   "codigo": "21",
+   "nome": "Prosciutto",
+   "idiomaNome": "pt",
+   "hex": "#D79982",
+   "rgb": [
+    215,
+    153,
+    130
+   ]
+  },
+  {
+   "codigo": "22",
+   "nome": "Rubi",
+   "idiomaNome": "pt",
+   "hex": "#BC604E",
+   "rgb": [
+    188,
+    96,
+    78
+   ]
+  },
+  {
+   "codigo": "23",
+   "nome": "Sakura",
+   "idiomaNome": "pt",
+   "hex": "#EDE2ED",
+   "rgb": [
+    237,
+    226,
+    237
+   ]
+  },
+  {
+   "codigo": "24",
+   "nome": "Branco Heather",
+   "idiomaNome": "pt",
+   "hex": "#E0D7EE",
+   "rgb": [
+    224,
+    215,
+    238
+   ]
+  },
+  {
+   "codigo": "25",
+   "nome": "Branco Crocus",
+   "idiomaNome": "pt",
+   "hex": "#DAD2E9",
+   "rgb": [
+    218,
+    210,
+    233
+   ]
+  },
+  {
+   "codigo": "26",
+   "nome": "Branco Lavanda",
+   "idiomaNome": "pt",
+   "hex": "#D7CAE6",
+   "rgb": [
+    215,
+    202,
+    230
+   ]
+  },
+  {
+   "codigo": "27",
+   "nome": "Branco Cinzento",
+   "idiomaNome": "pt",
+   "hex": "#F0EEF9",
+   "rgb": [
+    240,
+    238,
+    249
+   ]
+  },
+  {
+   "codigo": "28",
+   "nome": "Cinzento Lavanda",
+   "idiomaNome": "pt",
+   "hex": "#9086A9",
+   "rgb": [
+    144,
+    134,
+    169
+   ]
+  },
+  {
+   "codigo": "29",
+   "nome": "Púrpura Imperador",
+   "idiomaNome": "pt",
+   "hex": "#674076",
+   "rgb": [
+    103,
+    64,
+    118
+   ]
+  },
+  {
+   "codigo": "30",
+   "nome": "Cinzento Gatinho",
+   "idiomaNome": "pt",
+   "hex": "#7D77A5",
+   "rgb": [
+    125,
+    119,
+    165
+   ]
+  },
+  {
+   "codigo": "31",
+   "nome": "Violeta Empoeirada",
+   "idiomaNome": "pt",
+   "hex": "#50518D",
+   "rgb": [
+    80,
+    81,
+    141
+   ]
+  },
+  {
+   "codigo": "32",
+   "nome": "Malva Antigo",
+   "idiomaNome": "pt",
+   "hex": "#4D2E8A",
+   "rgb": [
+    77,
+    46,
+    138
+   ]
+  },
+  {
+   "codigo": "33",
+   "nome": "Malva Lilás",
+   "idiomaNome": "pt",
+   "hex": "#9C599E",
+   "rgb": [
+    156,
+    89,
+    158
+   ]
+  },
+  {
+   "codigo": "34",
+   "nome": "Púrpura Tíria",
+   "idiomaNome": "pt",
+   "hex": "#7D3064",
+   "rgb": [
+    125,
+    48,
+    100
+   ]
+  },
+  {
+   "codigo": "35",
+   "nome": "Púrpura Ameixa",
+   "idiomaNome": "pt",
+   "hex": "#46052D",
+   "rgb": [
+    70,
+    5,
+    45
+   ]
+  },
+  {
+   "codigo": "150",
+   "nome": "Framboesa",
+   "idiomaNome": "pt",
+   "hex": "#AB0249",
+   "rgb": [
+    171,
+    2,
+    73
+   ]
+  },
+  {
+   "codigo": "151",
+   "nome": "Rosa Marshmallow",
+   "idiomaNome": "pt",
+   "hex": "#F0CED4",
+   "rgb": [
+    240,
+    206,
+    212
+   ]
+  },
+  {
+   "codigo": "152",
+   "nome": "Rosa Velha",
+   "idiomaNome": "pt",
+   "hex": "#E2A099",
+   "rgb": [
+    226,
+    160,
+    153
+   ]
+  },
+  {
+   "codigo": "153",
+   "nome": "Rosa Lilás",
+   "idiomaNome": "pt",
+   "hex": "#E6CCD9",
+   "rgb": [
+    230,
+    204,
+    217
+   ]
+  },
+  {
+   "codigo": "154",
+   "nome": "Ameixa",
+   "idiomaNome": "pt",
+   "hex": "#572433",
+   "rgb": [
+    87,
+    36,
+    51
+   ]
+  },
+  {
+   "codigo": "155",
+   "nome": "Malva",
+   "idiomaNome": "pt",
+   "hex": "#9891B6",
+   "rgb": [
+    152,
+    145,
+    182
+   ]
+  },
+  {
+   "codigo": "156",
+   "nome": "Crocus Azul",
+   "idiomaNome": "pt",
+   "hex": "#A3AED1",
+   "rgb": [
+    163,
+    174,
+    209
+   ]
+  },
+  {
+   "codigo": "157",
+   "nome": "Heliotrópio",
+   "idiomaNome": "pt",
+   "hex": "#BBC3D9",
+   "rgb": [
+    187,
+    195,
+    217
+   ]
+  },
+  {
+   "codigo": "158",
+   "nome": "Azul Ultramarino",
+   "idiomaNome": "pt",
+   "hex": "#4C526E",
+   "rgb": [
+    76,
+    82,
+    110
+   ]
+  },
+  {
+   "codigo": "159",
+   "nome": "Céu Tempestade",
+   "idiomaNome": "pt",
+   "hex": "#C7CAD7",
+   "rgb": [
+    199,
+    202,
+    215
+   ]
+  },
+  {
+   "codigo": "160",
+   "nome": "Azul Tempestade",
+   "idiomaNome": "pt",
+   "hex": "#999FB7",
+   "rgb": [
+    153,
+    159,
+    183
+   ]
+  },
+  {
+   "codigo": "161",
+   "nome": "Azul Cinza",
+   "idiomaNome": "pt",
+   "hex": "#7880A4",
+   "rgb": [
+    120,
+    128,
+    164
+   ]
+  },
+  {
+   "codigo": "162",
+   "nome": "Azul Agua",
+   "idiomaNome": "pt",
+   "hex": "#DBECF5",
+   "rgb": [
+    219,
+    236,
+    245
+   ]
+  },
+  {
+   "codigo": "163",
+   "nome": "Eucalipto",
+   "idiomaNome": "pt",
+   "hex": "#4D8361",
+   "rgb": [
+    77,
+    131,
+    97
+   ]
+  },
+  {
+   "codigo": "164",
+   "nome": "Pistache",
+   "idiomaNome": "pt",
+   "hex": "#C8D8B8",
+   "rgb": [
+    200,
+    216,
+    184
+   ]
+  },
+  {
+   "codigo": "165",
+   "nome": "Verde Tília",
+   "idiomaNome": "pt",
+   "hex": "#EFF4A4",
+   "rgb": [
+    239,
+    244,
+    164
+   ]
+  },
+  {
+   "codigo": "166",
+   "nome": "Verde Absinto",
+   "idiomaNome": "pt",
+   "hex": "#C0C840",
+   "rgb": [
+    192,
+    200,
+    64
+   ]
+  },
+  {
+   "codigo": "167",
+   "nome": "Pralinê",
+   "idiomaNome": "pt",
+   "hex": "#A77C49",
+   "rgb": [
+    167,
+    124,
+    73
+   ]
+  },
+  {
+   "codigo": "168",
+   "nome": "Rato de Cidade Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#D1D1D1",
+   "rgb": [
+    209,
+    209,
+    209
+   ]
+  },
+  {
+   "codigo": "169",
+   "nome": "Estanho",
+   "idiomaNome": "pt",
+   "hex": "#848484",
+   "rgb": [
+    132,
+    132,
+    132
+   ]
+  },
+  {
+   "codigo": "208",
+   "nome": "Amor-Perfeito",
+   "idiomaNome": "pt",
+   "hex": "#835B8B",
+   "rgb": [
+    131,
+    91,
+    139
+   ]
+  },
+  {
+   "codigo": "209",
+   "nome": "Lilás",
+   "idiomaNome": "pt",
+   "hex": "#A37BA7",
+   "rgb": [
+    163,
+    123,
+    167
+   ]
+  },
+  {
+   "codigo": "210",
+   "nome": "Violeta Parma",
+   "idiomaNome": "pt",
+   "hex": "#C39FC3",
+   "rgb": [
+    195,
+    159,
+    195
+   ]
+  },
+  {
+   "codigo": "211",
+   "nome": "Violeta de Parma Claro Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#E3CBE3",
+   "rgb": [
+    227,
+    203,
+    227
+   ]
+  },
+  {
+   "codigo": "221",
+   "nome": "Vermelho de Marte",
+   "idiomaNome": "pt",
+   "hex": "#883E43",
+   "rgb": [
+    136,
+    62,
+    67
+   ]
+  },
+  {
+   "codigo": "223",
+   "nome": "Rosa Granito",
+   "idiomaNome": "pt",
+   "hex": "#CC847C",
+   "rgb": [
+    204,
+    132,
+    124
+   ]
+  },
+  {
+   "codigo": "224",
+   "nome": "Minhoca",
+   "idiomaNome": "pt",
+   "hex": "#EBB7AF",
+   "rgb": [
+    235,
+    183,
+    175
+   ]
+  },
+  {
+   "codigo": "225",
+   "nome": "Flor de Cerejeira",
+   "idiomaNome": "pt",
+   "hex": "#FFDFD5",
+   "rgb": [
+    255,
+    223,
+    213
+   ]
+  },
+  {
+   "codigo": "300",
+   "nome": "Mogno",
+   "idiomaNome": "pt",
+   "hex": "#6F2F00",
+   "rgb": [
+    111,
+    47,
+    0
+   ]
+  },
+  {
+   "codigo": "301",
+   "nome": "Esquilo",
+   "idiomaNome": "pt",
+   "hex": "#B35F2B",
+   "rgb": [
+    179,
+    95,
+    43
+   ]
+  },
+  {
+   "codigo": "304",
+   "nome": "Verniz Chinês",
+   "idiomaNome": "pt",
+   "hex": "#B71F33",
+   "rgb": [
+    183,
+    31,
+    51
+   ]
+  },
+  {
+   "codigo": "307",
+   "nome": "Limão",
+   "idiomaNome": "pt",
+   "hex": "#FDED54",
+   "rgb": [
+    253,
+    237,
+    84
+   ]
+  },
+  {
+   "codigo": "309",
+   "nome": "Rosa Frambuesa",
+   "idiomaNome": "pt",
+   "hex": "#C12041",
+   "rgb": [
+    193,
+    32,
+    65
+   ]
+  },
+  {
+   "codigo": "310",
+   "nome": "Preto",
+   "idiomaNome": "pt",
+   "hex": "#000000",
+   "rgb": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "codigo": "311",
+   "nome": "Azul Polar Escuro",
+   "idiomaNome": "pt",
+   "hex": "#1C5066",
+   "rgb": [
+    28,
+    80,
+    102
+   ]
+  },
+  {
+   "codigo": "312",
+   "nome": "Azul Meia-noite",
+   "idiomaNome": "pt",
+   "hex": "#35668B",
+   "rgb": [
+    53,
+    102,
+    139
+   ]
+  },
+  {
+   "codigo": "315",
+   "nome": "Violeta Archil",
+   "idiomaNome": "pt",
+   "hex": "#814952",
+   "rgb": [
+    129,
+    73,
+    82
+   ]
+  },
+  {
+   "codigo": "316",
+   "nome": "Urze",
+   "idiomaNome": "pt",
+   "hex": "#B7737F",
+   "rgb": [
+    183,
+    115,
+    127
+   ]
+  },
+  {
+   "codigo": "317",
+   "nome": "Aço Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#6C6C6C",
+   "rgb": [
+    108,
+    108,
+    108
+   ]
+  },
+  {
+   "codigo": "318",
+   "nome": "Cinzento Granito",
+   "idiomaNome": "pt",
+   "hex": "#ABABAB",
+   "rgb": [
+    171,
+    171,
+    171
+   ]
+  },
+  {
+   "codigo": "319",
+   "nome": "Verde Sombra",
+   "idiomaNome": "pt",
+   "hex": "#205F2E",
+   "rgb": [
+    32,
+    95,
+    46
+   ]
+  },
+  {
+   "codigo": "320",
+   "nome": "Samambaia",
+   "idiomaNome": "pt",
+   "hex": "#69885A",
+   "rgb": [
+    105,
+    136,
+    90
+   ]
+  },
+  {
+   "codigo": "321",
+   "nome": "Vermelho Carmim",
+   "idiomaNome": "pt",
+   "hex": "#C72B3B",
+   "rgb": [
+    199,
+    43,
+    59
+   ]
+  },
+  {
+   "codigo": "322",
+   "nome": "Azul Delft",
+   "idiomaNome": "pt",
+   "hex": "#5A8FB8",
+   "rgb": [
+    90,
+    143,
+    184
+   ]
+  },
+  {
+   "codigo": "326",
+   "nome": "Rosa Ruibarbo",
+   "idiomaNome": "pt",
+   "hex": "#B33B4B",
+   "rgb": [
+    179,
+    59,
+    75
+   ]
+  },
+  {
+   "codigo": "327",
+   "nome": "Púrpura Escuro",
+   "idiomaNome": "pt",
+   "hex": "#633666",
+   "rgb": [
+    99,
+    54,
+    102
+   ]
+  },
+  {
+   "codigo": "333",
+   "nome": "Azul Violeta",
+   "idiomaNome": "pt",
+   "hex": "#5C5478",
+   "rgb": [
+    92,
+    84,
+    120
+   ]
+  },
+  {
+   "codigo": "334",
+   "nome": "Índigo Claro",
+   "idiomaNome": "pt",
+   "hex": "#739FC1",
+   "rgb": [
+    115,
+    159,
+    193
+   ]
+  },
+  {
+   "codigo": "335",
+   "nome": "Rosa escuro",
+   "idiomaNome": "pt",
+   "hex": "#EE546E",
+   "rgb": [
+    238,
+    84,
+    110
+   ]
+  },
+  {
+   "codigo": "336",
+   "nome": "Índigo",
+   "idiomaNome": "pt",
+   "hex": "#253B73",
+   "rgb": [
+    37,
+    59,
+    115
+   ]
+  },
+  {
+   "codigo": "340",
+   "nome": "Glicínia Azul",
+   "idiomaNome": "pt",
+   "hex": "#ADA7C7",
+   "rgb": [
+    173,
+    167,
+    199
+   ]
+  },
+  {
+   "codigo": "341",
+   "nome": "Azul Hortênsia",
+   "idiomaNome": "pt",
+   "hex": "#B7BFDD",
+   "rgb": [
+    183,
+    191,
+    221
+   ]
+  },
+  {
+   "codigo": "347",
+   "nome": "Vermelho Egípcio",
+   "idiomaNome": "pt",
+   "hex": "#BF2D2D",
+   "rgb": [
+    191,
+    45,
+    45
+   ]
+  },
+  {
+   "codigo": "349",
+   "nome": "Vermelho Pimenta",
+   "idiomaNome": "pt",
+   "hex": "#D21035",
+   "rgb": [
+    210,
+    16,
+    53
+   ]
+  },
+  {
+   "codigo": "350",
+   "nome": "Vermelhão",
+   "idiomaNome": "pt",
+   "hex": "#E04848",
+   "rgb": [
+    224,
+    72,
+    72
+   ]
+  },
+  {
+   "codigo": "351",
+   "nome": "Coral",
+   "idiomaNome": "pt",
+   "hex": "#E96A67",
+   "rgb": [
+    233,
+    106,
+    103
+   ]
+  },
+  {
+   "codigo": "352",
+   "nome": "Salmão",
+   "idiomaNome": "pt",
+   "hex": "#FD9C97",
+   "rgb": [
+    253,
+    156,
+    151
+   ]
+  },
+  {
+   "codigo": "353",
+   "nome": "Rosa Ballet",
+   "idiomaNome": "pt",
+   "hex": "#FED7CC",
+   "rgb": [
+    254,
+    215,
+    204
+   ]
+  },
+  {
+   "codigo": "355",
+   "nome": "Castanho Vermelho",
+   "idiomaNome": "pt",
+   "hex": "#984436",
+   "rgb": [
+    152,
+    68,
+    54
+   ]
+  },
+  {
+   "codigo": "356",
+   "nome": "Rosa Terracota",
+   "idiomaNome": "pt",
+   "hex": "#C56A5B",
+   "rgb": [
+    197,
+    106,
+    91
+   ]
+  },
+  {
+   "codigo": "367",
+   "nome": "Louro",
+   "idiomaNome": "pt",
+   "hex": "#617A52",
+   "rgb": [
+    97,
+    122,
+    82
+   ]
+  },
+  {
+   "codigo": "368",
+   "nome": "Água do Nilo",
+   "idiomaNome": "pt",
+   "hex": "#A6C298",
+   "rgb": [
+    166,
+    194,
+    152
+   ]
+  },
+  {
+   "codigo": "369",
+   "nome": "Verde Brotos de Bambu",
+   "idiomaNome": "pt",
+   "hex": "#D7EDCC",
+   "rgb": [
+    215,
+    237,
+    204
+   ]
+  },
+  {
+   "codigo": "370",
+   "nome": "Ervas da Provença",
+   "idiomaNome": "pt",
+   "hex": "#B89D64",
+   "rgb": [
+    184,
+    157,
+    100
+   ]
+  },
+  {
+   "codigo": "371",
+   "nome": "Estepe",
+   "idiomaNome": "pt",
+   "hex": "#BFA671",
+   "rgb": [
+    191,
+    166,
+    113
+   ]
+  },
+  {
+   "codigo": "372",
+   "nome": "Cardamomo Verde",
+   "idiomaNome": "pt",
+   "hex": "#CCB784",
+   "rgb": [
+    204,
+    183,
+    132
+   ]
+  },
+  {
+   "codigo": "400",
+   "nome": "Castanho",
+   "idiomaNome": "pt",
+   "hex": "#8F430F",
+   "rgb": [
+    143,
+    67,
+    15
+   ]
+  },
+  {
+   "codigo": "402",
+   "nome": "Cerâmica",
+   "idiomaNome": "pt",
+   "hex": "#F7A777",
+   "rgb": [
+    247,
+    167,
+    119
+   ]
+  },
+  {
+   "codigo": "407",
+   "nome": "Veado",
+   "idiomaNome": "pt",
+   "hex": "#BB8161",
+   "rgb": [
+    187,
+    129,
+    97
+   ]
+  },
+  {
+   "codigo": "413",
+   "nome": "Ferro",
+   "idiomaNome": "pt",
+   "hex": "#565656",
+   "rgb": [
+    86,
+    86,
+    86
+   ]
+  },
+  {
+   "codigo": "414",
+   "nome": "Chumbo",
+   "idiomaNome": "pt",
+   "hex": "#8C8C8C",
+   "rgb": [
+    140,
+    140,
+    140
+   ]
+  },
+  {
+   "codigo": "415",
+   "nome": "Crómio Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#D3D3D6",
+   "rgb": [
+    211,
+    211,
+    214
+   ]
+  },
+  {
+   "codigo": "420",
+   "nome": "Avelã",
+   "idiomaNome": "pt",
+   "hex": "#A07042",
+   "rgb": [
+    160,
+    112,
+    66
+   ]
+  },
+  {
+   "codigo": "422",
+   "nome": "Carvalho Claro",
+   "idiomaNome": "pt",
+   "hex": "#C69F7B",
+   "rgb": [
+    198,
+    159,
+    123
+   ]
+  },
+  {
+   "codigo": "433",
+   "nome": "Chocolate",
+   "idiomaNome": "pt",
+   "hex": "#7A451F",
+   "rgb": [
+    122,
+    69,
+    31
+   ]
+  },
+  {
+   "codigo": "434",
+   "nome": "Castanho Cigarro",
+   "idiomaNome": "pt",
+   "hex": "#985E33",
+   "rgb": [
+    152,
+    94,
+    51
+   ]
+  },
+  {
+   "codigo": "435",
+   "nome": "Tabaco",
+   "idiomaNome": "pt",
+   "hex": "#B87748",
+   "rgb": [
+    184,
+    119,
+    72
+   ]
+  },
+  {
+   "codigo": "436",
+   "nome": "Ursinho",
+   "idiomaNome": "pt",
+   "hex": "#CB9051",
+   "rgb": [
+    203,
+    144,
+    81
+   ]
+  },
+  {
+   "codigo": "437",
+   "nome": "Camelo",
+   "idiomaNome": "pt",
+   "hex": "#E4BB8E",
+   "rgb": [
+    228,
+    187,
+    142
+   ]
+  },
+  {
+   "codigo": "444",
+   "nome": "Amarelo Brilhante",
+   "idiomaNome": "pt",
+   "hex": "#FFD600",
+   "rgb": [
+    255,
+    214,
+    0
+   ]
+  },
+  {
+   "codigo": "445",
+   "nome": "Manteiga de Milho",
+   "idiomaNome": "pt",
+   "hex": "#FFFB8B",
+   "rgb": [
+    255,
+    251,
+    139
+   ]
+  },
+  {
+   "codigo": "451",
+   "nome": "Pequeno Cinzento",
+   "idiomaNome": "pt",
+   "hex": "#917B73",
+   "rgb": [
+    145,
+    123,
+    115
+   ]
+  },
+  {
+   "codigo": "452",
+   "nome": "Cinzento Rola",
+   "idiomaNome": "pt",
+   "hex": "#C0B3AE",
+   "rgb": [
+    192,
+    179,
+    174
+   ]
+  },
+  {
+   "codigo": "453",
+   "nome": "Cinzento Pombo",
+   "idiomaNome": "pt",
+   "hex": "#D7CECB",
+   "rgb": [
+    215,
+    206,
+    203
+   ]
+  },
+  {
+   "codigo": "469",
+   "nome": "Verde Musgo Dourado",
+   "idiomaNome": "pt",
+   "hex": "#72843C",
+   "rgb": [
+    114,
+    132,
+    60
+   ]
+  },
+  {
+   "codigo": "470",
+   "nome": "Verde Azeitona",
+   "idiomaNome": "pt",
+   "hex": "#94AB4F",
+   "rgb": [
+    148,
+    171,
+    79
+   ]
+  },
+  {
+   "codigo": "471",
+   "nome": "Estragão",
+   "idiomaNome": "pt",
+   "hex": "#AEBF79",
+   "rgb": [
+    174,
+    191,
+    121
+   ]
+  },
+  {
+   "codigo": "472",
+   "nome": "Rebento Verde",
+   "idiomaNome": "pt",
+   "hex": "#D8E498",
+   "rgb": [
+    216,
+    228,
+    152
+   ]
+  },
+  {
+   "codigo": "498",
+   "nome": "Vermelho Beijo",
+   "idiomaNome": "pt",
+   "hex": "#A7132B",
+   "rgb": [
+    167,
+    19,
+    43
+   ]
+  },
+  {
+   "codigo": "500",
+   "nome": "Yedra",
+   "idiomaNome": "pt",
+   "hex": "#044D33",
+   "rgb": [
+    4,
+    77,
+    51
+   ]
+  },
+  {
+   "codigo": "501",
+   "nome": "Lago Verde",
+   "idiomaNome": "pt",
+   "hex": "#396F52",
+   "rgb": [
+    57,
+    111,
+    82
+   ]
+  },
+  {
+   "codigo": "502",
+   "nome": "Folha de Amêndoa",
+   "idiomaNome": "pt",
+   "hex": "#5B9071",
+   "rgb": [
+    91,
+    144,
+    113
+   ]
+  },
+  {
+   "codigo": "503",
+   "nome": "Verde Tomilho",
+   "idiomaNome": "pt",
+   "hex": "#7BAC94",
+   "rgb": [
+    123,
+    172,
+    148
+   ]
+  },
+  {
+   "codigo": "504",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#C4DECC",
+   "rgb": [
+    196,
+    222,
+    204
+   ]
+  },
+  {
+   "codigo": "505",
+   "nome": "Verde Pinhal",
+   "idiomaNome": "pt",
+   "hex": "#338362",
+   "rgb": [
+    51,
+    131,
+    98
+   ]
+  },
+  {
+   "codigo": "517",
+   "nome": "Azul Náutico",
+   "idiomaNome": "pt",
+   "hex": "#3B768F",
+   "rgb": [
+    59,
+    118,
+    143
+   ]
+  },
+  {
+   "codigo": "518",
+   "nome": "Azul Nattier",
+   "idiomaNome": "pt",
+   "hex": "#4F93A7",
+   "rgb": [
+    79,
+    147,
+    167
+   ]
+  },
+  {
+   "codigo": "519",
+   "nome": "Azul Nebuloso",
+   "idiomaNome": "pt",
+   "hex": "#7EB1C8",
+   "rgb": [
+    126,
+    177,
+    200
+   ]
+  },
+  {
+   "codigo": "520",
+   "nome": "Madeira Selvagem",
+   "idiomaNome": "pt",
+   "hex": "#666D4F",
+   "rgb": [
+    102,
+    109,
+    79
+   ]
+  },
+  {
+   "codigo": "522",
+   "nome": "Verde Celosia",
+   "idiomaNome": "pt",
+   "hex": "#969E7E",
+   "rgb": [
+    150,
+    158,
+    126
+   ]
+  },
+  {
+   "codigo": "523",
+   "nome": "Verde Cinzas",
+   "idiomaNome": "pt",
+   "hex": "#ABB197",
+   "rgb": [
+    171,
+    177,
+    151
+   ]
+  },
+  {
+   "codigo": "524",
+   "nome": "Verde Seixo",
+   "idiomaNome": "pt",
+   "hex": "#C4CDAC",
+   "rgb": [
+    196,
+    205,
+    172
+   ]
+  },
+  {
+   "codigo": "535",
+   "nome": "Pedrinha",
+   "idiomaNome": "pt",
+   "hex": "#636458",
+   "rgb": [
+    99,
+    100,
+    88
+   ]
+  },
+  {
+   "codigo": "543",
+   "nome": "Concha",
+   "idiomaNome": "pt",
+   "hex": "#F2E3CE",
+   "rgb": [
+    242,
+    227,
+    206
+   ]
+  },
+  {
+   "codigo": "550",
+   "nome": "Flor da Paixão",
+   "idiomaNome": "pt",
+   "hex": "#5C184E",
+   "rgb": [
+    92,
+    24,
+    78
+   ]
+  },
+  {
+   "codigo": "552",
+   "nome": "Violeta",
+   "idiomaNome": "pt",
+   "hex": "#803A6B",
+   "rgb": [
+    128,
+    58,
+    107
+   ]
+  },
+  {
+   "codigo": "553",
+   "nome": "Violeta Ametista",
+   "idiomaNome": "pt",
+   "hex": "#A3638B",
+   "rgb": [
+    163,
+    99,
+    139
+   ]
+  },
+  {
+   "codigo": "554",
+   "nome": "Púrpura Pastel",
+   "idiomaNome": "pt",
+   "hex": "#DBB3CB",
+   "rgb": [
+    219,
+    179,
+    203
+   ]
+  },
+  {
+   "codigo": "561",
+   "nome": "Verde Cipreste",
+   "idiomaNome": "pt",
+   "hex": "#2C6A45",
+   "rgb": [
+    44,
+    106,
+    69
+   ]
+  },
+  {
+   "codigo": "562",
+   "nome": "Malaquita",
+   "idiomaNome": "pt",
+   "hex": "#53976A",
+   "rgb": [
+    83,
+    151,
+    106
+   ]
+  },
+  {
+   "codigo": "563",
+   "nome": "Verde Celadon",
+   "idiomaNome": "pt",
+   "hex": "#8FC098",
+   "rgb": [
+    143,
+    192,
+    152
+   ]
+  },
+  {
+   "codigo": "564",
+   "nome": "Malaquita Clara",
+   "idiomaNome": "pt",
+   "hex": "#A7CDAF",
+   "rgb": [
+    167,
+    205,
+    175
+   ]
+  },
+  {
+   "codigo": "580",
+   "nome": "Catos",
+   "idiomaNome": "pt",
+   "hex": "#888D33",
+   "rgb": [
+    136,
+    141,
+    51
+   ]
+  },
+  {
+   "codigo": "581",
+   "nome": "Gafanhoto",
+   "idiomaNome": "pt",
+   "hex": "#A7AE38",
+   "rgb": [
+    167,
+    174,
+    56
+   ]
+  },
+  {
+   "codigo": "597",
+   "nome": "Azul Pack Ice",
+   "idiomaNome": "pt",
+   "hex": "#5BA3B3",
+   "rgb": [
+    91,
+    163,
+    179
+   ]
+  },
+  {
+   "codigo": "598",
+   "nome": "Lago Profundo",
+   "idiomaNome": "pt",
+   "hex": "#90C3CC",
+   "rgb": [
+    144,
+    195,
+    204
+   ]
+  },
+  {
+   "codigo": "600",
+   "nome": "Rosa Rábano",
+   "idiomaNome": "pt",
+   "hex": "#CD2F63",
+   "rgb": [
+    205,
+    47,
+    99
+   ]
+  },
+  {
+   "codigo": "601",
+   "nome": "Rosa Impatiens",
+   "idiomaNome": "pt",
+   "hex": "#D1286A",
+   "rgb": [
+    209,
+    40,
+    106
+   ]
+  },
+  {
+   "codigo": "602",
+   "nome": "Rosa Verbena",
+   "idiomaNome": "pt",
+   "hex": "#E24874",
+   "rgb": [
+    226,
+    72,
+    116
+   ]
+  },
+  {
+   "codigo": "603",
+   "nome": "Rosa Macaroon",
+   "idiomaNome": "pt",
+   "hex": "#FFA4BE",
+   "rgb": [
+    255,
+    164,
+    190
+   ]
+  },
+  {
+   "codigo": "604",
+   "nome": "Jacinto",
+   "idiomaNome": "pt",
+   "hex": "#FFB0BE",
+   "rgb": [
+    255,
+    176,
+    190
+   ]
+  },
+  {
+   "codigo": "605",
+   "nome": "Botão de Rosa",
+   "idiomaNome": "pt",
+   "hex": "#FFC0CD",
+   "rgb": [
+    255,
+    192,
+    205
+   ]
+  },
+  {
+   "codigo": "606",
+   "nome": "Vermelho Brilhante",
+   "idiomaNome": "pt",
+   "hex": "#FA3203",
+   "rgb": [
+    250,
+    50,
+    3
+   ]
+  },
+  {
+   "codigo": "608",
+   "nome": "Papoila",
+   "idiomaNome": "pt",
+   "hex": "#FD5D35",
+   "rgb": [
+    253,
+    93,
+    53
+   ]
+  },
+  {
+   "codigo": "610",
+   "nome": "Castor",
+   "idiomaNome": "pt",
+   "hex": "#796047",
+   "rgb": [
+    121,
+    96,
+    71
+   ]
+  },
+  {
+   "codigo": "611",
+   "nome": "Âmbar",
+   "idiomaNome": "pt",
+   "hex": "#967656",
+   "rgb": [
+    150,
+    118,
+    86
+   ]
+  },
+  {
+   "codigo": "612",
+   "nome": "Juta",
+   "idiomaNome": "pt",
+   "hex": "#BC9A78",
+   "rgb": [
+    188,
+    154,
+    120
+   ]
+  },
+  {
+   "codigo": "613",
+   "nome": "Corda",
+   "idiomaNome": "pt",
+   "hex": "#DCC4AA",
+   "rgb": [
+    220,
+    196,
+    170
+   ]
+  },
+  {
+   "codigo": "632",
+   "nome": "Cacau",
+   "idiomaNome": "pt",
+   "hex": "#875539",
+   "rgb": [
+    135,
+    85,
+    57
+   ]
+  },
+  {
+   "codigo": "640",
+   "nome": "Cinzento Bloco",
+   "idiomaNome": "pt",
+   "hex": "#857B61",
+   "rgb": [
+    133,
+    123,
+    97
+   ]
+  },
+  {
+   "codigo": "642",
+   "nome": "Cinzento Umbra",
+   "idiomaNome": "pt",
+   "hex": "#A49878",
+   "rgb": [
+    164,
+    152,
+    120
+   ]
+  },
+  {
+   "codigo": "644",
+   "nome": "Cânhamo",
+   "idiomaNome": "pt",
+   "hex": "#DDD8CB",
+   "rgb": [
+    221,
+    216,
+    203
+   ]
+  },
+  {
+   "codigo": "645",
+   "nome": "Cinzento Rena",
+   "idiomaNome": "pt",
+   "hex": "#6E655C",
+   "rgb": [
+    110,
+    101,
+    92
+   ]
+  },
+  {
+   "codigo": "646",
+   "nome": "Cinzento Fumaça",
+   "idiomaNome": "pt",
+   "hex": "#877D73",
+   "rgb": [
+    135,
+    125,
+    115
+   ]
+  },
+  {
+   "codigo": "647",
+   "nome": "Rocha Cinzenta",
+   "idiomaNome": "pt",
+   "hex": "#B0A69C",
+   "rgb": [
+    176,
+    166,
+    156
+   ]
+  },
+  {
+   "codigo": "648",
+   "nome": "Pimenta Branca",
+   "idiomaNome": "pt",
+   "hex": "#BCB4AC",
+   "rgb": [
+    188,
+    180,
+    172
+   ]
+  },
+  {
+   "codigo": "666",
+   "nome": "Vermelho Escarlate",
+   "idiomaNome": "pt",
+   "hex": "#E31D42",
+   "rgb": [
+    227,
+    29,
+    66
+   ]
+  },
+  {
+   "codigo": "676",
+   "nome": "Savana",
+   "idiomaNome": "pt",
+   "hex": "#E5CE97",
+   "rgb": [
+    229,
+    206,
+    151
+   ]
+  },
+  {
+   "codigo": "677",
+   "nome": "Areia Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#F5ECCB",
+   "rgb": [
+    245,
+    236,
+    203
+   ]
+  },
+  {
+   "codigo": "680",
+   "nome": "Feneco",
+   "idiomaNome": "pt",
+   "hex": "#BC8D0E",
+   "rgb": [
+    188,
+    141,
+    14
+   ]
+  },
+  {
+   "codigo": "699",
+   "nome": "Frutas Cristalizadas",
+   "idiomaNome": "pt",
+   "hex": "#056517",
+   "rgb": [
+    5,
+    101,
+    23
+   ]
+  },
+  {
+   "codigo": "700",
+   "nome": "Prado Verde",
+   "idiomaNome": "pt",
+   "hex": "#07731B",
+   "rgb": [
+    7,
+    115,
+    27
+   ]
+  },
+  {
+   "codigo": "701",
+   "nome": "Relva",
+   "idiomaNome": "pt",
+   "hex": "#3F8F29",
+   "rgb": [
+    63,
+    143,
+    41
+   ]
+  },
+  {
+   "codigo": "702",
+   "nome": "Relva de Primavera",
+   "idiomaNome": "pt",
+   "hex": "#47A72F",
+   "rgb": [
+    71,
+    167,
+    47
+   ]
+  },
+  {
+   "codigo": "703",
+   "nome": "Verde Primavera",
+   "idiomaNome": "pt",
+   "hex": "#7BB547",
+   "rgb": [
+    123,
+    181,
+    71
+   ]
+  },
+  {
+   "codigo": "704",
+   "nome": "Lima",
+   "idiomaNome": "pt",
+   "hex": "#9ECF34",
+   "rgb": [
+    158,
+    207,
+    52
+   ]
+  },
+  {
+   "codigo": "712",
+   "nome": "Creme",
+   "idiomaNome": "pt",
+   "hex": "#FFFBEF",
+   "rgb": [
+    255,
+    251,
+    239
+   ]
+  },
+  {
+   "codigo": "718",
+   "nome": "Rosa Magenta",
+   "idiomaNome": "pt",
+   "hex": "#9C2462",
+   "rgb": [
+    156,
+    36,
+    98
+   ]
+  },
+  {
+   "codigo": "720",
+   "nome": "Ferrugem",
+   "idiomaNome": "pt",
+   "hex": "#E55C1F",
+   "rgb": [
+    229,
+    92,
+    31
+   ]
+  },
+  {
+   "codigo": "721",
+   "nome": "Papaia",
+   "idiomaNome": "pt",
+   "hex": "#F27842",
+   "rgb": [
+    242,
+    120,
+    66
+   ]
+  },
+  {
+   "codigo": "722",
+   "nome": "Camarão",
+   "idiomaNome": "pt",
+   "hex": "#F7976F",
+   "rgb": [
+    247,
+    151,
+    111
+   ]
+  },
+  {
+   "codigo": "725",
+   "nome": "Ranúnculo",
+   "idiomaNome": "pt",
+   "hex": "#FFC840",
+   "rgb": [
+    255,
+    200,
+    64
+   ]
+  },
+  {
+   "codigo": "726",
+   "nome": "Mimosa",
+   "idiomaNome": "pt",
+   "hex": "#FDD755",
+   "rgb": [
+    253,
+    215,
+    85
+   ]
+  },
+  {
+   "codigo": "727",
+   "nome": "Prímula",
+   "idiomaNome": "pt",
+   "hex": "#FFF1AF",
+   "rgb": [
+    255,
+    241,
+    175
+   ]
+  },
+  {
+   "codigo": "728",
+   "nome": "Mostarda",
+   "idiomaNome": "pt",
+   "hex": "#E4B468",
+   "rgb": [
+    228,
+    180,
+    104
+   ]
+  },
+  {
+   "codigo": "729",
+   "nome": "Mel",
+   "idiomaNome": "pt",
+   "hex": "#D0A53E",
+   "rgb": [
+    208,
+    165,
+    62
+   ]
+  },
+  {
+   "codigo": "730",
+   "nome": "Caqui",
+   "idiomaNome": "pt",
+   "hex": "#827B30",
+   "rgb": [
+    130,
+    123,
+    48
+   ]
+  },
+  {
+   "codigo": "731",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#938B37",
+   "rgb": [
+    147,
+    139,
+    55
+   ]
+  },
+  {
+   "codigo": "732",
+   "nome": "Verde Bronze Claro",
+   "idiomaNome": "pt",
+   "hex": "#948C36",
+   "rgb": [
+    148,
+    140,
+    54
+   ]
+  },
+  {
+   "codigo": "733",
+   "nome": "Verde Dourado",
+   "idiomaNome": "pt",
+   "hex": "#BCB34C",
+   "rgb": [
+    188,
+    179,
+    76
+   ]
+  },
+  {
+   "codigo": "734",
+   "nome": "Azeitona Partida",
+   "idiomaNome": "pt",
+   "hex": "#C7C077",
+   "rgb": [
+    199,
+    192,
+    119
+   ]
+  },
+  {
+   "codigo": "738",
+   "nome": "Saara",
+   "idiomaNome": "pt",
+   "hex": "#ECCC9E",
+   "rgb": [
+    236,
+    204,
+    158
+   ]
+  },
+  {
+   "codigo": "739",
+   "nome": "Duna",
+   "idiomaNome": "pt",
+   "hex": "#F8E4C8",
+   "rgb": [
+    248,
+    228,
+    200
+   ]
+  },
+  {
+   "codigo": "740",
+   "nome": "Laranja Papaia",
+   "idiomaNome": "pt",
+   "hex": "#FF8B00",
+   "rgb": [
+    255,
+    139,
+    0
+   ]
+  },
+  {
+   "codigo": "741",
+   "nome": "Mandarina",
+   "idiomaNome": "pt",
+   "hex": "#FFA32B",
+   "rgb": [
+    255,
+    163,
+    43
+   ]
+  },
+  {
+   "codigo": "742",
+   "nome": "Clementina",
+   "idiomaNome": "pt",
+   "hex": "#FFBF57",
+   "rgb": [
+    255,
+    191,
+    87
+   ]
+  },
+  {
+   "codigo": "743",
+   "nome": "Banana",
+   "idiomaNome": "pt",
+   "hex": "#FED376",
+   "rgb": [
+    254,
+    211,
+    118
+   ]
+  },
+  {
+   "codigo": "744",
+   "nome": "Toranja",
+   "idiomaNome": "pt",
+   "hex": "#FFE793",
+   "rgb": [
+    255,
+    231,
+    147
+   ]
+  },
+  {
+   "codigo": "745",
+   "nome": "Louro",
+   "idiomaNome": "pt",
+   "hex": "#FFE9AD",
+   "rgb": [
+    255,
+    233,
+    173
+   ]
+  },
+  {
+   "codigo": "746",
+   "nome": "Baunilha Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#FCFCEE",
+   "rgb": [
+    252,
+    252,
+    238
+   ]
+  },
+  {
+   "codigo": "747",
+   "nome": "Névoa do Mar Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#E5FCFD",
+   "rgb": [
+    229,
+    252,
+    253
+   ]
+  },
+  {
+   "codigo": "754",
+   "nome": "Rosa Bege",
+   "idiomaNome": "pt",
+   "hex": "#F7CBBF",
+   "rgb": [
+    247,
+    203,
+    191
+   ]
+  },
+  {
+   "codigo": "758",
+   "nome": "Alvorada Rosa",
+   "idiomaNome": "pt",
+   "hex": "#EEAA9B",
+   "rgb": [
+    238,
+    170,
+    155
+   ]
+  },
+  {
+   "codigo": "760",
+   "nome": "Rosa Granada",
+   "idiomaNome": "pt",
+   "hex": "#F5ADAD",
+   "rgb": [
+    245,
+    173,
+    173
+   ]
+  },
+  {
+   "codigo": "761",
+   "nome": "Rosa Aurora",
+   "idiomaNome": "pt",
+   "hex": "#FFC9C9",
+   "rgb": [
+    255,
+    201,
+    201
+   ]
+  },
+  {
+   "codigo": "762",
+   "nome": "Cinzento Pérola",
+   "idiomaNome": "pt",
+   "hex": "#ECECEC",
+   "rgb": [
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "codigo": "772",
+   "nome": "Aipo",
+   "idiomaNome": "pt",
+   "hex": "#E4ECD4",
+   "rgb": [
+    228,
+    236,
+    212
+   ]
+  },
+  {
+   "codigo": "775",
+   "nome": "Azul Chuva de Verão",
+   "idiomaNome": "pt",
+   "hex": "#D9EBF1",
+   "rgb": [
+    217,
+    235,
+    241
+   ]
+  },
+  {
+   "codigo": "776",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#FCB0B9",
+   "rgb": [
+    252,
+    176,
+    185
+   ]
+  },
+  {
+   "codigo": "777",
+   "nome": "Vinho Tinto",
+   "idiomaNome": "pt",
+   "hex": "#913546",
+   "rgb": [
+    145,
+    53,
+    70
+   ]
+  },
+  {
+   "codigo": "778",
+   "nome": "Púrpura Ametista",
+   "idiomaNome": "pt",
+   "hex": "#DFB3BB",
+   "rgb": [
+    223,
+    179,
+    187
+   ]
+  },
+  {
+   "codigo": "779",
+   "nome": "Sépia",
+   "idiomaNome": "pt",
+   "hex": "#624B45",
+   "rgb": [
+    98,
+    75,
+    69
+   ]
+  },
+  {
+   "codigo": "780",
+   "nome": "Castanha",
+   "idiomaNome": "pt",
+   "hex": "#94631A",
+   "rgb": [
+    148,
+    99,
+    26
+   ]
+  },
+  {
+   "codigo": "781",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#A26D20",
+   "rgb": [
+    162,
+    109,
+    32
+   ]
+  },
+  {
+   "codigo": "782",
+   "nome": "Vime",
+   "idiomaNome": "pt",
+   "hex": "#AE7720",
+   "rgb": [
+    174,
+    119,
+    32
+   ]
+  },
+  {
+   "codigo": "783",
+   "nome": "Ouro velho",
+   "idiomaNome": "pt",
+   "hex": "#CE9124",
+   "rgb": [
+    206,
+    145,
+    36
+   ]
+  },
+  {
+   "codigo": "791",
+   "nome": "Lápis-Lazúli",
+   "idiomaNome": "pt",
+   "hex": "#464563",
+   "rgb": [
+    70,
+    69,
+    99
+   ]
+  },
+  {
+   "codigo": "792",
+   "nome": "Azul da China",
+   "idiomaNome": "pt",
+   "hex": "#555B7B",
+   "rgb": [
+    85,
+    91,
+    123
+   ]
+  },
+  {
+   "codigo": "793",
+   "nome": "Azul Oceano",
+   "idiomaNome": "pt",
+   "hex": "#707DA2",
+   "rgb": [
+    112,
+    125,
+    162
+   ]
+  },
+  {
+   "codigo": "794",
+   "nome": "Azul Bebé",
+   "idiomaNome": "pt",
+   "hex": "#8F9CC1",
+   "rgb": [
+    143,
+    156,
+    193
+   ]
+  },
+  {
+   "codigo": "796",
+   "nome": "Azul de Sévres",
+   "idiomaNome": "pt",
+   "hex": "#11416D",
+   "rgb": [
+    17,
+    65,
+    109
+   ]
+  },
+  {
+   "codigo": "797",
+   "nome": "Azul Francés",
+   "idiomaNome": "pt",
+   "hex": "#13477D",
+   "rgb": [
+    19,
+    71,
+    125
+   ]
+  },
+  {
+   "codigo": "798",
+   "nome": "Azul Cobalto",
+   "idiomaNome": "pt",
+   "hex": "#466A8E",
+   "rgb": [
+    70,
+    106,
+    142
+   ]
+  },
+  {
+   "codigo": "799",
+   "nome": "Azul Horizonte",
+   "idiomaNome": "pt",
+   "hex": "#748EB6",
+   "rgb": [
+    116,
+    142,
+    182
+   ]
+  },
+  {
+   "codigo": "800",
+   "nome": "Azul Céu",
+   "idiomaNome": "pt",
+   "hex": "#C0CCDE",
+   "rgb": [
+    192,
+    204,
+    222
+   ]
+  },
+  {
+   "codigo": "801",
+   "nome": "Vison",
+   "idiomaNome": "pt",
+   "hex": "#653919",
+   "rgb": [
+    101,
+    57,
+    25
+   ]
+  },
+  {
+   "codigo": "803",
+   "nome": "Azul Tinta",
+   "idiomaNome": "pt",
+   "hex": "#2C597C",
+   "rgb": [
+    44,
+    89,
+    124
+   ]
+  },
+  {
+   "codigo": "806",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#3D95A5",
+   "rgb": [
+    61,
+    149,
+    165
+   ]
+  },
+  {
+   "codigo": "807",
+   "nome": "Maré Turquesa",
+   "idiomaNome": "pt",
+   "hex": "#64ABBA",
+   "rgb": [
+    100,
+    171,
+    186
+   ]
+  },
+  {
+   "codigo": "809",
+   "nome": "Azul Suave",
+   "idiomaNome": "pt",
+   "hex": "#94A8C6",
+   "rgb": [
+    148,
+    168,
+    198
+   ]
+  },
+  {
+   "codigo": "813",
+   "nome": "Azul Gálico",
+   "idiomaNome": "pt",
+   "hex": "#A1C2D7",
+   "rgb": [
+    161,
+    194,
+    215
+   ]
+  },
+  {
+   "codigo": "814",
+   "nome": "Vermelho Vinho",
+   "idiomaNome": "pt",
+   "hex": "#7B001B",
+   "rgb": [
+    123,
+    0,
+    27
+   ]
+  },
+  {
+   "codigo": "815",
+   "nome": "Cerejeira Negra",
+   "idiomaNome": "pt",
+   "hex": "#87071F",
+   "rgb": [
+    135,
+    7,
+    31
+   ]
+  },
+  {
+   "codigo": "816",
+   "nome": "Frutos Vermelhos",
+   "idiomaNome": "pt",
+   "hex": "#970B23",
+   "rgb": [
+    151,
+    11,
+    35
+   ]
+  },
+  {
+   "codigo": "817",
+   "nome": "Vermelho Japonês",
+   "idiomaNome": "pt",
+   "hex": "#BB051F",
+   "rgb": [
+    187,
+    5,
+    31
+   ]
+  },
+  {
+   "codigo": "818",
+   "nome": "Rosa Empoeirado Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#FFDFD9",
+   "rgb": [
+    255,
+    223,
+    217
+   ]
+  },
+  {
+   "codigo": "819",
+   "nome": "Rosa Bebé",
+   "idiomaNome": "pt",
+   "hex": "#FFEEEB",
+   "rgb": [
+    255,
+    238,
+    235
+   ]
+  },
+  {
+   "codigo": "820",
+   "nome": "Azul Real",
+   "idiomaNome": "pt",
+   "hex": "#0E365C",
+   "rgb": [
+    14,
+    54,
+    92
+   ]
+  },
+  {
+   "codigo": "822",
+   "nome": "Algodão",
+   "idiomaNome": "pt",
+   "hex": "#E7E2D3",
+   "rgb": [
+    231,
+    226,
+    211
+   ]
+  },
+  {
+   "codigo": "823",
+   "nome": "Azul Mirtilo",
+   "idiomaNome": "pt",
+   "hex": "#213063",
+   "rgb": [
+    33,
+    48,
+    99
+   ]
+  },
+  {
+   "codigo": "824",
+   "nome": "Azul-Marinho",
+   "idiomaNome": "pt",
+   "hex": "#396987",
+   "rgb": [
+    57,
+    105,
+    135
+   ]
+  },
+  {
+   "codigo": "825",
+   "nome": "Azul Genciana",
+   "idiomaNome": "pt",
+   "hex": "#4781A5",
+   "rgb": [
+    71,
+    129,
+    165
+   ]
+  },
+  {
+   "codigo": "826",
+   "nome": "Azul Tuareg",
+   "idiomaNome": "pt",
+   "hex": "#6B9EBF",
+   "rgb": [
+    107,
+    158,
+    191
+   ]
+  },
+  {
+   "codigo": "827",
+   "nome": "Não Me Esqueça",
+   "idiomaNome": "pt",
+   "hex": "#BDDDED",
+   "rgb": [
+    189,
+    221,
+    237
+   ]
+  },
+  {
+   "codigo": "828",
+   "nome": "Ar Marinho",
+   "idiomaNome": "pt",
+   "hex": "#C5E8ED",
+   "rgb": [
+    197,
+    232,
+    237
+   ]
+  },
+  {
+   "codigo": "829",
+   "nome": "Anis-estrelado",
+   "idiomaNome": "pt",
+   "hex": "#7E6B42",
+   "rgb": [
+    126,
+    107,
+    66
+   ]
+  },
+  {
+   "codigo": "830",
+   "nome": "Cortiça",
+   "idiomaNome": "pt",
+   "hex": "#8D784B",
+   "rgb": [
+    141,
+    120,
+    75
+   ]
+  },
+  {
+   "codigo": "831",
+   "nome": "Bronze",
+   "idiomaNome": "pt",
+   "hex": "#AA8F56",
+   "rgb": [
+    170,
+    143,
+    86
+   ]
+  },
+  {
+   "codigo": "832",
+   "nome": "Modoré",
+   "idiomaNome": "pt",
+   "hex": "#BD9B51",
+   "rgb": [
+    189,
+    155,
+    81
+   ]
+  },
+  {
+   "codigo": "833",
+   "nome": "Latão",
+   "idiomaNome": "pt",
+   "hex": "#C8AB6C",
+   "rgb": [
+    200,
+    171,
+    108
+   ]
+  },
+  {
+   "codigo": "834",
+   "nome": "Girassol Empoeirado",
+   "idiomaNome": "pt",
+   "hex": "#DBBE7F",
+   "rgb": [
+    219,
+    190,
+    127
+   ]
+  },
+  {
+   "codigo": "838",
+   "nome": "Floresta Escura",
+   "idiomaNome": "pt",
+   "hex": "#594937",
+   "rgb": [
+    89,
+    73,
+    55
+   ]
+  },
+  {
+   "codigo": "839",
+   "nome": "Raiz Castanha",
+   "idiomaNome": "pt",
+   "hex": "#675541",
+   "rgb": [
+    103,
+    85,
+    65
+   ]
+  },
+  {
+   "codigo": "840",
+   "nome": "Lebre",
+   "idiomaNome": "pt",
+   "hex": "#9A7C5C",
+   "rgb": [
+    154,
+    124,
+    92
+   ],
+   "conferir": "A cor na tela pode estar bem diferente da linha: confira com a meada antes de comprar."
+  },
+  {
+   "codigo": "841",
+   "nome": "Couro",
+   "idiomaNome": "pt",
+   "hex": "#B69B7E",
+   "rgb": [
+    182,
+    155,
+    126
+   ]
+  },
+  {
+   "codigo": "842",
+   "nome": "Corda Bege",
+   "idiomaNome": "pt",
+   "hex": "#D1BAA1",
+   "rgb": [
+    209,
+    186,
+    161
+   ]
+  },
+  {
+   "codigo": "844",
+   "nome": "Pimenta Preta",
+   "idiomaNome": "pt",
+   "hex": "#484848",
+   "rgb": [
+    72,
+    72,
+    72
+   ]
+  },
+  {
+   "codigo": "869",
+   "nome": "Café",
+   "idiomaNome": "pt",
+   "hex": "#835E39",
+   "rgb": [
+    131,
+    94,
+    57
+   ]
+  },
+  {
+   "codigo": "890",
+   "nome": "Floresta Negra",
+   "idiomaNome": "pt",
+   "hex": "#174923",
+   "rgb": [
+    23,
+    73,
+    35
+   ]
+  },
+  {
+   "codigo": "891",
+   "nome": "Gerânio",
+   "idiomaNome": "pt",
+   "hex": "#FF5773",
+   "rgb": [
+    255,
+    87,
+    115
+   ]
+  },
+  {
+   "codigo": "892",
+   "nome": "Dália",
+   "idiomaNome": "pt",
+   "hex": "#FF798C",
+   "rgb": [
+    255,
+    121,
+    140
+   ]
+  },
+  {
+   "codigo": "893",
+   "nome": "Dália",
+   "idiomaNome": "pt",
+   "hex": "#FC90A2",
+   "rgb": [
+    252,
+    144,
+    162
+   ]
+  },
+  {
+   "codigo": "894",
+   "nome": "Rosa",
+   "idiomaNome": "pt",
+   "hex": "#FFB2BB",
+   "rgb": [
+    255,
+    178,
+    187
+   ]
+  },
+  {
+   "codigo": "895",
+   "nome": "Verde Garrafa",
+   "idiomaNome": "pt",
+   "hex": "#1B5300",
+   "rgb": [
+    27,
+    83,
+    0
+   ]
+  },
+  {
+   "codigo": "898",
+   "nome": "Furão",
+   "idiomaNome": "pt",
+   "hex": "#492A13",
+   "rgb": [
+    73,
+    42,
+    19
+   ]
+  },
+  {
+   "codigo": "899",
+   "nome": "Melancia",
+   "idiomaNome": "pt",
+   "hex": "#F27688",
+   "rgb": [
+    242,
+    118,
+    136
+   ]
+  },
+  {
+   "codigo": "900",
+   "nome": "Laranja Sanguínea",
+   "idiomaNome": "pt",
+   "hex": "#D15807",
+   "rgb": [
+    209,
+    88,
+    7
+   ]
+  },
+  {
+   "codigo": "902",
+   "nome": "Carmim",
+   "idiomaNome": "pt",
+   "hex": "#822637",
+   "rgb": [
+    130,
+    38,
+    55
+   ]
+  },
+  {
+   "codigo": "904",
+   "nome": "Kale",
+   "idiomaNome": "pt",
+   "hex": "#557822",
+   "rgb": [
+    85,
+    120,
+    34
+   ]
+  },
+  {
+   "codigo": "905",
+   "nome": "Verde Periquito",
+   "idiomaNome": "pt",
+   "hex": "#628A28",
+   "rgb": [
+    98,
+    138,
+    40
+   ]
+  },
+  {
+   "codigo": "906",
+   "nome": "Visco",
+   "idiomaNome": "pt",
+   "hex": "#7FB335",
+   "rgb": [
+    127,
+    179,
+    53
+   ]
+  },
+  {
+   "codigo": "907",
+   "nome": "Granny Smith",
+   "idiomaNome": "pt",
+   "hex": "#C7E666",
+   "rgb": [
+    199,
+    230,
+    102
+   ]
+  },
+  {
+   "codigo": "909",
+   "nome": "Relva de Croquet",
+   "idiomaNome": "pt",
+   "hex": "#156F49",
+   "rgb": [
+    21,
+    111,
+    73
+   ]
+  },
+  {
+   "codigo": "910",
+   "nome": "Verde Inglês",
+   "idiomaNome": "pt",
+   "hex": "#187E56",
+   "rgb": [
+    24,
+    126,
+    86
+   ]
+  },
+  {
+   "codigo": "911",
+   "nome": "Verde Golfe",
+   "idiomaNome": "pt",
+   "hex": "#189065",
+   "rgb": [
+    24,
+    144,
+    101
+   ]
+  },
+  {
+   "codigo": "912",
+   "nome": "Água de Menta",
+   "idiomaNome": "pt",
+   "hex": "#1B9D6B",
+   "rgb": [
+    27,
+    157,
+    107
+   ]
+  },
+  {
+   "codigo": "913",
+   "nome": "Jade",
+   "idiomaNome": "pt",
+   "hex": "#6DAB77",
+   "rgb": [
+    109,
+    171,
+    119
+   ]
+  },
+  {
+   "codigo": "915",
+   "nome": "Buganvília",
+   "idiomaNome": "pt",
+   "hex": "#820043",
+   "rgb": [
+    130,
+    0,
+    67
+   ]
+  },
+  {
+   "codigo": "917",
+   "nome": "Magenta Escuro",
+   "idiomaNome": "pt",
+   "hex": "#9B1359",
+   "rgb": [
+    155,
+    19,
+    89
+   ]
+  },
+  {
+   "codigo": "918",
+   "nome": "Rosa Pálido",
+   "idiomaNome": "pt",
+   "hex": "#82340A",
+   "rgb": [
+    130,
+    52,
+    10
+   ]
+  },
+  {
+   "codigo": "919",
+   "nome": "Castanho Terracota",
+   "idiomaNome": "pt",
+   "hex": "#A64510",
+   "rgb": [
+    166,
+    69,
+    16
+   ]
+  },
+  {
+   "codigo": "920",
+   "nome": "Ocre Sienna",
+   "idiomaNome": "pt",
+   "hex": "#AC5414",
+   "rgb": [
+    172,
+    84,
+    20
+   ]
+  },
+  {
+   "codigo": "921",
+   "nome": "Ocre Toscana",
+   "idiomaNome": "pt",
+   "hex": "#C66218",
+   "rgb": [
+    198,
+    98,
+    24
+   ]
+  },
+  {
+   "codigo": "922",
+   "nome": "Terracota",
+   "idiomaNome": "pt",
+   "hex": "#E27323",
+   "rgb": [
+    226,
+    115,
+    35
+   ]
+  },
+  {
+   "codigo": "924",
+   "nome": "Pérola de Taiti",
+   "idiomaNome": "pt",
+   "hex": "#566A6A",
+   "rgb": [
+    86,
+    106,
+    106
+   ]
+  },
+  {
+   "codigo": "926",
+   "nome": "Cinzento-verde",
+   "idiomaNome": "pt",
+   "hex": "#98AEAE",
+   "rgb": [
+    152,
+    174,
+    174
+   ]
+  },
+  {
+   "codigo": "927",
+   "nome": "Ostra",
+   "idiomaNome": "pt",
+   "hex": "#BDCBCB",
+   "rgb": [
+    189,
+    203,
+    203
+   ]
+  },
+  {
+   "codigo": "928",
+   "nome": "Concha de ostra",
+   "idiomaNome": "pt",
+   "hex": "#DDE3E3",
+   "rgb": [
+    221,
+    227,
+    227
+   ]
+  },
+  {
+   "codigo": "930",
+   "nome": "Cinzento Ardósia",
+   "idiomaNome": "pt",
+   "hex": "#455C71",
+   "rgb": [
+    69,
+    92,
+    113
+   ]
+  },
+  {
+   "codigo": "931",
+   "nome": "Azul Cinzento",
+   "idiomaNome": "pt",
+   "hex": "#6A859E",
+   "rgb": [
+    106,
+    133,
+    158
+   ]
+  },
+  {
+   "codigo": "932",
+   "nome": "Azul Gaivota",
+   "idiomaNome": "pt",
+   "hex": "#A2B5C6",
+   "rgb": [
+    162,
+    181,
+    198
+   ]
+  },
+  {
+   "codigo": "934",
+   "nome": "Algas Marinhas",
+   "idiomaNome": "pt",
+   "hex": "#313919",
+   "rgb": [
+    49,
+    57,
+    25
+   ]
+  },
+  {
+   "codigo": "935",
+   "nome": "Erva Daninha",
+   "idiomaNome": "pt",
+   "hex": "#424D21",
+   "rgb": [
+    66,
+    77,
+    33
+   ]
+  },
+  {
+   "codigo": "936",
+   "nome": "Musgo de Carvalho",
+   "idiomaNome": "pt",
+   "hex": "#4C5826",
+   "rgb": [
+    76,
+    88,
+    38
+   ]
+  },
+  {
+   "codigo": "937",
+   "nome": "Musgo",
+   "idiomaNome": "pt",
+   "hex": "#627133",
+   "rgb": [
+    98,
+    113,
+    51
+   ]
+  },
+  {
+   "codigo": "938",
+   "nome": "Cravinho",
+   "idiomaNome": "pt",
+   "hex": "#361F0E",
+   "rgb": [
+    54,
+    31,
+    14
+   ]
+  },
+  {
+   "codigo": "939",
+   "nome": "Azul Sabugueiro",
+   "idiomaNome": "pt",
+   "hex": "#1B2853",
+   "rgb": [
+    27,
+    40,
+    83
+   ]
+  },
+  {
+   "codigo": "943",
+   "nome": "Verde Ácido",
+   "idiomaNome": "pt",
+   "hex": "#3D9384",
+   "rgb": [
+    61,
+    147,
+    132
+   ]
+  },
+  {
+   "codigo": "945",
+   "nome": "Champanhe",
+   "idiomaNome": "pt",
+   "hex": "#FBD5BB",
+   "rgb": [
+    251,
+    213,
+    187
+   ]
+  },
+  {
+   "codigo": "946",
+   "nome": "Fogo",
+   "idiomaNome": "pt",
+   "hex": "#EB6307",
+   "rgb": [
+    235,
+    99,
+    7
+   ]
+  },
+  {
+   "codigo": "947",
+   "nome": "Pôr-do-sol",
+   "idiomaNome": "pt",
+   "hex": "#FF7B4D",
+   "rgb": [
+    255,
+    123,
+    77
+   ]
+  },
+  {
+   "codigo": "948",
+   "nome": "Sal do Himalaia",
+   "idiomaNome": "pt",
+   "hex": "#FEE7DA",
+   "rgb": [
+    254,
+    231,
+    218
+   ]
+  },
+  {
+   "codigo": "950",
+   "nome": "Bege",
+   "idiomaNome": "pt",
+   "hex": "#EED3C4",
+   "rgb": [
+    238,
+    211,
+    196
+   ]
+  },
+  {
+   "codigo": "951",
+   "nome": "Bege Caxemira",
+   "idiomaNome": "pt",
+   "hex": "#FFE2CF",
+   "rgb": [
+    255,
+    226,
+    207
+   ]
+  },
+  {
+   "codigo": "954",
+   "nome": "Campo de arroz",
+   "idiomaNome": "pt",
+   "hex": "#88BA91",
+   "rgb": [
+    136,
+    186,
+    145
+   ]
+  },
+  {
+   "codigo": "955",
+   "nome": "Verde Pálido",
+   "idiomaNome": "pt",
+   "hex": "#A2D6AD",
+   "rgb": [
+    162,
+    214,
+    173
+   ]
+  },
+  {
+   "codigo": "956",
+   "nome": "Rosa Intenso",
+   "idiomaNome": "pt",
+   "hex": "#FF9191",
+   "rgb": [
+    255,
+    145,
+    145
+   ]
+  },
+  {
+   "codigo": "957",
+   "nome": "Rosa Chicle",
+   "idiomaNome": "pt",
+   "hex": "#FDB5B5",
+   "rgb": [
+    253,
+    181,
+    181
+   ]
+  },
+  {
+   "codigo": "958",
+   "nome": "Vale Verde",
+   "idiomaNome": "pt",
+   "hex": "#3EB6A1",
+   "rgb": [
+    62,
+    182,
+    161
+   ]
+  },
+  {
+   "codigo": "959",
+   "nome": "Viridiano Pálido",
+   "idiomaNome": "pt",
+   "hex": "#59C7B4",
+   "rgb": [
+    89,
+    199,
+    180
+   ]
+  },
+  {
+   "codigo": "961",
+   "nome": "Rosa Jardim",
+   "idiomaNome": "pt",
+   "hex": "#CF7373",
+   "rgb": [
+    207,
+    115,
+    115
+   ]
+  },
+  {
+   "codigo": "962",
+   "nome": "Rosa Antigo",
+   "idiomaNome": "pt",
+   "hex": "#E68A8A",
+   "rgb": [
+    230,
+    138,
+    138
+   ]
+  },
+  {
+   "codigo": "963",
+   "nome": "Rosa Candy",
+   "idiomaNome": "pt",
+   "hex": "#FFD7D7",
+   "rgb": [
+    255,
+    215,
+    215
+   ]
+  },
+  {
+   "codigo": "964",
+   "nome": "Verde Mar",
+   "idiomaNome": "pt",
+   "hex": "#A9E2D8",
+   "rgb": [
+    169,
+    226,
+    216
+   ]
+  },
+  {
+   "codigo": "966",
+   "nome": "Verde Iridescente Suave",
+   "idiomaNome": "pt",
+   "hex": "#B9D7C0",
+   "rgb": [
+    185,
+    215,
+    192
+   ]
+  },
+  {
+   "codigo": "967",
+   "nome": "Flamingo Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#FFDED5",
+   "rgb": [
+    255,
+    222,
+    213
+   ]
+  },
+  {
+   "codigo": "970",
+   "nome": "Laranja Neon",
+   "idiomaNome": "pt",
+   "hex": "#F78B13",
+   "rgb": [
+    247,
+    139,
+    19
+   ]
+  },
+  {
+   "codigo": "971",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#F67F00",
+   "rgb": [
+    246,
+    127,
+    0
+   ]
+  },
+  {
+   "codigo": "972",
+   "nome": "Curry",
+   "idiomaNome": "pt",
+   "hex": "#FFB515",
+   "rgb": [
+    255,
+    181,
+    21
+   ]
+  },
+  {
+   "codigo": "973",
+   "nome": "Narciso",
+   "idiomaNome": "pt",
+   "hex": "#FFE300",
+   "rgb": [
+    255,
+    227,
+    0
+   ]
+  },
+  {
+   "codigo": "975",
+   "nome": "Doninha",
+   "idiomaNome": "pt",
+   "hex": "#914F12",
+   "rgb": [
+    145,
+    79,
+    18
+   ]
+  },
+  {
+   "codigo": "976",
+   "nome": "Nos-moscada",
+   "idiomaNome": "pt",
+   "hex": "#C28142",
+   "rgb": [
+    194,
+    129,
+    66
+   ]
+  },
+  {
+   "codigo": "977",
+   "nome": "Caramelo",
+   "idiomaNome": "pt",
+   "hex": "#DC9C56",
+   "rgb": [
+    220,
+    156,
+    86
+   ]
+  },
+  {
+   "codigo": "986",
+   "nome": "Buxus",
+   "idiomaNome": "pt",
+   "hex": "#405230",
+   "rgb": [
+    64,
+    82,
+    48
+   ]
+  },
+  {
+   "codigo": "987",
+   "nome": "Manjericão",
+   "idiomaNome": "pt",
+   "hex": "#587141",
+   "rgb": [
+    88,
+    113,
+    65
+   ]
+  },
+  {
+   "codigo": "988",
+   "nome": "Tronco de Verbena",
+   "idiomaNome": "pt",
+   "hex": "#738B5B",
+   "rgb": [
+    115,
+    139,
+    91
+   ]
+  },
+  {
+   "codigo": "989",
+   "nome": "Funcho",
+   "idiomaNome": "pt",
+   "hex": "#8DA675",
+   "rgb": [
+    141,
+    166,
+    117
+   ]
+  },
+  {
+   "codigo": "991",
+   "nome": "Verde Sapo",
+   "idiomaNome": "pt",
+   "hex": "#477B6E",
+   "rgb": [
+    71,
+    123,
+    110
+   ]
+  },
+  {
+   "codigo": "992",
+   "nome": "Menta",
+   "idiomaNome": "pt",
+   "hex": "#6FAE9F",
+   "rgb": [
+    111,
+    174,
+    159
+   ]
+  },
+  {
+   "codigo": "993",
+   "nome": "Peppermint",
+   "idiomaNome": "pt",
+   "hex": "#90C0B4",
+   "rgb": [
+    144,
+    192,
+    180
+   ]
+  },
+  {
+   "codigo": "995",
+   "nome": "Azul Caraíba",
+   "idiomaNome": "pt",
+   "hex": "#2696B6",
+   "rgb": [
+    38,
+    150,
+    182
+   ],
+   "conferir": "A cor na tela pode estar bem diferente da linha: confira com a meada antes de comprar."
+  },
+  {
+   "codigo": "996",
+   "nome": "Azul Eléctrico",
+   "idiomaNome": "pt",
+   "hex": "#30C2EC",
+   "rgb": [
+    48,
+    194,
+    236
+   ]
+  },
+  {
+   "codigo": "3011",
+   "nome": "Azeitona Intensa",
+   "idiomaNome": "pt",
+   "hex": "#898A58",
+   "rgb": [
+    137,
+    138,
+    88
+   ]
+  },
+  {
+   "codigo": "3012",
+   "nome": "Musgo Seco",
+   "idiomaNome": "pt",
+   "hex": "#A6A75D",
+   "rgb": [
+    166,
+    167,
+    93
+   ]
+  },
+  {
+   "codigo": "3013",
+   "nome": "Verde Ostra",
+   "idiomaNome": "pt",
+   "hex": "#B9B982",
+   "rgb": [
+    185,
+    185,
+    130
+   ]
+  },
+  {
+   "codigo": "3021",
+   "nome": "Tinta",
+   "idiomaNome": "pt",
+   "hex": "#4F4B41",
+   "rgb": [
+    79,
+    75,
+    65
+   ]
+  },
+  {
+   "codigo": "3022",
+   "nome": "Rinoceronte",
+   "idiomaNome": "pt",
+   "hex": "#8E9078",
+   "rgb": [
+    142,
+    144,
+    120
+   ]
+  },
+  {
+   "codigo": "3023",
+   "nome": "Elefante",
+   "idiomaNome": "pt",
+   "hex": "#B1AA97",
+   "rgb": [
+    177,
+    170,
+    151
+   ]
+  },
+  {
+   "codigo": "3024",
+   "nome": "Banho de Prata",
+   "idiomaNome": "pt",
+   "hex": "#EBEAE7",
+   "rgb": [
+    235,
+    234,
+    231
+   ]
+  },
+  {
+   "codigo": "3031",
+   "nome": "Castanha do Brasil",
+   "idiomaNome": "pt",
+   "hex": "#4B3C2A",
+   "rgb": [
+    75,
+    60,
+    42
+   ]
+  },
+  {
+   "codigo": "3032",
+   "nome": "Pedra",
+   "idiomaNome": "pt",
+   "hex": "#B39F8B",
+   "rgb": [
+    179,
+    159,
+    139
+   ]
+  },
+  {
+   "codigo": "3033",
+   "nome": "Cinzas",
+   "idiomaNome": "pt",
+   "hex": "#E3D8CC",
+   "rgb": [
+    227,
+    216,
+    204
+   ]
+  },
+  {
+   "codigo": "3041",
+   "nome": "Cinzento Rosado",
+   "idiomaNome": "pt",
+   "hex": "#956F7C",
+   "rgb": [
+    149,
+    111,
+    124
+   ]
+  },
+  {
+   "codigo": "3042",
+   "nome": "Nuvens Rosas",
+   "idiomaNome": "pt",
+   "hex": "#B79DA7",
+   "rgb": [
+    183,
+    157,
+    167
+   ]
+  },
+  {
+   "codigo": "3045",
+   "nome": "Toffee",
+   "idiomaNome": "pt",
+   "hex": "#BC966A",
+   "rgb": [
+    188,
+    150,
+    106
+   ]
+  },
+  {
+   "codigo": "3046",
+   "nome": "Bolacha",
+   "idiomaNome": "pt",
+   "hex": "#D8BC9A",
+   "rgb": [
+    216,
+    188,
+    154
+   ]
+  },
+  {
+   "codigo": "3047",
+   "nome": "Serradura",
+   "idiomaNome": "pt",
+   "hex": "#E7D6C1",
+   "rgb": [
+    231,
+    214,
+    193
+   ]
+  },
+  {
+   "codigo": "3051",
+   "nome": "Verde Floresta",
+   "idiomaNome": "pt",
+   "hex": "#5F6648",
+   "rgb": [
+    95,
+    102,
+    72
+   ]
+  },
+  {
+   "codigo": "3052",
+   "nome": "Verde Prata",
+   "idiomaNome": "pt",
+   "hex": "#889268",
+   "rgb": [
+    136,
+    146,
+    104
+   ]
+  },
+  {
+   "codigo": "3053",
+   "nome": "Abacate",
+   "idiomaNome": "pt",
+   "hex": "#9CA482",
+   "rgb": [
+    156,
+    164,
+    130
+   ]
+  },
+  {
+   "codigo": "3064",
+   "nome": "Alqueive",
+   "idiomaNome": "pt",
+   "hex": "#C48E70",
+   "rgb": [
+    196,
+    142,
+    112
+   ]
+  },
+  {
+   "codigo": "3072",
+   "nome": "Céu Tempestuoso",
+   "idiomaNome": "pt",
+   "hex": "#E6E8E8",
+   "rgb": [
+    230,
+    232,
+    232
+   ]
+  },
+  {
+   "codigo": "3078",
+   "nome": "Manteiga",
+   "idiomaNome": "pt",
+   "hex": "#FDF9CD",
+   "rgb": [
+    253,
+    249,
+    205
+   ]
+  },
+  {
+   "codigo": "3325",
+   "nome": "Azul Ártico",
+   "idiomaNome": "pt",
+   "hex": "#B8D2E6",
+   "rgb": [
+    184,
+    210,
+    230
+   ]
+  },
+  {
+   "codigo": "3326",
+   "nome": "Rosa Silvestre",
+   "idiomaNome": "pt",
+   "hex": "#FBADB4",
+   "rgb": [
+    251,
+    173,
+    180
+   ]
+  },
+  {
+   "codigo": "3328",
+   "nome": "Amaranto",
+   "idiomaNome": "pt",
+   "hex": "#E36D6D",
+   "rgb": [
+    227,
+    109,
+    109
+   ]
+  },
+  {
+   "codigo": "3340",
+   "nome": "Pêssego Quente",
+   "idiomaNome": "pt",
+   "hex": "#FF836F",
+   "rgb": [
+    255,
+    131,
+    111
+   ]
+  },
+  {
+   "codigo": "3341",
+   "nome": "Focinho de gatinho",
+   "idiomaNome": "pt",
+   "hex": "#FCAB98",
+   "rgb": [
+    252,
+    171,
+    152
+   ]
+  },
+  {
+   "codigo": "3345",
+   "nome": "Espinafre",
+   "idiomaNome": "pt",
+   "hex": "#1B5915",
+   "rgb": [
+    27,
+    89,
+    21
+   ]
+  },
+  {
+   "codigo": "3346",
+   "nome": "Alcachofra",
+   "idiomaNome": "pt",
+   "hex": "#406A3A",
+   "rgb": [
+    64,
+    106,
+    58
+   ]
+  },
+  {
+   "codigo": "3347",
+   "nome": "Espargos",
+   "idiomaNome": "pt",
+   "hex": "#71935C",
+   "rgb": [
+    113,
+    147,
+    92
+   ]
+  },
+  {
+   "codigo": "3348",
+   "nome": "Verde Cebolinha",
+   "idiomaNome": "pt",
+   "hex": "#CCD9B1",
+   "rgb": [
+    204,
+    217,
+    177
+   ]
+  },
+  {
+   "codigo": "3350",
+   "nome": "Rosa Pitaya",
+   "idiomaNome": "pt",
+   "hex": "#BC4365",
+   "rgb": [
+    188,
+    67,
+    101
+   ]
+  },
+  {
+   "codigo": "3354",
+   "nome": "Rosa Hortênsia",
+   "idiomaNome": "pt",
+   "hex": "#E4A6AC",
+   "rgb": [
+    228,
+    166,
+    172
+   ]
+  },
+  {
+   "codigo": "3362",
+   "nome": "Conífera",
+   "idiomaNome": "pt",
+   "hex": "#5E6B47",
+   "rgb": [
+    94,
+    107,
+    71
+   ]
+  },
+  {
+   "codigo": "3363",
+   "nome": "Rã-touro",
+   "idiomaNome": "pt",
+   "hex": "#728256",
+   "rgb": [
+    114,
+    130,
+    86
+   ]
+  },
+  {
+   "codigo": "3364",
+   "nome": "Sálvia",
+   "idiomaNome": "pt",
+   "hex": "#83975F",
+   "rgb": [
+    131,
+    151,
+    95
+   ]
+  },
+  {
+   "codigo": "3371",
+   "nome": "Pimenta",
+   "idiomaNome": "pt",
+   "hex": "#1E1108",
+   "rgb": [
+    30,
+    17,
+    8
+   ]
+  },
+  {
+   "codigo": "3607",
+   "nome": "Hibisco",
+   "idiomaNome": "pt",
+   "hex": "#C54989",
+   "rgb": [
+    197,
+    73,
+    137
+   ]
+  },
+  {
+   "codigo": "3608",
+   "nome": "Deladera",
+   "idiomaNome": "pt",
+   "hex": "#EA9CC4",
+   "rgb": [
+    234,
+    156,
+    196
+   ]
+  },
+  {
+   "codigo": "3609",
+   "nome": "Flor de Lótus",
+   "idiomaNome": "pt",
+   "hex": "#F4AED5",
+   "rgb": [
+    244,
+    174,
+    213
+   ]
+  },
+  {
+   "codigo": "3685",
+   "nome": "Amora",
+   "idiomaNome": "pt",
+   "hex": "#881531",
+   "rgb": [
+    136,
+    21,
+    49
+   ]
+  },
+  {
+   "codigo": "3687",
+   "nome": "Smoothie de Bagas",
+   "idiomaNome": "pt",
+   "hex": "#C96B70",
+   "rgb": [
+    201,
+    107,
+    112
+   ]
+  },
+  {
+   "codigo": "3688",
+   "nome": "Rosa Lupino",
+   "idiomaNome": "pt",
+   "hex": "#E7A9AC",
+   "rgb": [
+    231,
+    169,
+    172
+   ]
+  },
+  {
+   "codigo": "3689",
+   "nome": "Orquídea Pálida",
+   "idiomaNome": "pt",
+   "hex": "#FBBFC2",
+   "rgb": [
+    251,
+    191,
+    194
+   ]
+  },
+  {
+   "codigo": "3705",
+   "nome": "Goiaba",
+   "idiomaNome": "pt",
+   "hex": "#FF7992",
+   "rgb": [
+    255,
+    121,
+    146
+   ],
+   "conferir": "A cor na tela pode estar bem diferente da linha: confira com a meada antes de comprar."
+  },
+  {
+   "codigo": "3706",
+   "nome": "Flamingo",
+   "idiomaNome": "pt",
+   "hex": "#FFADBC",
+   "rgb": [
+    255,
+    173,
+    188
+   ]
+  },
+  {
+   "codigo": "3708",
+   "nome": "Azálea",
+   "idiomaNome": "pt",
+   "hex": "#FFCBD5",
+   "rgb": [
+    255,
+    203,
+    213
+   ]
+  },
+  {
+   "codigo": "3712",
+   "nome": "Rosa Blush",
+   "idiomaNome": "pt",
+   "hex": "#F18787",
+   "rgb": [
+    241,
+    135,
+    135
+   ]
+  },
+  {
+   "codigo": "3713",
+   "nome": "Quartzo Rosa",
+   "idiomaNome": "pt",
+   "hex": "#FFE2E2",
+   "rgb": [
+    255,
+    226,
+    226
+   ]
+  },
+  {
+   "codigo": "3716",
+   "nome": "Peónia",
+   "idiomaNome": "pt",
+   "hex": "#FFBDBD",
+   "rgb": [
+    255,
+    189,
+    189
+   ]
+  },
+  {
+   "codigo": "3721",
+   "nome": "Terra Rosa",
+   "idiomaNome": "pt",
+   "hex": "#A14B51",
+   "rgb": [
+    161,
+    75,
+    81
+   ]
+  },
+  {
+   "codigo": "3722",
+   "nome": "Rosa Pálido Escuro",
+   "idiomaNome": "pt",
+   "hex": "#BC6C64",
+   "rgb": [
+    188,
+    108,
+    100
+   ]
+  },
+  {
+   "codigo": "3726",
+   "nome": "Ameixa Gelada",
+   "idiomaNome": "pt",
+   "hex": "#9B5B66",
+   "rgb": [
+    155,
+    91,
+    102
+   ]
+  },
+  {
+   "codigo": "3727",
+   "nome": "Lichia",
+   "idiomaNome": "pt",
+   "hex": "#DBA9B2",
+   "rgb": [
+    219,
+    169,
+    178
+   ]
+  },
+  {
+   "codigo": "3731",
+   "nome": "Rosa Pimenta",
+   "idiomaNome": "pt",
+   "hex": "#DA6783",
+   "rgb": [
+    218,
+    103,
+    131
+   ]
+  },
+  {
+   "codigo": "3733",
+   "nome": "Rosa Malva",
+   "idiomaNome": "pt",
+   "hex": "#E8879B",
+   "rgb": [
+    232,
+    135,
+    155
+   ]
+  },
+  {
+   "codigo": "3740",
+   "nome": "Cinzento Metal",
+   "idiomaNome": "pt",
+   "hex": "#785762",
+   "rgb": [
+    120,
+    87,
+    98
+   ]
+  },
+  {
+   "codigo": "3743",
+   "nome": "Rosa Névoa",
+   "idiomaNome": "pt",
+   "hex": "#D7CBD3",
+   "rgb": [
+    215,
+    203,
+    211
+   ]
+  },
+  {
+   "codigo": "3746",
+   "nome": "Íris",
+   "idiomaNome": "pt",
+   "hex": "#776B98",
+   "rgb": [
+    119,
+    107,
+    152
+   ]
+  },
+  {
+   "codigo": "3747",
+   "nome": "Azul Gelo iridescente",
+   "idiomaNome": "pt",
+   "hex": "#D3D7ED",
+   "rgb": [
+    211,
+    215,
+    237
+   ]
+  },
+  {
+   "codigo": "3750",
+   "nome": "Azul Petróleo Escuro",
+   "idiomaNome": "pt",
+   "hex": "#384C5E",
+   "rgb": [
+    56,
+    76,
+    94
+   ]
+  },
+  {
+   "codigo": "3752",
+   "nome": "Azul Porcelana Claro",
+   "idiomaNome": "pt",
+   "hex": "#C7D1DB",
+   "rgb": [
+    199,
+    209,
+    219
+   ]
+  },
+  {
+   "codigo": "3753",
+   "nome": "Azul Lunar",
+   "idiomaNome": "pt",
+   "hex": "#DBE2E9",
+   "rgb": [
+    219,
+    226,
+    233
+   ]
+  },
+  {
+   "codigo": "3755",
+   "nome": "Azul Pastel",
+   "idiomaNome": "pt",
+   "hex": "#93B4CE",
+   "rgb": [
+    147,
+    180,
+    206
+   ]
+  },
+  {
+   "codigo": "3756",
+   "nome": "Azul Nuvem",
+   "idiomaNome": "pt",
+   "hex": "#EEFCFC",
+   "rgb": [
+    238,
+    252,
+    252
+   ]
+  },
+  {
+   "codigo": "3760",
+   "nome": "Azul Fjord",
+   "idiomaNome": "pt",
+   "hex": "#3E85A2",
+   "rgb": [
+    62,
+    133,
+    162
+   ]
+  },
+  {
+   "codigo": "3761",
+   "nome": "Azul Aquamarine",
+   "idiomaNome": "pt",
+   "hex": "#ACD8E2",
+   "rgb": [
+    172,
+    216,
+    226
+   ]
+  },
+  {
+   "codigo": "3765",
+   "nome": "Azul-marinho",
+   "idiomaNome": "pt",
+   "hex": "#347F8C",
+   "rgb": [
+    52,
+    127,
+    140
+   ]
+  },
+  {
+   "codigo": "3766",
+   "nome": "Azul Esverdeado",
+   "idiomaNome": "pt",
+   "hex": "#99CFD9",
+   "rgb": [
+    153,
+    207,
+    217
+   ]
+  },
+  {
+   "codigo": "3768",
+   "nome": "Tempestade",
+   "idiomaNome": "pt",
+   "hex": "#657F7F",
+   "rgb": [
+    101,
+    127,
+    127
+   ]
+  },
+  {
+   "codigo": "3770",
+   "nome": "Casca de Ovo",
+   "idiomaNome": "pt",
+   "hex": "#FFEEE3",
+   "rgb": [
+    255,
+    238,
+    227
+   ]
+  },
+  {
+   "codigo": "3771",
+   "nome": "Areia Rosa",
+   "idiomaNome": "pt",
+   "hex": "#F4BBA9",
+   "rgb": [
+    244,
+    187,
+    169
+   ]
+  },
+  {
+   "codigo": "3772",
+   "nome": "Castanho Glacé",
+   "idiomaNome": "pt",
+   "hex": "#A06C50",
+   "rgb": [
+    160,
+    108,
+    80
+   ]
+  },
+  {
+   "codigo": "3773",
+   "nome": "",
+   "idiomaNome": null,
+   "hex": "#B67552",
+   "rgb": [
+    182,
+    117,
+    82
+   ]
+  },
+  {
+   "codigo": "3774",
+   "nome": "Linho",
+   "idiomaNome": "pt",
+   "hex": "#F3E1D7",
+   "rgb": [
+    243,
+    225,
+    215
+   ]
+  },
+  {
+   "codigo": "3776",
+   "nome": "Frutos Secos",
+   "idiomaNome": "pt",
+   "hex": "#CF7939",
+   "rgb": [
+    207,
+    121,
+    57
+   ]
+  },
+  {
+   "codigo": "3777",
+   "nome": "Vermelho Couro",
+   "idiomaNome": "pt",
+   "hex": "#863022",
+   "rgb": [
+    134,
+    48,
+    34
+   ]
+  },
+  {
+   "codigo": "3778",
+   "nome": "Ouro Rosa",
+   "idiomaNome": "pt",
+   "hex": "#D98978",
+   "rgb": [
+    217,
+    137,
+    120
+   ]
+  },
+  {
+   "codigo": "3779",
+   "nome": "Rosa Bruni",
+   "idiomaNome": "pt",
+   "hex": "#F8CAC8",
+   "rgb": [
+    248,
+    202,
+    200
+   ]
+  },
+  {
+   "codigo": "3781",
+   "nome": "Ferro Forjado",
+   "idiomaNome": "pt",
+   "hex": "#6B5743",
+   "rgb": [
+    107,
+    87,
+    67
+   ]
+  },
+  {
+   "codigo": "3782",
+   "nome": "Gengibre",
+   "idiomaNome": "pt",
+   "hex": "#D2BCA6",
+   "rgb": [
+    210,
+    188,
+    166
+   ]
+  },
+  {
+   "codigo": "3787",
+   "nome": "Cinzento Lobo",
+   "idiomaNome": "pt",
+   "hex": "#625D50",
+   "rgb": [
+    98,
+    93,
+    80
+   ]
+  },
+  {
+   "codigo": "3790",
+   "nome": "Casca de Árvore",
+   "idiomaNome": "pt",
+   "hex": "#7F6A55",
+   "rgb": [
+    127,
+    106,
+    85
+   ]
+  },
+  {
+   "codigo": "3799",
+   "nome": "Antracite",
+   "idiomaNome": "pt",
+   "hex": "#424242",
+   "rgb": [
+    66,
+    66,
+    66
+   ]
+  },
+  {
+   "codigo": "3801",
+   "nome": "Vermelho Tulipa",
+   "idiomaNome": "pt",
+   "hex": "#E74967",
+   "rgb": [
+    231,
+    73,
+    103
+   ]
+  },
+  {
+   "codigo": "3802",
+   "nome": "Beringela",
+   "idiomaNome": "pt",
+   "hex": "#714149",
+   "rgb": [
+    113,
+    65,
+    73
+   ]
+  },
+  {
+   "codigo": "3803",
+   "nome": "Bordeaux",
+   "idiomaNome": "pt",
+   "hex": "#AB3357",
+   "rgb": [
+    171,
+    51,
+    87
+   ]
+  },
+  {
+   "codigo": "3804",
+   "nome": "Rosa Bengala",
+   "idiomaNome": "pt",
+   "hex": "#E02876",
+   "rgb": [
+    224,
+    40,
+    118
+   ]
+  },
+  {
+   "codigo": "3805",
+   "nome": "Fuchsia",
+   "idiomaNome": "pt",
+   "hex": "#F3478B",
+   "rgb": [
+    243,
+    71,
+    139
+   ]
+  },
+  {
+   "codigo": "3806",
+   "nome": "Rosa Cravos",
+   "idiomaNome": "pt",
+   "hex": "#FF8CAE",
+   "rgb": [
+    255,
+    140,
+    174
+   ]
+  },
+  {
+   "codigo": "3807",
+   "nome": "Tanzanita",
+   "idiomaNome": "pt",
+   "hex": "#60678C",
+   "rgb": [
+    96,
+    103,
+    140
+   ]
+  },
+  {
+   "codigo": "3808",
+   "nome": "Pato-Real",
+   "idiomaNome": "pt",
+   "hex": "#366970",
+   "rgb": [
+    54,
+    105,
+    112
+   ]
+  },
+  {
+   "codigo": "3809",
+   "nome": "Caverna do Mar",
+   "idiomaNome": "pt",
+   "hex": "#3F7C85",
+   "rgb": [
+    63,
+    124,
+    133
+   ]
+  },
+  {
+   "codigo": "3810",
+   "nome": "Azul Persa",
+   "idiomaNome": "pt",
+   "hex": "#488E9A",
+   "rgb": [
+    72,
+    142,
+    154
+   ]
+  },
+  {
+   "codigo": "3811",
+   "nome": "Azul Cascata",
+   "idiomaNome": "pt",
+   "hex": "#BCE3E6",
+   "rgb": [
+    188,
+    227,
+    230
+   ]
+  },
+  {
+   "codigo": "3812",
+   "nome": "Viridiano",
+   "idiomaNome": "pt",
+   "hex": "#2F8C84",
+   "rgb": [
+    47,
+    140,
+    132
+   ]
+  },
+  {
+   "codigo": "3813",
+   "nome": "Verde Líquen",
+   "idiomaNome": "pt",
+   "hex": "#B2D4BD",
+   "rgb": [
+    178,
+    212,
+    189
+   ]
+  },
+  {
+   "codigo": "3814",
+   "nome": "Abeto",
+   "idiomaNome": "pt",
+   "hex": "#508B7D",
+   "rgb": [
+    80,
+    139,
+    125
+   ]
+  },
+  {
+   "codigo": "3815",
+   "nome": "Verde Amêndoa",
+   "idiomaNome": "pt",
+   "hex": "#477759",
+   "rgb": [
+    71,
+    119,
+    89
+   ]
+  },
+  {
+   "codigo": "3816",
+   "nome": "Cobra",
+   "idiomaNome": "pt",
+   "hex": "#65A57D",
+   "rgb": [
+    101,
+    165,
+    125
+   ]
+  },
+  {
+   "codigo": "3817",
+   "nome": "Álamo",
+   "idiomaNome": "pt",
+   "hex": "#99C3AA",
+   "rgb": [
+    153,
+    195,
+    170
+   ]
+  },
+  {
+   "codigo": "3818",
+   "nome": "Brócolos",
+   "idiomaNome": "pt",
+   "hex": "#115A3B",
+   "rgb": [
+    17,
+    90,
+    59
+   ]
+  },
+  {
+   "codigo": "3819",
+   "nome": "Verde Aúreo",
+   "idiomaNome": "pt",
+   "hex": "#E0E868",
+   "rgb": [
+    224,
+    232,
+    104
+   ]
+  },
+  {
+   "codigo": "3820",
+   "nome": "Sol Brilhante",
+   "idiomaNome": "pt",
+   "hex": "#DFB65F",
+   "rgb": [
+    223,
+    182,
+    95
+   ]
+  },
+  {
+   "codigo": "3821",
+   "nome": "Manga Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#F3CE75",
+   "rgb": [
+    243,
+    206,
+    117
+   ]
+  },
+  {
+   "codigo": "3822",
+   "nome": "Casca de Milho",
+   "idiomaNome": "pt",
+   "hex": "#F6DC98",
+   "rgb": [
+    246,
+    220,
+    152
+   ]
+  },
+  {
+   "codigo": "3823",
+   "nome": "Brilho Lunar",
+   "idiomaNome": "pt",
+   "hex": "#FFFDE3",
+   "rgb": [
+    255,
+    253,
+    227
+   ]
+  },
+  {
+   "codigo": "3824",
+   "nome": "Chicle de Morango",
+   "idiomaNome": "pt",
+   "hex": "#FECDC2",
+   "rgb": [
+    254,
+    205,
+    194
+   ]
+  },
+  {
+   "codigo": "3825",
+   "nome": "Damasco fosco",
+   "idiomaNome": "pt",
+   "hex": "#FDBD96",
+   "rgb": [
+    253,
+    189,
+    150
+   ]
+  },
+  {
+   "codigo": "3826",
+   "nome": "Raposa",
+   "idiomaNome": "pt",
+   "hex": "#AD7239",
+   "rgb": [
+    173,
+    114,
+    57
+   ]
+  },
+  {
+   "codigo": "3827",
+   "nome": "Pó Coral",
+   "idiomaNome": "pt",
+   "hex": "#F7BB77",
+   "rgb": [
+    247,
+    187,
+    119
+   ]
+  },
+  {
+   "codigo": "3828",
+   "nome": "Carvalho",
+   "idiomaNome": "pt",
+   "hex": "#B78B61",
+   "rgb": [
+    183,
+    139,
+    97
+   ]
+  },
+  {
+   "codigo": "3829",
+   "nome": "Terra Ocre",
+   "idiomaNome": "pt",
+   "hex": "#A98204",
+   "rgb": [
+    169,
+    130,
+    4
+   ]
+  },
+  {
+   "codigo": "3830",
+   "nome": "Blush profundo",
+   "idiomaNome": "pt",
+   "hex": "#B95544",
+   "rgb": [
+    185,
+    85,
+    68
+   ]
+  },
+  {
+   "codigo": "3831",
+   "nome": "Morango Selvagem",
+   "idiomaNome": "pt",
+   "hex": "#B32F48",
+   "rgb": [
+    179,
+    47,
+    72
+   ]
+  },
+  {
+   "codigo": "3832",
+   "nome": "Morango",
+   "idiomaNome": "pt",
+   "hex": "#DB556E",
+   "rgb": [
+    219,
+    85,
+    110
+   ]
+  },
+  {
+   "codigo": "3833",
+   "nome": "Sorvete de Morango",
+   "idiomaNome": "pt",
+   "hex": "#EA8699",
+   "rgb": [
+    234,
+    134,
+    153
+   ]
+  },
+  {
+   "codigo": "3834",
+   "nome": "Vermelho Uva",
+   "idiomaNome": "pt",
+   "hex": "#72375D",
+   "rgb": [
+    114,
+    55,
+    93
+   ]
+  },
+  {
+   "codigo": "3835",
+   "nome": "Violeta Púrpura",
+   "idiomaNome": "pt",
+   "hex": "#946083",
+   "rgb": [
+    148,
+    96,
+    131
+   ]
+  },
+  {
+   "codigo": "3836",
+   "nome": "Flor de Tomilho",
+   "idiomaNome": "pt",
+   "hex": "#BA91AA",
+   "rgb": [
+    186,
+    145,
+    170
+   ]
+  },
+  {
+   "codigo": "3837",
+   "nome": "Púrpura",
+   "idiomaNome": "pt",
+   "hex": "#6C3A6E",
+   "rgb": [
+    108,
+    58,
+    110
+   ]
+  },
+  {
+   "codigo": "3838",
+   "nome": "Azul Cardo",
+   "idiomaNome": "pt",
+   "hex": "#5C7294",
+   "rgb": [
+    92,
+    114,
+    148
+   ]
+  },
+  {
+   "codigo": "3839",
+   "nome": "Azul Mediterrâneo",
+   "idiomaNome": "pt",
+   "hex": "#7B8EAB",
+   "rgb": [
+    123,
+    142,
+    171
+   ]
+  },
+  {
+   "codigo": "3840",
+   "nome": "Azul Flor de Linho",
+   "idiomaNome": "pt",
+   "hex": "#B0C0DA",
+   "rgb": [
+    176,
+    192,
+    218
+   ]
+  },
+  {
+   "codigo": "3841",
+   "nome": "Azul Iglu",
+   "idiomaNome": "pt",
+   "hex": "#CDDFED",
+   "rgb": [
+    205,
+    223,
+    237
+   ]
+  },
+  {
+   "codigo": "3842",
+   "nome": "Azul da Prússia",
+   "idiomaNome": "pt",
+   "hex": "#32667C",
+   "rgb": [
+    50,
+    102,
+    124
+   ]
+  },
+  {
+   "codigo": "3843",
+   "nome": "Azul Piscina",
+   "idiomaNome": "pt",
+   "hex": "#14AAD0",
+   "rgb": [
+    20,
+    170,
+    208
+   ]
+  },
+  {
+   "codigo": "3844",
+   "nome": "Lagoa",
+   "idiomaNome": "pt",
+   "hex": "#12AEBA",
+   "rgb": [
+    18,
+    174,
+    186
+   ]
+  },
+  {
+   "codigo": "3845",
+   "nome": "Turquesa",
+   "idiomaNome": "pt",
+   "hex": "#04C4CA",
+   "rgb": [
+    4,
+    196,
+    202
+   ]
+  },
+  {
+   "codigo": "3846",
+   "nome": "Azul Navajo",
+   "idiomaNome": "pt",
+   "hex": "#06E3E6",
+   "rgb": [
+    6,
+    227,
+    230
+   ]
+  },
+  {
+   "codigo": "3847",
+   "nome": "Verde Chinês",
+   "idiomaNome": "pt",
+   "hex": "#347D75",
+   "rgb": [
+    52,
+    125,
+    117
+   ]
+  },
+  {
+   "codigo": "3848",
+   "nome": "Cauda de Sereia",
+   "idiomaNome": "pt",
+   "hex": "#559392",
+   "rgb": [
+    85,
+    147,
+    146
+   ]
+  },
+  {
+   "codigo": "3849",
+   "nome": "Verde Turquesa",
+   "idiomaNome": "pt",
+   "hex": "#52B3A4",
+   "rgb": [
+    82,
+    179,
+    164
+   ]
+  },
+  {
+   "codigo": "3850",
+   "nome": "Esmeralda",
+   "idiomaNome": "pt",
+   "hex": "#378477",
+   "rgb": [
+    55,
+    132,
+    119
+   ]
+  },
+  {
+   "codigo": "3851",
+   "nome": "Centelha Esmeralda",
+   "idiomaNome": "pt",
+   "hex": "#49B3A1",
+   "rgb": [
+    73,
+    179,
+    161
+   ]
+  },
+  {
+   "codigo": "3852",
+   "nome": "Ouro Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#CD9D37",
+   "rgb": [
+    205,
+    157,
+    55
+   ]
+  },
+  {
+   "codigo": "3853",
+   "nome": "Cobre",
+   "idiomaNome": "pt",
+   "hex": "#F29746",
+   "rgb": [
+    242,
+    151,
+    70
+   ]
+  },
+  {
+   "codigo": "3854",
+   "nome": "Chá Chai",
+   "idiomaNome": "pt",
+   "hex": "#F2AF68",
+   "rgb": [
+    242,
+    175,
+    104
+   ]
+  },
+  {
+   "codigo": "3855",
+   "nome": "Ventos do Deserto",
+   "idiomaNome": "pt",
+   "hex": "#FAD396",
+   "rgb": [
+    250,
+    211,
+    150
+   ]
+  },
+  {
+   "codigo": "3856",
+   "nome": "Camurça",
+   "idiomaNome": "pt",
+   "hex": "#FFD3B5",
+   "rgb": [
+    255,
+    211,
+    181
+   ]
+  },
+  {
+   "codigo": "3857",
+   "nome": "Cobre vermelho",
+   "idiomaNome": "pt",
+   "hex": "#68251A",
+   "rgb": [
+    104,
+    37,
+    26
+   ]
+  },
+  {
+   "codigo": "3858",
+   "nome": "Rosa Castanho",
+   "idiomaNome": "pt",
+   "hex": "#964A3F",
+   "rgb": [
+    150,
+    74,
+    63
+   ]
+  },
+  {
+   "codigo": "3859",
+   "nome": "Argila",
+   "idiomaNome": "pt",
+   "hex": "#BA8B7C",
+   "rgb": [
+    186,
+    139,
+    124
+   ]
+  },
+  {
+   "codigo": "3860",
+   "nome": "Taupe Escuro",
+   "idiomaNome": "pt",
+   "hex": "#7D5D57",
+   "rgb": [
+    125,
+    93,
+    87
+   ]
+  },
+  {
+   "codigo": "3861",
+   "nome": "Taupe Claro",
+   "idiomaNome": "pt",
+   "hex": "#A68881",
+   "rgb": [
+    166,
+    136,
+    129
+   ]
+  },
+  {
+   "codigo": "3862",
+   "nome": "Lhama",
+   "idiomaNome": "pt",
+   "hex": "#8A6E4E",
+   "rgb": [
+    138,
+    110,
+    78
+   ]
+  },
+  {
+   "codigo": "3863",
+   "nome": "Lontras",
+   "idiomaNome": "pt",
+   "hex": "#A4835C",
+   "rgb": [
+    164,
+    131,
+    92
+   ]
+  },
+  {
+   "codigo": "3864",
+   "nome": "Lã de Vicunha",
+   "idiomaNome": "pt",
+   "hex": "#CBB69C",
+   "rgb": [
+    203,
+    182,
+    156
+   ]
+  },
+  {
+   "codigo": "3865",
+   "nome": "Edelweiss",
+   "idiomaNome": "pt",
+   "hex": "#F9F7F1",
+   "rgb": [
+    249,
+    247,
+    241
+   ]
+  },
+  {
+   "codigo": "3866",
+   "nome": "Alho Branco",
+   "idiomaNome": "pt",
+   "hex": "#FAF6F0",
+   "rgb": [
+    250,
+    246,
+    240
+   ]
+  },
+  {
+   "codigo": "B5200",
+   "nome": "Branco Luminoso Iridescente",
+   "idiomaNome": "pt",
+   "hex": "#FFFFFF",
+   "rgb": [
+    255,
+    255,
+    255
+   ]
+  },
+  {
+   "codigo": "Blanc",
+   "nome": "Blanco",
+   "idiomaNome": "pt",
+   "hex": "#FCFBF8",
+   "rgb": [
+    252,
+    251,
+    248
+   ]
+  },
+  {
+   "codigo": "Ecru",
+   "nome": "Cru",
+   "idiomaNome": "pt",
+   "hex": "#F0EADA",
+   "rgb": [
+    240,
+    234,
+    218
+   ]
+  }
+ ]
+}
