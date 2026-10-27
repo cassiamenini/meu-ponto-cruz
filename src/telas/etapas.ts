@@ -1,6 +1,16 @@
 // As cinco etapas do aplicativo.
-// Nesta fase (Etapa 0) cada tela só mostra o que vai acontecer nela;
-// as funções de verdade entram nas próximas etapas do plano.
+// As telas ainda em construção só mostram o que vai acontecer nelas.
+
+import { estado } from '../estado';
+import { aoContinuarTela1, montarTela1, podeContinuarTela1 } from './tela1-imagem';
+
+/** O que cada tela pode pedir ao aplicativo. */
+export interface ContextoTela {
+  /** Lê uma frase em voz alta para quem usa leitor de tela. */
+  anunciar(texto: string): void;
+  /** Mostra ou esconde o botão "Continuar" conforme a tela permite. */
+  atualizarNavegacao(): void;
+}
 
 export interface Etapa {
   titulo: string;
@@ -8,8 +18,36 @@ export interface Etapa {
   curto: string;
   /** Frase de orientação logo abaixo do título. */
   orientacao: string;
-  /** O que esta tela vai permitir fazer (aparece como lista). */
-  emBreve: string[];
+  /** Monta o conteúdo da tela. */
+  montar?(container: HTMLElement, contexto: ContextoTela): void;
+  /** Se falso, o botão "Continuar" fica escondido. */
+  podeContinuar?(): boolean;
+  /** Chamado ao clicar em "Continuar"; devolve uma mensagem se algo impedir. */
+  aoContinuar?(): string | null;
+  /** O que esta tela ainda vai permitir fazer (aparece como lista). */
+  emBreve?: string[];
+}
+
+/** Miniatura da imagem escolhida na etapa 1, para a pessoa se orientar. */
+function mostrarImagemEscolhida(container: HTMLElement): void {
+  if (!estado.imagemFinal) return;
+  const origem = estado.imagemFinal;
+  const escala = Math.min(1, 480 / Math.max(origem.width, origem.height));
+  const pequena = document.createElement('canvas');
+  pequena.width = Math.max(1, Math.round(origem.width * escala));
+  pequena.height = Math.max(1, Math.round(origem.height * escala));
+  pequena.getContext('2d')?.drawImage(origem, 0, 0, pequena.width, pequena.height);
+
+  const img = document.createElement('img');
+  img.className = 'miniatura';
+  img.src = pequena.toDataURL('image/png');
+  img.alt = 'A parte da imagem que você escolheu na etapa 1';
+  const legenda = document.createElement('figcaption');
+  legenda.textContent = `Imagem escolhida (${estado.imagemFinal.width} × ${estado.imagemFinal.height} pixels)`;
+  const figura = document.createElement('figure');
+  figura.className = 'figura-miniatura';
+  figura.append(img, legenda);
+  container.append(figura);
 }
 
 export const ETAPAS: Etapa[] = [
@@ -17,16 +55,15 @@ export const ETAPAS: Etapa[] = [
     titulo: 'Escolha sua imagem',
     curto: 'Imagem',
     orientacao: 'Comece escolhendo uma foto ou desenho que você gostaria de bordar.',
-    emBreve: [
-      'Escolher uma foto do celular ou do computador (JPG, PNG ou WebP).',
-      'Recortar só a parte que interessa.',
-      'Girar a imagem e ajustar o brilho.',
-    ],
+    montar: montarTela1,
+    podeContinuar: podeContinuarTela1,
+    aoContinuar: aoContinuarTela1,
   },
   {
     titulo: 'Personalize seu bordado',
     curto: 'Bordado',
     orientacao: 'Escolha o tamanho do bordado e quantas cores de linha quer usar.',
+    montar: mostrarImagemEscolhida,
     emBreve: [
       'Escolher o nível: iniciante, intermediário ou detalhado.',
       'Definir a largura em pontos.',

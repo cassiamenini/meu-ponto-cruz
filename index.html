@@ -8,6 +8,11 @@
       content="Transforme uma imagem em gráfico de ponto cruz, com apostila em PDF. Gratuito e sem cadastro."
     />
     <meta name="theme-color" content="#FBF6EE" />
+    <!-- Regras de proteção: o site só carrega arquivos dele mesmo e não envia dados a ninguém. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self' ws://localhost:*; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <title>Meu Ponto Cruz</title>
   </head>
@@ -32,6 +37,8 @@
 
     <main id="conteudo" class="conteudo">
       <section class="painel" id="painel" aria-labelledby="titulo-etapa"></section>
+
+      <p class="aviso-erro" id="erro-navegacao" role="alert" hidden></p>
 
       <div class="navegacao">
         <button type="button" class="botao botao-secundario" id="botao-voltar">← Voltar</button>

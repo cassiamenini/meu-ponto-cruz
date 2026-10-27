@@ -67,7 +67,9 @@ h2 {
   border-radius: 6px;
 }
 
-h1:focus {
+/* títulos recebem o foco só para orientar o leitor de tela */
+h1:focus,
+h2:focus {
   outline: none;
 }
 
@@ -315,6 +317,249 @@ h1:focus {
   font-weight: 700;
 }
 
+/* ---------- Avisos ---------- */
+
+.aviso-erro {
+  margin: 1.25rem 0 0;
+  padding: 1rem 1.25rem;
+  border: 3px solid var(--acento);
+  border-left-width: 10px;
+  border-radius: var(--raio);
+  background: var(--acento-claro);
+  color: var(--texto);
+  font-weight: 700;
+}
+
+.aviso-erro[hidden] {
+  display: none;
+}
+
+.nota,
+.dica,
+.ajuda-teclado {
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
+/* ---------- Tela 1: escolha da imagem ---------- */
+
+.zona-envio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  border: 3px dashed var(--borda-forte);
+  border-radius: var(--raio);
+  background: var(--fundo);
+  text-align: center;
+}
+
+.zona-ativa {
+  border-color: var(--acento);
+  background: var(--acento-claro);
+}
+
+.zona-icone {
+  width: 4.5rem;
+  height: 4.5rem;
+  color: var(--acento);
+}
+
+.botao-escolher {
+  margin: 0.5rem auto 0;
+  padding-inline: 2.5rem;
+  font-size: 1.4rem;
+}
+
+.zona-envio p {
+  margin: 0;
+}
+
+/* "arraste aqui" e as dicas de teclado só fazem sentido no computador */
+@media (hover: none), (pointer: coarse) {
+  .so-com-mouse,
+  .ajuda-teclado {
+    display: none;
+  }
+}
+
+.carregando {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  font-weight: 700;
+}
+
+.carregando-ponto {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 4px solid var(--acento-claro);
+  border-top-color: var(--acento);
+  border-radius: 50%;
+  animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.subtitulo {
+  font-size: 1.5rem;
+  color: var(--acento-escuro);
+}
+
+.instrucao {
+  margin: 0.5rem 0 1rem;
+}
+
+/* área da prévia: o quadro de recorte fica por cima da imagem */
+.area-recorte {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  line-height: 0;
+  border-radius: 6px;
+  background: #e9dfd2;
+  touch-action: none;
+}
+
+.previa {
+  display: block;
+  max-width: 100%;
+  max-height: 60vh;
+  width: auto;
+  height: auto;
+}
+
+.quadro-recorte {
+  position: absolute;
+  border: 3px dashed #fff;
+  outline: 1px solid rgba(42, 33, 28, 0.8);
+  box-shadow: 0 0 0 100vmax rgba(42, 33, 28, 0.55); /* escurece o que fica de fora */
+  cursor: move;
+  touch-action: none;
+}
+
+.quadro-recorte:focus-visible {
+  outline: 4px solid var(--foco);
+  outline-offset: -8px;
+}
+
+.alca {
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--acento);
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+/* área de toque maior que a bolinha visível */
+.alca::after {
+  content: '';
+  position: absolute;
+  inset: -0.75rem;
+}
+
+.alca-nw { left: 0; top: 0; cursor: nwse-resize; }
+.alca-ne { left: 100%; top: 0; cursor: nesw-resize; }
+.alca-sw { left: 0; top: 100%; cursor: nesw-resize; }
+.alca-se { left: 100%; top: 100%; cursor: nwse-resize; }
+
+/* com a bolinha na borda da imagem, ela ficaria cortada: puxamos para dentro */
+.alca-nw, .alca-ne { margin-top: 0.875rem; }
+.alca-sw, .alca-se { margin-top: -0.875rem; }
+.alca-nw, .alca-sw { margin-left: 0.875rem; }
+.alca-ne, .alca-se { margin-left: -0.875rem; }
+
+.ajuda-teclado {
+  margin: 0.75rem 0 0;
+}
+
+.info-recorte {
+  margin: 0.25rem 0 1rem;
+  font-weight: 700;
+}
+
+.grupo-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.botao-ferramenta {
+  font-size: 1.1rem;
+  padding: 0.6rem 1.1rem;
+}
+
+.grupo-luz {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem 1.25rem;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+}
+
+.grupo-luz legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+}
+
+.controle {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  grid-template-areas:
+    'rotulo valor'
+    'barra barra';
+  align-items: center;
+  gap: 0.25rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.controle label {
+  grid-area: rotulo;
+  font-weight: 700;
+}
+
+.valor-controle {
+  grid-area: valor;
+  color: var(--texto-suave);
+}
+
+.controle input[type='range'] {
+  grid-area: barra;
+  width: 100%;
+  height: 2.75rem;
+  accent-color: var(--acento);
+  cursor: pointer;
+}
+
+.figura-miniatura {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.miniatura {
+  max-width: 100%;
+  max-height: 14rem;
+  border: 2px solid var(--borda);
+  border-radius: 6px;
+}
+
+.figura-miniatura figcaption {
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+}
+
 /* ---------- Botões de navegação ---------- */
 
 .navegacao {
@@ -409,6 +654,10 @@ h1:focus {
   .botao {
     width: 100%;
   }
+}
+
+.botao[hidden] {
+  display: none;
 }
 
 /* ---------- Movimento reduzido ---------- */

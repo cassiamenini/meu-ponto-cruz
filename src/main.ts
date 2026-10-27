@@ -1,7 +1,7 @@
 import '@fontsource/atkinson-hyperlegible/400.css';
 import '@fontsource/atkinson-hyperlegible/700.css';
 import './estilos/tema.css';
-import { ETAPAS } from './telas/etapas';
+import { ETAPAS, type ContextoTela } from './telas/etapas';
 
 // Busca um elemento da página pelo id; se não existir, avisa claramente.
 function pegar<T extends HTMLElement>(id: string): T {
@@ -15,8 +15,27 @@ const painel = pegar<HTMLElement>('painel');
 const botaoVoltar = pegar<HTMLButtonElement>('botao-voltar');
 const botaoContinuar = pegar<HTMLButtonElement>('botao-continuar');
 const avisoLeitor = pegar<HTMLParagraphElement>('aviso-leitor');
+const erroNavegacao = pegar<HTMLParagraphElement>('erro-navegacao');
 
 let etapaAtual = 0;
+
+function anunciar(texto: string): void {
+  // Limpa antes, para o leitor de tela repetir mesmo frases iguais.
+  avisoLeitor.textContent = '';
+  requestAnimationFrame(() => {
+    avisoLeitor.textContent = texto;
+  });
+}
+
+const contexto: ContextoTela = {
+  anunciar,
+  atualizarNavegacao: () => atualizarBotoes(),
+};
+
+// Evita que o navegador abra a imagem no lugar do site
+// quando ela é solta fora da área certa.
+window.addEventListener('dragover', (e) => e.preventDefault());
+window.addEventListener('drop', (e) => e.preventDefault());
 
 // ---------- Indicador de etapas (topo) ----------
 
@@ -70,33 +89,53 @@ function desenharPainel(): void {
   orientacao.className = 'orientacao';
   orientacao.textContent = etapa.orientacao;
 
-  const cartao = document.createElement('div');
-  cartao.className = 'cartao-em-breve';
+  painel.replaceChildren(passo, titulo, orientacao);
 
-  const tituloCartao = document.createElement('h2');
-  tituloCartao.textContent = 'Em construção: nesta tela você vai poder';
+  if (etapa.montar) {
+    const area = document.createElement('div');
+    area.className = 'area-tela';
+    painel.append(area);
+    etapa.montar(area, contexto);
+  }
 
-  const lista = document.createElement('ul');
-  lista.append(
-    ...etapa.emBreve.map((texto) => {
-      const li = document.createElement('li');
-      li.textContent = texto;
-      return li;
-    }),
-  );
+  if (etapa.emBreve) {
+    const cartao = document.createElement('div');
+    cartao.className = 'cartao-em-breve';
 
-  cartao.append(tituloCartao, lista);
-  painel.replaceChildren(passo, titulo, orientacao, cartao);
+    const tituloCartao = document.createElement('h2');
+    tituloCartao.textContent = 'Em construção: nesta tela você vai poder';
+
+    const lista = document.createElement('ul');
+    lista.append(
+      ...etapa.emBreve.map((texto) => {
+        const li = document.createElement('li');
+        li.textContent = texto;
+        return li;
+      }),
+    );
+
+    cartao.append(tituloCartao, lista);
+    painel.append(cartao);
+  }
 }
 
 function atualizarBotoes(): void {
+  const etapa = ETAPAS[etapaAtual];
   botaoVoltar.hidden = etapaAtual === 0;
+  botaoContinuar.hidden = etapa.podeContinuar ? !etapa.podeContinuar() : false;
   const ultima = etapaAtual === ETAPAS.length - 1;
   botaoContinuar.textContent = ultima ? 'Fazer outro bordado' : 'Continuar →';
 }
 
+function mostrarErroNavegacao(mensagem: string): void {
+  erroNavegacao.textContent = mensagem;
+  erroNavegacao.hidden = false;
+}
+
 function irPara(indice: number, moverFoco = true): void {
   etapaAtual = Math.max(0, Math.min(ETAPAS.length - 1, indice));
+  erroNavegacao.hidden = true;
+  erroNavegacao.textContent = '';
   desenharIndicador();
   desenharPainel();
   atualizarBotoes();
@@ -106,12 +145,17 @@ function irPara(indice: number, moverFoco = true): void {
     pegar<HTMLHeadingElement>('titulo-etapa').focus();
     const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: semMovimento ? 'auto' : 'smooth' });
-    avisoLeitor.textContent = `Passo ${etapaAtual + 1} de ${ETAPAS.length}: ${ETAPAS[etapaAtual].titulo}`;
+    anunciar(`Passo ${etapaAtual + 1} de ${ETAPAS.length}: ${ETAPAS[etapaAtual].titulo}`);
   }
 }
 
 botaoVoltar.addEventListener('click', () => irPara(etapaAtual - 1));
 botaoContinuar.addEventListener('click', () => {
+  const problema = ETAPAS[etapaAtual].aoContinuar?.() ?? null;
+  if (problema) {
+    mostrarErroNavegacao(problema);
+    return;
+  }
   const ultima = etapaAtual === ETAPAS.length - 1;
   irPara(ultima ? 0 : etapaAtual + 1);
 });
@@ -153,7 +197,7 @@ function mudarTamanho(passo: number): void {
   if (i < 0 || i >= TAMANHOS.length) return;
   tamanhoLetra = TAMANHOS[i];
   aplicarTamanho();
-  avisoLeitor.textContent = passo > 0 ? 'Letra aumentada' : 'Letra diminuída';
+  anunciar(passo > 0 ? 'Letra aumentada' : 'Letra diminuída');
 }
 
 botaoMenor.addEventListener('click', () => mudarTamanho(-1));
