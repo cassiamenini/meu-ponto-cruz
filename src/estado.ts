@@ -2,7 +2,7 @@
 // nada é enviado para fora do aparelho.
 
 import { ajustesIniciais, type Ajustes } from './imagem/ajustes';
-import type { Grafico, Limpeza } from './processamento/converter';
+import type { Fundo, Grafico, Limpeza } from './processamento/converter';
 import type { TamanhoQuadradinho, Versoes } from './pdf/paginacao';
 
 export type Nivel = 'iniciante' | 'intermediario' | 'detalhado';
@@ -16,6 +16,7 @@ export interface Configuracao {
   tecido: Tecido;
   maxCores: number;
   limpeza: Limpeza;
+  fundo: Fundo;
 }
 
 export interface Estado {
@@ -38,7 +39,7 @@ function estadoInicial(): Estado {
     nomeArquivo: '',
     ajustes: ajustesIniciais(),
     imagemFinal: null,
-    config: { nivel: 'iniciante', largura: 60, tecido: 14, maxCores: 10, limpeza: 'forte' },
+    config: { nivel: 'iniciante', largura: 60, tecido: 14, maxCores: 10, limpeza: 'forte', fundo: 'auto' },
     grafico: null,
     apostila: { nome: '', versoes: 'ambos', tamanho: 'normal' },
   };

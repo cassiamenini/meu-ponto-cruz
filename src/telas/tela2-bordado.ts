@@ -1,10 +1,11 @@
 // Tela 2 — Personalize seu bordado.
-// Nível, tamanho, tecido e (em "Mais opções") cores e limpeza,
+// Nível, tamanho, fundo, tecido e (em "Mais opções") cores e limpeza,
 // com uma prévia que se atualiza sozinha.
 
 import { estado, type Nivel, type Tecido } from '../estado';
 import { ConversaoCancelada, converterEmSegundoPlano } from '../processamento/cliente';
-import { LIMITES_GRADE, type Grafico, type Limpeza } from '../processamento/converter';
+import { LIMITES_GRADE, type Fundo, type Grafico, type Limpeza } from '../processamento/converter';
+import { imagemDosPontos } from '../grafico/desenhar';
 import { alturaProporcional, faixaLargura, formatarCm, MARGEM_CM, pontosParaCm } from '../processamento/medidas';
 import { caixaDeErro, el, grupoDeOpcoes, mostrarErro } from './dom';
 import type { ContextoTela } from './etapas';
@@ -45,6 +46,25 @@ const LIMPEZAS: { valor: Limpeza; texto: string }[] = [
   { valor: 'media', texto: 'Média — tira só pontos totalmente soltos' },
   { valor: 'nenhuma', texto: 'Nenhuma — mantém todos os detalhes' },
 ];
+
+const FUNDOS: { valor: Fundo; titulo: string; texto: string }[] = [
+  { valor: 'auto', titulo: 'Automático', texto: 'Se a imagem tiver um fundo claro e liso (como papel branco), ele fica sem bordar.' },
+  { valor: 'tecido', titulo: 'Não bordar o fundo', texto: 'A cor que domina as bordas da imagem fica sem bordar: o tecido aparece no lugar.' },
+  { valor: 'bordar', titulo: 'Bordar a imagem inteira', texto: 'Todos os quadradinhos são bordados, inclusive o fundo.' },
+];
+
+/** Frase que explica o que aconteceu com o fundo. Vazia quando não há nada a dizer. */
+export function descreverFundo(g: Grafico, modo: Fundo): string {
+  const pontos = g.fundo.pontos.toLocaleString('pt-BR');
+  if (g.fundo.removido) {
+    return `O fundo (linha DMC ${g.fundo.codigo}) fica sem bordar: são ${pontos} pontos a menos, e o tecido aparece no lugar.`;
+  }
+  if (modo === 'tecido') return 'Não encontramos um fundo liso nas bordas da imagem, então ela será bordada inteira.';
+  if (modo === 'auto' && g.fundo.encontrado) {
+    return `As bordas da imagem são quase todas da linha DMC ${g.fundo.codigo}. Se isso for fundo, escolha "Não bordar o fundo".`;
+  }
+  return '';
+}
 
 const ESPERA_MS = 300;
 
@@ -133,6 +153,8 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
   previa.setAttribute('role', 'img');
   const statusPrevia = el('p', { className: 'status-previa' });
   statusPrevia.setAttribute('role', 'status');
+  const infoFundo = el('p', { className: 'info-fundo' });
+  infoFundo.setAttribute('aria-live', 'polite');
   const erro = caixaDeErro();
 
   const colunaPrevia = el(
@@ -145,6 +167,7 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
       el('figure', {}, previa, el('figcaption', {}, 'Como vai ficar')),
     ),
     statusPrevia,
+    infoFundo,
     erro,
   );
 
@@ -175,6 +198,18 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
   largura.definir(config.largura, faixa.min, faixa.max);
   const textoAltura = el('p', { className: 'texto-altura' });
   const limitesLargura = el('p', { className: 'dica' }, `De ${faixa.min} a ${faixa.max} pontos.`);
+
+  const fundo = grupoDeOpcoes(
+    'fundo',
+    'Fundo da imagem',
+    FUNDOS,
+    config.fundo,
+    (f) => {
+      config.fundo = f;
+      mudou();
+    },
+    'grupo-compacto',
+  );
 
   const tecido = grupoDeOpcoes(
     'tecido',
@@ -223,6 +258,7 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
     { className: 'coluna-opcoes' },
     nivel.bloco,
     el('fieldset', { className: 'grupo-opcoes' }, el('legend', {}, 'Tamanho'), largura.bloco, limitesLargura, textoAltura),
+    fundo.bloco,
     tecido.bloco,
     medidas,
     maisOpcoes,
@@ -270,14 +306,12 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
         altura: pedido.altura,
         maxCores: pedido.maxCores,
         limpeza: pedido.limpeza,
+        fundo: pedido.fundo,
       });
       calculando = false;
       estado.grafico = g;
-      desenharPrevia(previa, g);
-      const resumo = `${g.largura} × ${g.altura} pontos, ${g.paleta.length} ${g.paleta.length === 1 ? 'cor' : 'cores'} DMC`;
-      statusPrevia.textContent = `Prévia pronta: ${resumo}.`;
+      mostrarResultado(g);
       statusPrevia.classList.remove('ocupado');
-      previa.setAttribute('aria-label', `Prévia do bordado: ${resumo}.`);
     } catch (e) {
       if (e instanceof ConversaoCancelada) return; // uma escolha mais nova já está sendo calculada
       calculando = false;
@@ -287,13 +321,17 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
     }
   }
 
-  atualizarMedidas();
-  if (estado.grafico) {
-    desenharPrevia(previa, estado.grafico);
-    statusPrevia.textContent = `Prévia pronta: ${estado.grafico.largura} × ${estado.grafico.altura} pontos, ${estado.grafico.paleta.length} cores DMC.`;
-  } else {
-    mudou();
+  function mostrarResultado(g: Grafico): void {
+    desenharPrevia(previa, g);
+    const resumo = `${g.largura} × ${g.altura} pontos, ${g.paleta.length} ${g.paleta.length === 1 ? 'cor' : 'cores'} DMC`;
+    statusPrevia.textContent = `Prévia pronta: ${resumo}.`;
+    infoFundo.textContent = descreverFundo(g, config.fundo);
+    previa.setAttribute('aria-label', `Prévia do bordado: ${resumo}.${g.fundo.removido ? ' O fundo fica sem bordar.' : ''}`);
   }
+
+  atualizarMedidas();
+  if (estado.grafico) mostrarResultado(estado.grafico);
+  else mudou();
 }
 
 // ---------- Desenho ----------
@@ -314,10 +352,5 @@ export function desenharPrevia(canvas: HTMLCanvasElement, g: Grafico): void {
   canvas.height = g.altura;
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
-  const dados = ctx.createImageData(g.largura, g.altura);
-  for (let i = 0; i < g.celulas.length; i++) {
-    const [r, gr, b] = g.paleta[g.celulas[i]].rgb;
-    dados.data.set([r, gr, b, 255], i * 4);
-  }
-  ctx.putImageData(dados, 0, 0);
+  ctx.putImageData(imagemDosPontos(ctx, g), 0, 0);
 }

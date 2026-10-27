@@ -3,7 +3,7 @@
 // (dividido em páginas A4) e instruções de impressão.
 
 import type { Tecido } from '../estado';
-import type { Grafico } from '../processamento/converter';
+import { SEM_PONTO, type Grafico } from '../processamento/converter';
 import { formatarCm, MARGEM_CM, pontosParaCm } from '../processamento/medidas';
 import { corDoSimbolo, simboloDa } from '../grafico/simbolos';
 import { CORES, Documento, PincelPdf } from './documento';
@@ -110,7 +110,10 @@ function resumo(doc: Documento, g: Grafico, op: OpcoesPdf, imagens: ImagensPdf):
   const versoes = op.versoes === 'ambos' ? 'colorido e em preto e branco' : op.versoes === 'colorido' ? 'colorido' : 'em preto e branco';
 
   const linhas: [string, string][] = [
-    ['Tamanho em pontos', `${g.largura} × ${g.altura} pontos (${fmt(total)} pontos no total)`],
+    ['Tamanho em pontos', `${g.largura} × ${g.altura} pontos (${fmt(total)} pontos para bordar)`],
+    ...(g.fundo.removido
+      ? ([['Fundo', `sem bordar: os ${fmt(g.fundo.pontos)} quadradinhos em branco do gráfico mostram o próprio tecido`]] as [string, string][])
+      : []),
     ['Tamanho do bordado', `${formatarCm(lCm)} × ${formatarCm(aCm)} cm em Etamine ${tecido}`],
     ['Tecido para cortar', `pelo menos ${Math.ceil(lCm + 2 * MARGEM_CM)} × ${Math.ceil(aCm + 2 * MARGEM_CM)} cm de Etamine ${tecido} (${MARGEM_CM} cm de sobra em cada lado)`],
     ['Em outros tecidos', outros],
@@ -267,8 +270,10 @@ function paginaDoGrafico(
         const i = g.celulas[l * g.largura + c];
         let fim = c + 1;
         while (fim < pagina.coluna1 && g.celulas[l * g.largura + fim] === i) fim++;
-        d.setFillColor(g.paleta[i].hex);
-        d.rect(px(c), py(l), (fim - c) * mm + 0.01, mm + 0.01, 'F');
+        if (i !== SEM_PONTO) {
+          d.setFillColor(g.paleta[i].hex);
+          d.rect(px(c), py(l), (fim - c) * mm + 0.01, mm + 0.01, 'F');
+        }
         c = fim;
       }
     }
@@ -279,6 +284,7 @@ function paginaDoGrafico(
   for (let l = pagina.linha0; l < pagina.linha1; l++) {
     for (let c = pagina.coluna0; c < pagina.coluna1; c++) {
       const i = g.celulas[l * g.largura + c];
+      if (i === SEM_PONTO) continue;
       pincel.cor(corSimbolo[i]);
       simboloDa(i).desenhar(pincel, px(c), py(l), mm);
     }

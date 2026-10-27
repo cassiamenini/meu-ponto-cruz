@@ -2,7 +2,7 @@
 // O gráfico com símbolos, três modos de ver, ampliação e a legenda.
 
 import { estado } from '../estado';
-import type { Grafico } from '../processamento/converter';
+import { SEM_PONTO, type Grafico } from '../processamento/converter';
 import { formatarCm, pontosParaCm } from '../processamento/medidas';
 import {
   CELULA_MIN_SIMBOLO,
@@ -183,7 +183,10 @@ export function montarTela3(container: HTMLElement, ctx: ContextoTela): void {
     const p = pontoNaPosicao(e.clientX - caixa.left, e.clientY - caixa.top, janela.scrollLeft, janela.scrollTop, celula(), g.largura, g.altura);
     if (!p) return;
     const i = g.celulas[p.linha * g.largura + p.coluna];
-    infoPonto.textContent = `Coluna ${p.coluna + 1}, linha ${p.linha + 1}: ${descreverLinha(g, i)} — símbolo ${simboloDa(i).nome}.`;
+    infoPonto.textContent =
+      i === SEM_PONTO
+        ? `Coluna ${p.coluna + 1}, linha ${p.linha + 1}: sem bordado (aqui aparece o tecido).`
+        : `Coluna ${p.coluna + 1}, linha ${p.linha + 1}: ${descreverLinha(g, i)} — símbolo ${simboloDa(i).nome}.`;
   });
 
   observador?.disconnect(); // o da visita anterior a esta tela
@@ -288,6 +291,15 @@ function montarLegenda(g: Grafico, aoMudarDestaque: () => void): HTMLElement {
       { className: 'dica' },
       'Cada símbolo corresponde a uma linha. Use "Destacar" para ver no gráfico só os pontos de uma cor. As cores na tela são aproximadas: confira sempre com a linha.',
     ),
+    ...(g.fundo.removido
+      ? [
+          el(
+            'p',
+            { className: 'aviso-fundo' },
+            `Quadradinhos em branco (sem símbolo) ficam sem bordar: ali aparece o tecido. São ${g.fundo.pontos.toLocaleString('pt-BR')} quadradinhos.`,
+          ),
+        ]
+      : []),
     tabela,
   );
 }

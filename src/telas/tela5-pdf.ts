@@ -5,6 +5,7 @@ import { estado, reiniciarEstado } from '../estado';
 import type { Grafico } from '../processamento/converter';
 import type { ImagemPdf, ImagensPdf } from '../pdf/grafico-pdf';
 import { contarPaginas } from '../pdf/paginacao';
+import { imagemDosPontos } from '../grafico/desenhar';
 import { caixaDeErro, el } from './dom';
 import type { ContextoTela } from './etapas';
 
@@ -45,12 +46,7 @@ function imagemReferencia(origem: HTMLCanvasElement): ImagemPdf {
 function imagemPrevia(g: Grafico): ImagemPdf {
   const pequeno = el('canvas', { width: g.largura, height: g.altura });
   const ctx = pequeno.getContext('2d')!;
-  const dados = ctx.createImageData(g.largura, g.altura);
-  for (let i = 0; i < g.celulas.length; i++) {
-    const [r, gr, b] = g.paleta[g.celulas[i]].rgb;
-    dados.data.set([r, gr, b, 255], i * 4);
-  }
-  ctx.putImageData(dados, 0, 0);
+  ctx.putImageData(imagemDosPontos(ctx, g), 0, 0);
   const k = Math.max(1, Math.floor(700 / Math.max(g.largura, g.altura)));
   const grande = el('canvas', { width: g.largura * k, height: g.altura * k });
   const ctxGrande = grande.getContext('2d')!;

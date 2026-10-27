@@ -2,9 +2,12 @@ import { describe, expect, it } from 'vitest';
 import {
   agruparCores,
   converter,
+  detectarFundo,
   juntarCoresRaras,
   limparPontosSoltos,
   reduzirParaGrade,
+  regiaoDoFundo,
+  SEM_PONTO,
   type OpcoesConversao,
 } from '../src/processamento/converter';
 import { buscarLinha } from '../src/catalogo/dmc';
@@ -143,6 +146,74 @@ describe('converter', () => {
     const nenhuma = converter(p, 40, 40, opcoes({ largura: 40, altura: 40, maxCores: 5, limpeza: 'nenhuma' }));
     expect(nenhuma.paleta.length).toBe(2);
     expect(forte.paleta.map((l) => l.codigo)).toEqual(['798']);
+  });
+
+  describe('fundo', () => {
+    const BRANCO: Rgb = [255, 255, 255];
+    const CEU: Rgb = [95, 168, 232];
+    // quadrado vermelho no meio, com um "olho" branco dentro, sobre um fundo
+    const desenho = (fundo: Rgb) =>
+      imagem(40, 40, (x, y) => {
+        const dentro = x >= 10 && x < 30 && y >= 10 && y < 30;
+        const olho = x >= 18 && x < 22 && y >= 18 && y < 22;
+        return olho ? BRANCO : dentro ? VERMELHO : fundo;
+      });
+    const op = (fundo: 'auto' | 'bordar' | 'tecido') => opcoes({ largura: 40, altura: 40, maxCores: 5, limpeza: 'nenhuma', fundo });
+    const vazios = (g: ReturnType<typeof converter>) => g.celulas.filter((c) => c === SEM_PONTO).length;
+
+    it('automático: fundo branco fica sem bordar', () => {
+      const g = converter(desenho(BRANCO), 40, 40, op('auto'));
+      expect(g.fundo.removido).toBe(true);
+      expect(g.fundo.pontos).toBe(40 * 40 - 20 * 20);
+      expect(vazios(g)).toBe(40 * 40 - 20 * 20);
+    });
+
+    it('o branco dentro do desenho continua bordado (só sai o fundo ligado às bordas)', () => {
+      const g = converter(desenho(BRANCO), 40, 40, op('auto'));
+      const olho = g.celulas[20 * 40 + 20];
+      expect(olho).not.toBe(SEM_PONTO);
+      expect(g.paleta[olho].lab.L).toBeGreaterThan(90);
+      expect(g.contagem.reduce((s, n) => s + n, 0)).toBe(20 * 20);
+    });
+
+    it('"bordar a imagem inteira" não tira nada', () => {
+      const g = converter(desenho(BRANCO), 40, 40, op('bordar'));
+      expect(g.fundo.removido).toBe(false);
+      expect(vazios(g)).toBe(0);
+      expect(g.contagem.reduce((s, n) => s + n, 0)).toBe(40 * 40);
+    });
+
+    it('automático não tira um céu azul (pode fazer parte do desenho), mas avisa', () => {
+      const g = converter(desenho(CEU), 40, 40, op('auto'));
+      expect(g.fundo.removido).toBe(false);
+      expect(g.fundo.encontrado).toBe(true);
+    });
+
+    it('"não bordar o fundo" tira o fundo de qualquer cor', () => {
+      const g = converter(desenho(CEU), 40, 40, op('tecido'));
+      expect(g.fundo.removido).toBe(true);
+      expect(vazios(g)).toBe(40 * 40 - 20 * 20);
+      expect(g.paleta.some((l) => l.lab.b < -20)).toBe(false); // o azul saiu da legenda
+    });
+
+    it('imagem toda de uma cor só: borda tudo, para não ficar vazia', () => {
+      const g = converter(imagem(20, 20, () => BRANCO), 20, 20, opcoes({ largura: 20, altura: 20, fundo: 'tecido' }));
+      expect(g.fundo.removido).toBe(false);
+      expect(vazios(g)).toBe(0);
+    });
+
+    it('imagem com fundo transparente (PNG) também perde o fundo', () => {
+      const p = imagem(40, 40, (x, y) => (x >= 10 && x < 30 && y >= 10 && y < 30 ? [...VERMELHO, 255] : [0, 0, 0, 0]));
+      const g = converter(p, 40, 40, op('auto'));
+      expect(g.fundo.removido).toBe(true);
+      expect(g.paleta.map((l) => l.codigo)).toEqual(['321']);
+    });
+
+    it('a detecção olha só as bordas', () => {
+      const c = new Uint16Array([1, 1, 1, 1, 0, 1, 1, 1, 1]); // 3 × 3, centro diferente
+      expect(detectarFundo(c, 3, 3)).toEqual({ indice: 1, fracaoBorda: 1 });
+      expect([...regiaoDoFundo(c, 3, 3, 1)]).toEqual([1, 1, 1, 1, 0, 1, 1, 1, 1]);
+    });
   });
 
   it('recusa tamanhos fora dos limites', () => {

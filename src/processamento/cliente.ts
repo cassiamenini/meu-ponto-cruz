@@ -28,7 +28,7 @@ function montarGrafico(r: Extract<RespostaDoWorker, { ok: true }>): Grafico {
     if (!linha) throw new Error(`Linha ${c} não encontrada.`);
     return linha;
   }) as Linha[];
-  return { largura: r.largura, altura: r.altura, celulas: r.celulas, paleta, contagem: r.contagem };
+  return { largura: r.largura, altura: r.altura, celulas: r.celulas, paleta, contagem: r.contagem, fundo: r.fundo };
 }
 
 function criarWorker(): Worker {

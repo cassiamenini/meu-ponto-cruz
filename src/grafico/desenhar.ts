@@ -3,7 +3,8 @@
 //
 // Só a parte visível é desenhada, então gráficos grandes continuam leves.
 
-import type { Grafico } from '../processamento/converter';
+import { SEM_PONTO, type Grafico } from '../processamento/converter';
+import { hexParaRgb } from '../cores/cielab';
 import { corDoSimbolo, simboloDa, type Pincel } from './simbolos';
 
 export type ModoGrafico = 'cores-simbolos' | 'simbolos' | 'previa';
@@ -16,6 +17,8 @@ const CELULA_MIN_GRADE = 6;
 /** Largura das réguas com os números (topo e esquerda). */
 export const MARGEM_REGUA = 32;
 
+/** Cor usada para mostrar o tecido nos quadradinhos sem bordado (diferente das linhas brancas). */
+export const COR_TECIDO = '#ECE3D0';
 const COR_CENTRO = '#9B2C3D';
 const FUNDO_REGUA = '#FBF6EE';
 const TEXTO_REGUA = '#2A211C';
@@ -56,6 +59,18 @@ export function pontoNaPosicao(
   const linha = Math.floor((y - MARGEM_REGUA + rolagemY) / celula);
   if (coluna < 0 || linha < 0 || coluna >= largura || linha >= altura) return null;
   return { coluna, linha };
+}
+
+/** Um pixel por ponto, na cor da linha (ou do tecido, onde não se borda). */
+export function imagemDosPontos(ctx: CanvasRenderingContext2D, g: Grafico): ImageData {
+  const tecido = hexParaRgb(COR_TECIDO);
+  const dados = ctx.createImageData(g.largura, g.altura);
+  for (let i = 0; i < g.celulas.length; i++) {
+    const c = g.celulas[i];
+    const [r, gr, b] = c === SEM_PONTO ? tecido : g.paleta[c].rgb;
+    dados.data.set([r, gr, b, 255], i * 4);
+  }
+  return dados;
 }
 
 /** Mistura a cor com branco (para apagar as cores que não estão em destaque). */
@@ -145,6 +160,12 @@ export function desenharGrafico(ctx: CanvasRenderingContext2D, g: Grafico, v: Vi
   for (let l = l0; l < l1; l++) {
     for (let c = c0; c < c1; c++) {
       const i = g.celulas[l * g.largura + c];
+      if (i === SEM_PONTO) {
+        // sem bordado: em branco no gráfico, cor de tecido em "como vai ficar"
+        ctx.fillStyle = modo === 'previa' ? COR_TECIDO : '#FFFFFF';
+        ctx.fillRect(c * celula, l * celula, celula, celula);
+        continue;
+      }
       const apagado = destaque !== null && i !== destaque;
       ctx.fillStyle = apagado ? corApagada[i] : corCheia[i];
       ctx.fillRect(c * celula, l * celula, celula, celula);
@@ -218,7 +239,8 @@ function desenharReguas(ctx: CanvasRenderingContext2D, g: Grafico, v: Vista, c0:
   ctx.textAlign = 'right';
   for (let l = Math.ceil(l0 / 10) * 10; l <= l1; l += 10) {
     if (l === 0) continue;
-    const y = MARGEM_REGUA + l * celula - rolagemY;
+    // se o centro cai bem nesta linha, o número sobe um pouco para não ficar embaixo da seta
+    const y = MARGEM_REGUA + l * celula - rolagemY - (l === g.altura / 2 ? 10 : 0);
     if (y > MARGEM_REGUA + 8 && y < alturaTela - 8) ctx.fillText(String(l), MARGEM_REGUA - 4, y);
   }
 

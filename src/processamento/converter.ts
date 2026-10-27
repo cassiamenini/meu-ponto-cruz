@@ -25,22 +25,50 @@ export const LIMITES_GRADE = {
 
 export type Limpeza = 'forte' | 'media' | 'nenhuma';
 
+/**
+ * O que fazer com o fundo da imagem:
+ *  - auto: deixa sem bordar só um fundo claro e liso (papel branco, fundo de desenho);
+ *  - bordar: borda tudo;
+ *  - tecido: deixa sem bordar a cor que domina as bordas da imagem, qualquer que seja.
+ */
+export type Fundo = 'auto' | 'bordar' | 'tecido';
+
+/** Valor especial em "celulas": quadradinho sem bordado (o tecido aparece). */
+export const SEM_PONTO = 0xffff;
+
 export interface OpcoesConversao {
   largura: number;
   altura: number;
   maxCores: number;
   limpeza: Limpeza;
+  /** Padrão: bordar tudo. */
+  fundo?: Fundo;
+}
+
+export interface InfoFundo {
+  /** Havia uma cor dominando as bordas da imagem? */
+  encontrado: boolean;
+  /** O fundo foi deixado sem bordar? */
+  removido: boolean;
+  /** Quantos quadradinhos ficaram sem bordar. */
+  pontos: number;
+  /** Código da linha que seria usada no fundo. */
+  codigo: string | null;
 }
 
 export interface Grafico {
   largura: number;
   altura: number;
-  /** Para cada ponto (linha por linha, de cima para baixo), a posição da cor na paleta. */
+  /**
+   * Para cada ponto (linha por linha, de cima para baixo), a posição da cor na
+   * paleta, ou SEM_PONTO quando o quadradinho fica sem bordar.
+   */
   celulas: Uint16Array;
   /** Linhas usadas, da mais usada para a menos usada. */
   paleta: Linha[];
   /** Quantos pontos de cada cor da paleta. */
   contagem: number[];
+  fundo: InfoFundo;
 }
 
 const LINEAR = Float32Array.from({ length: 256 }, (_, i) => linear(i));
@@ -255,7 +283,7 @@ export function limparPontosSoltos(
 
 function contar(celulas: Uint16Array, tamanhoPaleta: number): number[] {
   const contagem = new Array<number>(tamanhoPaleta).fill(0);
-  for (const c of celulas) contagem[c]++;
+  for (const c of celulas) if (c !== SEM_PONTO) contagem[c]++;
   return contagem;
 }
 
@@ -288,6 +316,67 @@ export function juntarCoresRaras(celulas: Uint16Array, paleta: readonly { lab: L
   }
 }
 
+// ---------- Fundo ----------
+
+/** Fração mínima das bordas que uma cor precisa ocupar para ser considerada fundo. */
+export const FUNDO_MINIMO = { auto: 0.6, tecido: 0.25 };
+/** No modo automático, só fundos claros (L* do CIELAB) saem: papel branco, fundo de desenho. */
+export const FUNDO_CLARO_L = 85;
+
+/** A cor que mais aparece nas bordas da imagem e a fração das bordas que ela ocupa. */
+export function detectarFundo(celulas: Uint16Array, largura: number, altura: number): { indice: number; fracaoBorda: number } | null {
+  const votos = new Map<number, number>();
+  let total = 0;
+  const votar = (i: number) => {
+    votos.set(celulas[i], (votos.get(celulas[i]) ?? 0) + 1);
+    total++;
+  };
+  for (let x = 0; x < largura; x++) {
+    votar(x);
+    if (altura > 1) votar((altura - 1) * largura + x);
+  }
+  for (let y = 1; y < altura - 1; y++) {
+    votar(y * largura);
+    if (largura > 1) votar(y * largura + largura - 1);
+  }
+  let indice = -1;
+  let maior = 0;
+  for (const [cor, n] of votos) if (n > maior) [indice, maior] = [cor, n];
+  return indice < 0 ? null : { indice, fracaoBorda: maior / total };
+}
+
+/**
+ * Marca a região do fundo: os quadradinhos dessa cor ligados à borda da imagem.
+ * A mesma cor dentro do desenho (o branco dos olhos, por exemplo) continua bordada.
+ */
+export function regiaoDoFundo(celulas: Uint16Array, largura: number, altura: number, indice: number): Uint8Array {
+  const marcado = new Uint8Array(celulas.length);
+  const fila: number[] = [];
+  const entrar = (i: number) => {
+    if (!marcado[i] && celulas[i] === indice) {
+      marcado[i] = 1;
+      fila.push(i);
+    }
+  };
+  for (let x = 0; x < largura; x++) {
+    entrar(x);
+    entrar((altura - 1) * largura + x);
+  }
+  for (let y = 0; y < altura; y++) {
+    entrar(y * largura);
+    entrar(y * largura + largura - 1);
+  }
+  while (fila.length) {
+    const i = fila.pop()!;
+    const x = i % largura;
+    if (x > 0) entrar(i - 1);
+    if (x < largura - 1) entrar(i + 1);
+    if (i >= largura) entrar(i - largura);
+    if (i + largura < celulas.length) entrar(i + largura);
+  }
+  return marcado;
+}
+
 const REGRAS_LIMPEZA: Record<Limpeza, { minimoIguais: number; passes: number; fracaoRara: number; minimoRara: number }> = {
   forte: { minimoIguais: 2, passes: 2, fracaoRara: 0.005, minimoRara: 4 },
   media: { minimoIguais: 1, passes: 1, fracaoRara: 0.001, minimoRara: 3 },
@@ -315,7 +404,7 @@ export function converter(
   linhas: readonly Linha[] = LINHAS_DMC,
 ): Grafico {
   validarOpcoes(opcoes);
-  const { largura, altura, maxCores, limpeza } = opcoes;
+  const { largura, altura, maxCores, limpeza, fundo: modoFundo = 'bordar' } = opcoes;
 
   const cores = reduzirParaGrade(pixels, larguraImagem, alturaImagem, largura, altura);
   const centros = agruparCores(cores, maxCores);
@@ -334,13 +423,35 @@ export function converter(
   const minimoRara = Math.max(regra.minimoRara, Math.round(regra.fracaoRara * celulas.length));
   if (minimoRara > 0) celulas = juntarCoresRaras(celulas, paleta, minimoRara);
 
+  // Fundo: deixa sem bordar, se for o caso.
+  const fundo: InfoFundo = { encontrado: false, removido: false, pontos: 0, codigo: null };
+  const deteccao = detectarFundo(celulas, largura, altura);
+  if (deteccao) {
+    const linhaFundo = paleta[deteccao.indice];
+    fundo.codigo = linhaFundo.codigo;
+    fundo.encontrado = deteccao.fracaoBorda >= FUNDO_MINIMO.tecido;
+    const aplicar =
+      (modoFundo === 'tecido' && deteccao.fracaoBorda >= FUNDO_MINIMO.tecido) ||
+      (modoFundo === 'auto' && deteccao.fracaoBorda >= FUNDO_MINIMO.auto && linhaFundo.lab.L >= FUNDO_CLARO_L);
+    if (aplicar) {
+      const regiao = regiaoDoFundo(celulas, largura, altura, deteccao.indice);
+      const pontos = regiao.reduce((s, v) => s + v, 0);
+      // se a imagem inteira é "fundo", não há o que bordar: borda tudo
+      if (pontos < celulas.length) {
+        for (let i = 0; i < celulas.length; i++) if (regiao[i]) celulas[i] = SEM_PONTO;
+        fundo.removido = true;
+        fundo.pontos = pontos;
+      }
+    }
+  }
+
   // Arruma a paleta: só as cores usadas, da mais usada para a menos usada.
   const contagem = contar(celulas, paleta.length);
   const ordem = paleta.map((_, i) => i).filter((i) => contagem[i] > 0).sort((a, b) => contagem[b] - contagem[a]);
   const novoIndice = new Uint16Array(paleta.length);
   ordem.forEach((antigo, novo) => (novoIndice[antigo] = novo));
-  for (let i = 0; i < celulas.length; i++) celulas[i] = novoIndice[celulas[i]];
+  for (let i = 0; i < celulas.length; i++) if (celulas[i] !== SEM_PONTO) celulas[i] = novoIndice[celulas[i]];
   paleta = ordem.map((i) => paleta[i]);
 
-  return { largura, altura, celulas, paleta, contagem: ordem.map((i) => contagem[i]) };
+  return { largura, altura, celulas, paleta, contagem: ordem.map((i) => contagem[i]), fundo };
 }

@@ -80,7 +80,10 @@ testes/             testes automáticos
   Parte 2 (resumo com imagens e medidas, legenda com estimativa de meadas e materiais,
   gráfico colorido e/ou preto e branco dividido em folhas A4 com réguas, marcação de 10 em 10,
   centro e mapa das folhas, instruções de impressão com régua de 10 cm).
-- Próximo: validação final da Fase 1 e testes com pessoas.
+- **Validação da Fase 1:** ver [docs/validacao-fase-1.md](docs/validacao-fase-1.md).
+- **Fase 2 — fundo sem bordar (concluído):** opção "Fundo da imagem" (automático, não bordar
+  o fundo, bordar tudo). O fundo é a cor que domina as bordas, ligada a elas; a mesma cor dentro
+  do desenho continua bordada. No modo automático só sai fundo claro e liso.
 
 ## Ferramenta de desenvolvimento
 

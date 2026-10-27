@@ -575,6 +575,19 @@ h2:focus {
   min-height: 1.6em;
 }
 
+.info-fundo:empty {
+  display: none;
+}
+
+.info-fundo,
+.aviso-fundo {
+  margin: 0.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border-left: 6px solid var(--verde);
+  border-radius: 6px;
+  background: var(--fundo);
+}
+
 .status-previa.ocupado {
   color: var(--texto-suave);
   font-weight: 400;

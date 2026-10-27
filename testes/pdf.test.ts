@@ -118,6 +118,28 @@ describe('PDF', () => {
     }
   }, 30000);
 
+  it('com fundo sem bordar: o PDF explica e os quadradinhos vazios não entram na contagem', async () => {
+    const w = 120;
+    const h = 120;
+    const p = new Uint8ClampedArray(w * h * 4);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const dentro = (x - 60) ** 2 + (y - 60) ** 2 < 40 ** 2;
+        p.set(dentro ? [199, 43, 59, 255] : [255, 255, 255, 255], (y * w + x) * 4);
+      }
+    }
+    const g = converter(p, w, h, { largura: 40, altura: 40, maxCores: 4, limpeza: 'media', fundo: 'auto' });
+    expect(g.fundo.removido).toBe(true);
+    const blob = await gerarPdf(g, opcoes(), {}, fontes);
+    const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
+    const pdf = await pdfjs.getDocument({ data: new Uint8Array(await blob.arrayBuffer()) }).promise;
+    const resumo = await (await pdf.getPage(8)).getTextContent();
+    const texto = resumo.items.map((i) => ('str' in i ? i.str : '')).join(' ');
+    expect(texto).toContain('Fundo');
+    expect(texto).toContain('mostram o próprio tecido');
+    expect(texto).toContain(`${g.contagem.reduce((s, n) => s + n, 0).toLocaleString('pt-BR')} pontos para bordar`);
+  }, 30000);
+
   it('nome do arquivo sem acentos nem espaços', () => {
     expect(nomeDoArquivo('Casinha de Campo da Vovó!')).toBe('meu-ponto-cruz-casinha-de-campo-da-vovo.pdf');
     expect(nomeDoArquivo('   ')).toBe('meu-ponto-cruz.pdf');

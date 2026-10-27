@@ -1,14 +1,14 @@
 // Trabalhador em segundo plano: faz a conversão sem travar a tela.
 // Recebe a imagem uma vez e depois quantos pedidos de conversão forem precisos.
 
-import { converter, type OpcoesConversao } from './converter';
+import { converter, type InfoFundo, type OpcoesConversao } from './converter';
 
 export type MensagemParaWorker =
   | { tipo: 'imagem'; pixels: Uint8ClampedArray; largura: number; altura: number }
   | { tipo: 'converter'; id: number; opcoes: OpcoesConversao };
 
 export type RespostaDoWorker =
-  | { id: number; ok: true; largura: number; altura: number; celulas: Uint16Array; codigos: string[]; contagem: number[] }
+  | { id: number; ok: true; largura: number; altura: number; celulas: Uint16Array; codigos: string[]; contagem: number[]; fundo: InfoFundo }
   | { id: number; ok: false; mensagem: string };
 
 let imagem: { pixels: Uint8ClampedArray; largura: number; altura: number } | null = null;
@@ -31,6 +31,7 @@ self.onmessage = (e: MessageEvent<MensagemParaWorker>) => {
       celulas: g.celulas,
       codigos: g.paleta.map((l) => l.codigo),
       contagem: g.contagem,
+      fundo: g.fundo,
     };
     (self as unknown as Worker).postMessage(resposta, [g.celulas.buffer]);
   } catch (erro) {
