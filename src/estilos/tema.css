@@ -766,6 +766,238 @@ h2:focus {
   margin: 0.5rem 0 0.25rem;
 }
 
+/* ---------- Tela 3: gráfico e legenda ---------- */
+
+.resumo-grafico {
+  margin: 0 0 1rem;
+}
+
+.barra-grafico {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.grupo-modos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-modos legend {
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-weight: 700;
+}
+
+.botao-modo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--alvo-toque);
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--borda-forte);
+  border-radius: 999px;
+  background: var(--superficie);
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+.botao-modo:has(input:checked) {
+  border-color: var(--acento);
+  background: var(--acento);
+  color: #fff;
+  font-weight: 700;
+}
+
+.botao-modo:has(input:focus-visible) {
+  outline: 4px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.botao-modo input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0;
+  accent-color: #fff;
+}
+
+.botao-modo input:focus-visible {
+  outline: none;
+}
+
+.grupo-zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rotulo-zoom {
+  font-weight: 700;
+}
+
+.botao-zoom {
+  width: var(--alvo-toque);
+  padding: 0;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.botao-zoom:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.texto-zoom {
+  min-width: 4.5ch;
+  text-align: center;
+}
+
+.janela-grafico {
+  position: relative;
+  height: min(70vh, 40rem);
+  overflow: auto;
+  border: 2px solid var(--borda-forte);
+  border-radius: 6px;
+  background: #fff;
+  overscroll-behavior: contain;
+}
+
+.janela-grafico:focus-visible {
+  outline: 4px solid var(--foco);
+  outline-offset: 2px;
+}
+
+/* o canvas fica "parado" na janela e redesenha o pedaço visível ao rolar */
+.canvas-grafico {
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: block;
+  cursor: crosshair;
+}
+
+.aviso-zoom:empty {
+  display: none;
+}
+
+.info-ponto {
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 700;
+}
+
+.legenda {
+  margin-top: 2rem;
+}
+
+.tabela-legenda {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-legenda th {
+  padding: 0.5rem;
+  border-bottom: 3px solid var(--borda-forte);
+  font-size: 1rem;
+  text-align: left;
+}
+
+.tabela-legenda td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: middle;
+}
+
+.tabela-legenda tbody tr:nth-child(even) {
+  background: var(--fundo);
+}
+
+.celula-simbolos {
+  white-space: nowrap;
+}
+
+.amostra-simbolo {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--borda-forte);
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.amostra-pb {
+  margin-left: 0.3rem;
+}
+
+.codigo-linha {
+  display: block;
+}
+
+.nome-linha {
+  display: block;
+  color: var(--texto-suave);
+}
+
+.sem-nome {
+  font-style: italic;
+}
+
+.conferir-linha {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--acento-escuro);
+  font-weight: 700;
+}
+
+.tabela-legenda .numero {
+  white-space: nowrap;
+}
+
+.percentual {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.botao-destacar {
+  min-height: 2.75rem;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.botao-destacar[aria-pressed='true'] {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+@media (max-width: 34rem) {
+  .amostra-pb {
+    display: none;
+  }
+
+  .tabela-legenda th,
+  .tabela-legenda td {
+    padding-inline: 0.3rem;
+  }
+
+  .barra-grafico .botao {
+    width: auto;
+  }
+}
+
 /* ---------- Botões de navegação ---------- */
 
 .navegacao {

@@ -39,6 +39,7 @@ src/seguranca/      verificação dos arquivos enviados (tipo real, tamanho, lim
 src/imagem/         abrir, reduzir, girar, recortar e ajustar a luz da imagem
 src/cores/          CIELAB e diferença de cor CIEDE2000
 src/processamento/  conversão da imagem em gráfico (e o trabalhador em segundo plano)
+src/grafico/        símbolos e desenho do gráfico (grade, réguas, centro)
 src/catalogo/       catálogo DMC (dmc.json) e de onde veio cada dado (FONTES.md)
 dados/fontes/       cópias das fontes originais usadas no catálogo
 scripts/            montagem e conferência do catálogo
@@ -68,7 +69,11 @@ testes/             testes automáticos
   k-means em CIELAB, linha DMC mais próxima por CIEDE2000, limpeza de pontos soltos e
   cores raras), em segundo plano (Web Worker), e tela 2 com nível, tamanho, tecido,
   número de cores, limpeza e prévia.
-- Próximo: Etapa 4 (tela 3: gráfico com símbolos, legenda e ampliação).
+- **Fase 1, Etapa 4 (concluída):** tela 3 com o gráfico (40 símbolos de desenho próprio,
+  réguas, linhas a cada 10 pontos, centro marcado), três modos (cores e símbolos, só
+  símbolos, como vai ficar), ampliação, toque para identificar o ponto e legenda com
+  destaque de cor.
+- Próximo: Etapa 5 (PDF com a apostila e o gráfico paginado).
 
 ## Licenças de terceiros
 

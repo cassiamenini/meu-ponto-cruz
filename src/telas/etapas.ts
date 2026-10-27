@@ -3,6 +3,7 @@
 
 import { aoContinuarTela1, montarTela1, podeContinuarTela1 } from './tela1-imagem';
 import { aoContinuarTela2, montarTela2, podeContinuarTela2 } from './tela2-bordado';
+import { montarTela3, podeContinuarTela3 } from './tela3-grafico';
 
 /** O que cada tela pode pedir ao aplicativo. */
 export interface ContextoTela {
@@ -48,13 +49,9 @@ export const ETAPAS: Etapa[] = [
   {
     titulo: 'Confira seu gráfico',
     curto: 'Gráfico',
-    orientacao: 'Veja como o bordado vai ficar, com as cores e os símbolos.',
-    emBreve: [
-      'Ver o gráfico com cores e símbolos.',
-      'Ampliar para enxergar os detalhes.',
-      'Trocar uma cor de linha por outra.',
-      'Ver a lista de cores DMC usadas.',
-    ],
+    orientacao: 'Confira o gráfico com os símbolos e a lista de linhas que você vai usar.',
+    montar: montarTela3,
+    podeContinuar: podeContinuarTela3,
   },
   {
     titulo: 'Prepare sua apostila',
