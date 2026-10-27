@@ -1020,6 +1020,185 @@ h2:focus {
   }
 }
 
+/* ---------- Tela 3: correção manual ---------- */
+
+.aviso-edicao {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.aviso-erro.aviso-edicao[hidden] {
+  display: none;
+}
+
+.botao-corrigir,
+.botao-desfazer {
+  margin: 0;
+}
+
+.painel-edicao {
+  margin: 0 0 1rem;
+  padding: 1rem 1.25rem;
+  border: 3px solid var(--foco);
+  border-radius: var(--raio);
+  background: #eef4fb;
+}
+
+.grupo-pincel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-pincel legend {
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-weight: 700;
+}
+
+.botao-pincel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: var(--alvo-toque);
+  padding: 0.3rem 0.75rem 0.3rem 0.4rem;
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+  background: var(--superficie);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-pincel:has(input:checked) {
+  border: 4px solid var(--foco);
+  padding: 0.2rem 0.65rem 0.2rem 0.3rem;
+}
+
+.botao-pincel:has(input:focus-visible) {
+  outline: 4px solid var(--foco);
+  outline-offset: 2px;
+}
+
+/* o rádio fica escondido: o cartão inteiro é a opção */
+.botao-pincel input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.botao-pincel .amostra-simbolo {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.janela-grafico.editando {
+  border: 3px solid var(--foco);
+}
+
+.janela-grafico.editando .canvas-grafico {
+  cursor: cell;
+  touch-action: none; /* arrastar pinta, em vez de rolar */
+}
+
+.acoes-legenda {
+  white-space: nowrap;
+}
+
+.acoes-legenda .botao-destacar + .botao-destacar {
+  margin-left: 0.4rem;
+}
+
+/* janela "Trocar cor" */
+.dialogo {
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 1.25rem 1.5rem;
+  border: 3px solid var(--borda-forte);
+  border-radius: calc(var(--raio) + 4px);
+  background: var(--superficie);
+  color: var(--texto);
+  font-size: 1.15rem;
+}
+
+.dialogo::backdrop {
+  background: rgba(42, 33, 28, 0.55);
+}
+
+.rotulo-lista {
+  margin: 0.75rem 0 0.4rem;
+  font-weight: 700;
+}
+
+.lista-linhas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.opcao-linha {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: var(--alvo-toque);
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 1.05rem;
+  text-align: left;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.opcao-linha:hover {
+  background: var(--acento-claro);
+}
+
+.opcao-linha .amostra-simbolo {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+}
+
+.opcao-linha-texto {
+  flex: 1;
+}
+
+.ja-usada {
+  flex-basis: 100%;
+  font-size: 0.9rem;
+  color: var(--acento-escuro);
+}
+
+.opcao-linha:has(.ja-usada) {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 34rem) {
+  .acoes-legenda {
+    white-space: normal;
+  }
+
+  .acoes-legenda .botao-destacar + .botao-destacar {
+    margin-left: 0;
+    margin-top: 0.4rem;
+  }
+
+  .acoes-legenda .botao-destacar {
+    display: block;
+  }
+}
+
 /* ---------- Telas 4 e 5: apostila e PDF ---------- */
 
 .campo-texto {

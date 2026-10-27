@@ -152,7 +152,13 @@ function mostrarPronto(container: HTMLElement, ctx: ContextoTela, anunciar: bool
       el('li', {}, 'Sem impressora colorida? Imprima só as páginas em preto e branco.'),
       el('li', {}, 'Guarde o arquivo: você pode imprimir de novo quando quiser.'),
     ),
-    el('p', { className: 'dica' }, 'Quer mudar alguma coisa? Use o botão "Voltar": o PDF é refeito com as novas escolhas.'),
+    el(
+      'p',
+      { className: 'dica' },
+      estado.graficoEditado
+        ? 'Este PDF já inclui as correções que você fez no gráfico. Quer mudar alguma coisa? Use "Voltar": o PDF é refeito.'
+        : 'Quer mudar alguma coisa? Use o botão "Voltar": o PDF é refeito com as novas escolhas.',
+    ),
   );
   if (anunciar) {
     ctx.anunciar('Sua apostila está pronta. Use o botão Baixar PDF.');

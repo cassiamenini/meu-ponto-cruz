@@ -84,6 +84,10 @@ testes/             testes automáticos
 - **Fase 2 — fundo sem bordar (concluído):** opção "Fundo da imagem" (automático, não bordar
   o fundo, bordar tudo). O fundo é a cor que domina as bordas, ligada a elas; a mesma cor dentro
   do desenho continua bordada. No modo automático só sai fundo claro e liso.
+- **Fase 2 — edição manual (concluído):** na tela 3, "Trocar cor" (cores parecidas por
+  CIEDE2000 ou busca por código/nome; escolher uma cor já usada junta as duas) e "Corrigir
+  pontos" (pintar com o dedo/mouse ou pelo teclado, "Sem bordado", Desfazer). A ordem da
+  legenda e os símbolos não mudam durante a correção.
 
 ## Ferramenta de desenvolvimento
 

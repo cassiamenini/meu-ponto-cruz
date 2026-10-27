@@ -253,9 +253,18 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
     limpeza.bloco,
   );
 
+  const avisoEdicao = el(
+    'p',
+    { className: 'aviso-erro aviso-edicao' },
+    'Você corrigiu o gráfico à mão na etapa 3. Se mudar alguma opção aqui, o gráfico será refeito e essas correções serão perdidas. ' +
+      'Para mantê-las, use "Continuar".',
+  );
+  avisoEdicao.hidden = !estado.graficoEditado;
+
   const colunaOpcoes = el(
     'div',
     { className: 'coluna-opcoes' },
+    avisoEdicao,
     nivel.bloco,
     el('fieldset', { className: 'grupo-opcoes' }, el('legend', {}, 'Tamanho'), largura.bloco, limitesLargura, textoAltura),
     fundo.bloco,
@@ -310,6 +319,8 @@ export function montarTela2(container: HTMLElement, ctx: ContextoTela): void {
       });
       calculando = false;
       estado.grafico = g;
+      estado.graficoEditado = false; // gráfico novo: sem correções
+      avisoEdicao.hidden = true;
       mostrarResultado(g);
       statusPrevia.classList.remove('ocupado');
     } catch (e) {

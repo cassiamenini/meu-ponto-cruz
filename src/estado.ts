@@ -29,6 +29,8 @@ export interface Estado {
   config: Configuracao;
   /** Resultado da etapa 2: o gráfico de pontos. */
   grafico: Grafico | null;
+  /** A pessoa corrigiu o gráfico à mão (na etapa 3)? */
+  graficoEditado: boolean;
   /** Escolhas da etapa 4, para o PDF. */
   apostila: { nome: string; versoes: Versoes; tamanho: TamanhoQuadradinho };
 }
@@ -41,6 +43,7 @@ function estadoInicial(): Estado {
     imagemFinal: null,
     config: { nivel: 'iniciante', largura: 60, tecido: 14, maxCores: 10, limpeza: 'forte', fundo: 'auto' },
     grafico: null,
+    graficoEditado: false,
     apostila: { nome: '', versoes: 'ambos', tamanho: 'normal' },
   };
 }

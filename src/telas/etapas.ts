@@ -2,7 +2,7 @@
 
 import { aoContinuarTela1, montarTela1, podeContinuarTela1 } from './tela1-imagem';
 import { aoContinuarTela2, montarTela2, podeContinuarTela2 } from './tela2-bordado';
-import { montarTela3, podeContinuarTela3 } from './tela3-grafico';
+import { aoContinuarTela3, montarTela3, podeContinuarTela3 } from './tela3-grafico';
 import { aoContinuarTela4, montarTela4, podeContinuarTela4 } from './tela4-apostila';
 import { aoContinuarTela5, montarTela5 } from './tela5-pdf';
 
@@ -51,9 +51,10 @@ export const ETAPAS: Etapa[] = [
   {
     titulo: 'Confira seu gráfico',
     curto: 'Gráfico',
-    orientacao: 'Confira o gráfico com os símbolos e a lista de linhas que você vai usar.',
+    orientacao: 'Confira o gráfico e a lista de linhas. Se quiser, troque uma cor ou corrija pontos.',
     montar: montarTela3,
     podeContinuar: podeContinuarTela3,
+    aoContinuar: aoContinuarTela3,
   },
   {
     titulo: 'Prepare sua apostila',

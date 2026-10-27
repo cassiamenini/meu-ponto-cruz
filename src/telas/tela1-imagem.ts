@@ -59,6 +59,7 @@ export function aoContinuarTela1(): string | null {
   try {
     estado.imagemFinal = gerarImagemFinal(estado.imagem, estado.ajustes);
     estado.grafico = null; // a imagem pode ter mudado: o gráfico será refeito
+    estado.graficoEditado = false;
     return null;
   } catch {
     return 'Não foi possível preparar a imagem neste aparelho. Tente usar uma parte menor da imagem.';

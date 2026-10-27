@@ -133,7 +133,11 @@ export interface Vista {
   modo: ModoGrafico;
   /** Posição na legenda da cor em destaque (as outras ficam apagadas). */
   destaque: number | null;
+  /** Ponto marcado pelo cursor do teclado, no modo de correção. */
+  cursor?: { coluna: number; linha: number } | null;
 }
+
+const COR_CURSOR = '#0B4FA3';
 
 export function desenharGrafico(ctx: CanvasRenderingContext2D, g: Grafico, v: Vista): void {
   const { celula, rolagemX, rolagemY, larguraTela, alturaTela, modo, destaque } = v;
@@ -206,6 +210,18 @@ export function desenharGrafico(ctx: CanvasRenderingContext2D, g: Grafico, v: Vi
     ctx.moveTo(0, cy), ctx.lineTo(g.largura * celula, cy);
     ctx.stroke();
     ctx.setLineDash([]);
+  }
+
+  if (v.cursor) {
+    // contorno duplo (branco + azul) para aparecer sobre qualquer cor
+    const x = v.cursor.coluna * celula;
+    const y = v.cursor.linha * celula;
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.strokeRect(x - 1, y - 1, celula + 2, celula + 2);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = COR_CURSOR;
+    ctx.strokeRect(x - 1, y - 1, celula + 2, celula + 2);
   }
   ctx.restore();
 
