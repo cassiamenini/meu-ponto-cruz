@@ -1,9 +1,10 @@
 // As cinco etapas do aplicativo.
-// As telas ainda em construção só mostram o que vai acontecer nelas.
 
 import { aoContinuarTela1, montarTela1, podeContinuarTela1 } from './tela1-imagem';
 import { aoContinuarTela2, montarTela2, podeContinuarTela2 } from './tela2-bordado';
 import { montarTela3, podeContinuarTela3 } from './tela3-grafico';
+import { aoContinuarTela4, montarTela4, podeContinuarTela4 } from './tela4-apostila';
+import { aoContinuarTela5, montarTela5 } from './tela5-pdf';
 
 /** O que cada tela pode pedir ao aplicativo. */
 export interface ContextoTela {
@@ -20,13 +21,14 @@ export interface Etapa {
   /** Frase de orientação logo abaixo do título. */
   orientacao: string;
   /** Monta o conteúdo da tela. */
-  montar?(container: HTMLElement, contexto: ContextoTela): void;
+  montar(container: HTMLElement, contexto: ContextoTela): void;
   /** Se falso, o botão "Continuar" fica escondido. */
   podeContinuar?(): boolean;
-  /** Chamado ao clicar em "Continuar"; devolve uma mensagem se algo impedir. */
-  aoContinuar?(): string | null;
-  /** O que esta tela ainda vai permitir fazer (aparece como lista). */
-  emBreve?: string[];
+  /**
+   * Chamado ao clicar em "Continuar". Devolve uma mensagem se algo impedir,
+   * ou false para ficar na tela sem mensagem (por exemplo, se a pessoa cancelou).
+   */
+  aoContinuar?(): string | null | false;
 }
 
 export const ETAPAS: Etapa[] = [
@@ -56,22 +58,16 @@ export const ETAPAS: Etapa[] = [
   {
     titulo: 'Prepare sua apostila',
     curto: 'Apostila',
-    orientacao: 'Dê um nome ao seu projeto e escolha como quer imprimir.',
-    emBreve: [
-      'Dar um nome ao projeto.',
-      'Escolher gráfico colorido, em preto e branco ou os dois.',
-      'Escolher quadradinhos normais ou ampliados.',
-      'Saber quantas páginas o PDF vai ter.',
-    ],
+    orientacao: 'Dê um nome ao seu projeto e escolha como quer o gráfico no papel.',
+    montar: montarTela4,
+    podeContinuar: podeContinuarTela4,
+    aoContinuar: aoContinuarTela4,
   },
   {
     titulo: 'Baixe seu PDF',
     curto: 'PDF',
-    orientacao: 'Pronto! Agora é só baixar a apostila e começar a bordar.',
-    emBreve: [
-      'Baixar o PDF no celular ou no computador.',
-      'Compartilhar o PDF, quando o aparelho permitir.',
-      'Ver dicas para imprimir.',
-    ],
+    orientacao: 'Sua apostila tem duas partes: o guia para quem está começando e o seu gráfico.',
+    montar: montarTela5,
+    aoContinuar: aoContinuarTela5,
   },
 ];

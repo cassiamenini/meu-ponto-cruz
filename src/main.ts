@@ -89,34 +89,10 @@ function desenharPainel(): void {
   orientacao.className = 'orientacao';
   orientacao.textContent = etapa.orientacao;
 
-  painel.replaceChildren(passo, titulo, orientacao);
-
-  if (etapa.montar) {
-    const area = document.createElement('div');
-    area.className = 'area-tela';
-    painel.append(area);
-    etapa.montar(area, contexto);
-  }
-
-  if (etapa.emBreve) {
-    const cartao = document.createElement('div');
-    cartao.className = 'cartao-em-breve';
-
-    const tituloCartao = document.createElement('h2');
-    tituloCartao.textContent = 'Em construção: nesta tela você vai poder';
-
-    const lista = document.createElement('ul');
-    lista.append(
-      ...etapa.emBreve.map((texto) => {
-        const li = document.createElement('li');
-        li.textContent = texto;
-        return li;
-      }),
-    );
-
-    cartao.append(tituloCartao, lista);
-    painel.append(cartao);
-  }
+  const area = document.createElement('div');
+  area.className = 'area-tela';
+  painel.replaceChildren(passo, titulo, orientacao, area);
+  etapa.montar(area, contexto);
 }
 
 function atualizarBotoes(): void {
@@ -152,6 +128,7 @@ function irPara(indice: number, moverFoco = true): void {
 botaoVoltar.addEventListener('click', () => irPara(etapaAtual - 1));
 botaoContinuar.addEventListener('click', () => {
   const problema = ETAPAS[etapaAtual].aoContinuar?.() ?? null;
+  if (problema === false) return; // a própria tela decidiu não seguir (ex.: a pessoa cancelou)
   if (problema) {
     mostrarErroNavegacao(problema);
     return;

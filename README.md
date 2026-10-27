@@ -40,6 +40,8 @@ src/imagem/         abrir, reduzir, girar, recortar e ajustar a luz da imagem
 src/cores/          CIELAB e diferença de cor CIEDE2000
 src/processamento/  conversão da imagem em gráfico (e o trabalhador em segundo plano)
 src/grafico/        símbolos e desenho do gráfico (grade, réguas, centro)
+src/pdf/            o PDF: apostila, gráfico paginado, legenda e estimativa de meadas
+public/fonts/       fonte Atkinson Hyperlegible (TTF) usada dentro do PDF
 src/catalogo/       catálogo DMC (dmc.json) e de onde veio cada dado (FONTES.md)
 dados/fontes/       cópias das fontes originais usadas no catálogo
 scripts/            montagem e conferência do catálogo
@@ -73,11 +75,23 @@ testes/             testes automáticos
   réguas, linhas a cada 10 pontos, centro marcado), três modos (cores e símbolos, só
   símbolos, como vai ficar), ampliação, toque para identificar o ponto e legenda com
   destaque de cor.
-- Próximo: Etapa 5 (PDF com a apostila e o gráfico paginado).
+- **Fase 1, Etapa 5 (concluída):** telas 4 e 5 e o PDF gerado no navegador (jsPDF), com
+  Parte 1 (capa + guia para iniciantes com textos e desenhos próprios, sempre presente) e
+  Parte 2 (resumo com imagens e medidas, legenda com estimativa de meadas e materiais,
+  gráfico colorido e/ou preto e branco dividido em folhas A4 com réguas, marcação de 10 em 10,
+  centro e mapa das folhas, instruções de impressão com régua de 10 cm).
+- Próximo: validação final da Fase 1 e testes com pessoas.
+
+## Ferramenta de desenvolvimento
+
+`npm run testar` grava PDFs de exemplo em `dados/testes/`. Com `npm run dev` rodando, abra
+`http://localhost:5173/ferramentas/ver-pdf.html?arquivo=exemplo-pequeno.pdf&paginas=1-3`
+para ver as páginas (não faz parte do site publicado).
 
 ## Licenças de terceiros
 
-- Fonte Atkinson Hyperlegible: SIL Open Font License 1.1 (Braille Institute).
+- Fonte Atkinson Hyperlegible: SIL Open Font License 1.1 (Braille Institute); cópia da licença em `public/fonts/OFL.txt`.
+- jsPDF: licença MIT.
 - Cores digitais das linhas DMC: [makebead/craft-color-codes](https://github.com/makebead/craft-color-codes),
   CC BY 4.0. Tabela de conferência: [sharlagelfand/dmc](https://github.com/sharlagelfand/dmc), MIT.
 - DMC é marca registrada da DMC. Este projeto não tem ligação com a empresa.

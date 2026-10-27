@@ -289,34 +289,6 @@ h2:focus {
   color: var(--texto-suave);
 }
 
-.cartao-em-breve {
-  border: 3px dashed var(--borda);
-  border-radius: var(--raio);
-  padding: 1.25rem 1.5rem;
-  background: var(--fundo);
-}
-
-.cartao-em-breve h2 {
-  font-size: 1.15rem;
-  color: var(--acento-escuro);
-  margin-bottom: 0.5rem;
-}
-
-.cartao-em-breve ul {
-  margin: 0;
-  padding-left: 1.4rem;
-}
-
-.cartao-em-breve li {
-  margin: 0.35rem 0;
-}
-
-.cartao-em-breve li::marker {
-  content: '✕  ';
-  color: var(--acento);
-  font-weight: 700;
-}
-
 /* ---------- Avisos ---------- */
 
 .aviso-erro {
@@ -996,6 +968,96 @@ h2:focus {
   .barra-grafico .botao {
     width: auto;
   }
+}
+
+/* ---------- Telas 4 e 5: apostila e PDF ---------- */
+
+.campo-texto {
+  margin-bottom: 1.25rem;
+}
+
+.campo-texto label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--acento-escuro);
+}
+
+.entrada-texto {
+  width: 100%;
+  min-height: var(--alvo-toque);
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 1.3rem;
+  color: var(--texto);
+  background: var(--superficie);
+  border: 2px solid var(--borda-forte);
+  border-radius: var(--raio);
+}
+
+.campo-texto .dica {
+  margin: 0.35rem 0 0;
+}
+
+.lista-paginas {
+  margin: 0.25rem 0 0;
+  padding-left: 1.4rem;
+}
+
+.gerando-pdf {
+  padding: 2rem 0;
+}
+
+.gerando-pdf progress {
+  width: 100%;
+  height: 1.5rem;
+  accent-color: var(--acento);
+}
+
+.pdf-pronto {
+  margin: 0 0 0.25rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--verde);
+}
+
+.acoes-pdf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.acoes-pdf .botao {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.botao-baixar {
+  min-height: 4rem;
+  padding-inline: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.botao-baixar::before {
+  content: '';
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.75rem;
+  background: currentColor;
+  clip-path: polygon(35% 0, 65% 0, 65% 45%, 90% 45%, 50% 85%, 10% 45%, 35% 45%);
+}
+
+.lista-dicas {
+  padding-left: 1.4rem;
+}
+
+.lista-dicas li {
+  margin: 0.4rem 0;
 }
 
 /* ---------- Botões de navegação ---------- */

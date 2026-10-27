@@ -6,7 +6,7 @@ import { estado, type Nivel, type Tecido } from '../estado';
 import { ConversaoCancelada, converterEmSegundoPlano } from '../processamento/cliente';
 import { LIMITES_GRADE, type Grafico, type Limpeza } from '../processamento/converter';
 import { alturaProporcional, faixaLargura, formatarCm, MARGEM_CM, pontosParaCm } from '../processamento/medidas';
-import { caixaDeErro, el, mostrarErro } from './dom';
+import { caixaDeErro, el, grupoDeOpcoes, mostrarErro } from './dom';
 import type { ContextoTela } from './etapas';
 
 export const NIVEIS: Record<Nivel, { titulo: string; texto: string; maxCores: number; largura: number; limpeza: Limpeza }> = {
@@ -59,32 +59,7 @@ export function aoContinuarTela2(): string | null {
   return null;
 }
 
-// ---------- Controles reutilizáveis ----------
-
-function grupoDeOpcoes<T extends string | number>(
-  nome: string,
-  legenda: string,
-  opcoes: { valor: T; titulo?: string; texto: string }[],
-  atual: T,
-  aoMudar: (v: T) => void,
-  classe: string,
-): { bloco: HTMLFieldSetElement; marcar: (v: T) => void } {
-  const entradas: HTMLInputElement[] = [];
-  const bloco = el('fieldset', { className: `grupo-opcoes ${classe}` }, el('legend', {}, legenda));
-  for (const o of opcoes) {
-    const entrada = el('input', { type: 'radio', name: nome, value: String(o.valor), checked: o.valor === atual });
-    entrada.addEventListener('change', () => entrada.checked && aoMudar(o.valor));
-    entradas.push(entrada);
-    const textos = o.titulo
-      ? [el('span', { className: 'opcao-titulo' }, o.titulo), el('span', { className: 'opcao-texto' }, o.texto)]
-      : [el('span', { className: 'opcao-texto' }, o.texto)];
-    bloco.append(el('label', { className: 'cartao-opcao' }, entrada, el('span', { className: 'opcao-textos' }, ...textos)));
-  }
-  return {
-    bloco,
-    marcar: (v) => entradas.forEach((e) => (e.checked = e.value === String(v))),
-  };
-}
+// ---------- Controles ----------
 
 function campoNumerico(
   id: string,
