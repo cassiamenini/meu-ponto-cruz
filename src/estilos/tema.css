@@ -519,6 +519,7 @@ h2:focus {
 
 .layout-bordado {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* deixa encolher em telas estreitas com letra grande */
   gap: 1.5rem;
 }
 
@@ -654,6 +655,7 @@ h2:focus {
 
 .linha-numero {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
@@ -806,6 +808,7 @@ h2:focus {
 
 .grupo-zoom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
@@ -960,13 +963,47 @@ h2:focus {
     display: none;
   }
 
-  .tabela-legenda th,
-  .tabela-legenda td {
-    padding-inline: 0.3rem;
+  .barra-grafico .botao-zoom {
+    width: var(--alvo-toque);
+    flex: none;
   }
 
-  .barra-grafico .botao {
-    width: auto;
+  /* no celular, cada linha da legenda vira um bloco: símbolo à esquerda,
+     código, nome, pontos e botão empilhados à direita
+     (os papéis de tabela continuam valendo para o leitor de tela) */
+  .tabela-legenda,
+  .tabela-legenda tbody {
+    display: block;
+  }
+
+  .tabela-legenda thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .tabela-legenda tr {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.35rem 0.75rem;
+    padding: 0.75rem 0.4rem;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .tabela-legenda td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .tabela-legenda td.celula-simbolos {
+    grid-row: span 3;
+  }
+
+  .tabela-legenda .percentual {
+    display: inline;
   }
 }
 

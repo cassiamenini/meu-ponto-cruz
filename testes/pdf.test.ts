@@ -68,6 +68,56 @@ describe('PDF', () => {
     expect(segundos).toBeLessThan(60);
   }, 120000);
 
+  it('o conteúdo está certo: guia, gráfico, legenda e páginas em A4', async () => {
+    const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
+    const g = graficoDeTeste(40, 30, 8);
+    const blob = await gerarPdf(g, opcoes(), {}, fontes);
+    const pdf = await pdfjs.getDocument({ data: new Uint8Array(await blob.arrayBuffer()), useSystemFonts: false }).promise;
+    const textoDa = async (n: number) => {
+      const p = await pdf.getPage(n);
+      const c = await p.getTextContent();
+      return c.items.map((i) => ('str' in i ? i.str : '')).join(' ');
+    };
+    const todas = await Promise.all(Array.from({ length: pdf.numPages }, (_, i) => textoDa(i + 1)));
+    const tudo = todas.join(' | ');
+
+    // Parte 1: os 10 tópicos do guia, em ordem
+    const topicos = [
+      'O que é ponto cruz',
+      'Materiais necessários',
+      'Como escolher o tecido e a agulha',
+      'Como preparar a linha e colocar na agulha',
+      'Como fazer o primeiro ponto cruz',
+      'Como começar e arrematar o bordado',
+      'Como entender quadrículas e símbolos',
+      'Como interpretar a legenda',
+      'Como localizar o centro',
+      'Dicas para iniciantes e erros comuns',
+    ];
+    let posicao = -1;
+    for (const t of topicos) {
+      const p = tudo.indexOf(t);
+      expect(p, t).toBeGreaterThan(posicao);
+      posicao = p;
+    }
+    // Parte 2
+    expect(todas[7]).toContain('PARTE 2');
+    expect(todas[7]).toContain('40 × 30 pontos');
+    expect(tudo).toContain('Legenda e lista de compras');
+    for (const linha of g.paleta) expect(tudo).toContain(`DMC ${linha.codigo}`);
+    expect(tudo).toContain('Gráfico colorido — página 1 de 1');
+    expect(tudo).toContain('Gráfico em preto e branco — página 1 de 1');
+    expect(tudo).toContain('Como imprimir e bordar seu gráfico');
+    // texto selecionável com acentos (a fonte foi embutida corretamente)
+    expect(tudo).toContain('ç');
+    // todas as páginas em A4 (210 × 297 mm = 595,28 × 841,89 pt)
+    for (let n = 1; n <= pdf.numPages; n++) {
+      const [, , largura, altura] = (await pdf.getPage(n)).view;
+      expect(largura).toBeCloseTo(595.28, 0);
+      expect(altura).toBeCloseTo(841.89, 0);
+    }
+  }, 30000);
+
   it('nome do arquivo sem acentos nem espaços', () => {
     expect(nomeDoArquivo('Casinha de Campo da Vovó!')).toBe('meu-ponto-cruz-casinha-de-campo-da-vovo.pdf');
     expect(nomeDoArquivo('   ')).toBe('meu-ponto-cruz.pdf');

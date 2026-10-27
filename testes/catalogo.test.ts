@@ -45,6 +45,33 @@ describe('catálogo DMC — integridade dos dados', () => {
     expect(buscarLinha('B5200')).toBeDefined();
   });
 
+  it('todo código do catálogo existe na lista oficial da DMC (EUA ou Portugal)', async () => {
+    const { readFileSync } = await import('node:fs');
+    const oficiais = new Set<string>();
+    for (const arquivo of ['dmc-oficial-product_data.json', 'dmc-oficial-pt-product_data.json']) {
+      const dados = JSON.parse(readFileSync(`dados/fontes/${arquivo}`, 'utf8'));
+      for (const v of dados.variants) oficiais.add(String(v.colour.code).toUpperCase());
+    }
+    const fora = LINHAS_DMC.filter((l) => !oficiais.has(l.codigo.toUpperCase())).map((l) => l.codigo);
+    expect(fora).toEqual([]);
+  });
+
+  it('todo nome mostrado é o nome oficial (sem o sufixo "Light Effect")', async () => {
+    const { readFileSync } = await import('node:fs');
+    const nomes = new Map<string, string[]>();
+    for (const arquivo of ['dmc-oficial-pt-product_data.json', 'dmc-oficial-product_data.json']) {
+      const dados = JSON.parse(readFileSync(`dados/fontes/${arquivo}`, 'utf8'));
+      for (const v of dados.variants) {
+        const codigo = String(v.colour.code).toUpperCase();
+        const nome = String(v.colour.presentation ?? '').replace(/\s+Light Effect$/i, '').trim();
+        if (nome) nomes.set(codigo, [...(nomes.get(codigo) ?? []), nome]);
+      }
+    }
+    for (const l of LINHAS_DMC) {
+      if (l.nome) expect(nomes.get(l.codigo.toUpperCase())).toContain(l.nome);
+    }
+  });
+
   it('309 usa o valor vermelho confirmado pela foto oficial, não o cinza antigo', () => {
     expect(buscarLinha('309')?.hex).toBe('#C12041');
   });

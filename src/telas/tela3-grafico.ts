@@ -270,6 +270,15 @@ function montarLegenda(g: Grafico, aoMudarDestaque: () => void): HTMLElement {
     ),
   );
 
+  const tabela = el('table', { className: 'tabela-legenda' }, el('caption', { className: 'so-leitor' }, `Legenda: ${g.paleta.length} linhas DMC`), cabecalho, corpo);
+  // No celular a tabela vira blocos (CSS); os papéis explícitos mantêm a leitura
+  // de tabela nos leitores de tela, que às vezes a perdem quando o visual muda.
+  tabela.setAttribute('role', 'table');
+  tabela.querySelectorAll('thead, tbody').forEach((e) => e.setAttribute('role', 'rowgroup'));
+  tabela.querySelectorAll('tr').forEach((e) => e.setAttribute('role', 'row'));
+  tabela.querySelectorAll('th').forEach((e) => e.setAttribute('role', 'columnheader'));
+  tabela.querySelectorAll('td').forEach((e) => e.setAttribute('role', 'cell'));
+
   return el(
     'section',
     { className: 'legenda' },
@@ -279,6 +288,6 @@ function montarLegenda(g: Grafico, aoMudarDestaque: () => void): HTMLElement {
       { className: 'dica' },
       'Cada símbolo corresponde a uma linha. Use "Destacar" para ver no gráfico só os pontos de uma cor. As cores na tela são aproximadas: confira sempre com a linha.',
     ),
-    el('table', { className: 'tabela-legenda' }, el('caption', { className: 'so-leitor' }, `Legenda: ${g.paleta.length} linhas DMC`), cabecalho, corpo),
+    tabela,
   );
 }
