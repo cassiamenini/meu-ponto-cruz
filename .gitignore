@@ -7,5 +7,7 @@ dist/
 *.local
 # fotos oficiais da DMC: só para conferência local, não redistribuir
 dados/amostras-dmc/
+# site da raiz cassiamenini.github.io: é outro repositório
+site-raiz/
 # PDFs gerados pelos testes
 dados/testes/
