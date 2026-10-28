@@ -52,9 +52,12 @@ afterEach(() => {
 });
 
 describe('partes sem rede', () => {
-  it('sem ID do Google, o recurso fica desligado', async () => {
+  it('o ID do Google configurado tem o formato de um ID de cliente web', async () => {
+    vi.resetModules();
+    const { GOOGLE_CLIENT_ID } = await import('../src/config');
+    expect(GOOGLE_CLIENT_ID).toMatch(/^\d+-[a-z0-9]+\.apps\.googleusercontent\.com$/);
     const m = await carregar('');
-    expect(m.driveDisponivel()).toBe(false);
+    expect(m.driveDisponivel()).toBe(true);
   });
 
   it('a busca da pasta protege aspas no nome', async () => {
