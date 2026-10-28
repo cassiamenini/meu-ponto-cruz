@@ -88,10 +88,11 @@ testes/             testes automáticos
   CIEDE2000 ou busca por código/nome; escolher uma cor já usada junta as duas) e "Corrigir
   pontos" (pintar com o dedo/mouse ou pelo teclado, "Sem bordado", Desfazer). A ordem da
   legenda e os símbolos não mudam durante a correção.
-- **Fase 3 — Google Drive (código pronto, aguardando o ID do Google):** botão "Salvar no meu
+- **Fase 3 — Google Drive (funcionando em modo de teste):** botão "Salvar no meu
   Google Drive" na tela 5, com o escopo mínimo `drive.file`, pasta "Meu Ponto Cruz", envio direto
-  do navegador para o Drive da pessoa e botão para desconectar. Fica escondido enquanto
-  `GOOGLE_CLIENT_ID` (em `src/config.ts`) estiver vazio. Passo a passo: [docs/google-drive.md](docs/google-drive.md).
+  do navegador para o Drive da pessoa e botão para desconectar. Testado com uma conta real em
+  28/10/2026. Enquanto o app estiver "Em teste" no Google, só os usuários de teste conseguem usar.
+  Passo a passo: [docs/google-drive.md](docs/google-drive.md).
   Política de privacidade: `public/privacidade.html`.
 
 ## Ferramenta de desenvolvimento

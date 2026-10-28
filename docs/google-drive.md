@@ -59,6 +59,21 @@ Copie o **ID do cliente** (o código terminado em `.apps.googleusercontent.com`)
 aqui na conversa. Eu coloco no arquivo `src/config.ts`, publico e fazemos o teste:
 você entra na sua conta na janela do Google; eu não vejo nem digito a sua senha.
 
+## Se der "Erro 403: access_denied"
+
+Aconteceu no primeiro teste (28/10/2026). Confira, nesta ordem:
+
+1. **O cliente está no mesmo projeto da tela de autorização?** O número no começo do ID
+   (antes do `-`) é o número do projeto. Ele precisa ser igual ao de
+   ☰ → Configurações do projeto → "Número do projeto", e o cliente precisa aparecer em
+   Google Auth Platform → Clientes **desse** projeto.
+2. **O seu e-mail está em "Usuários de teste"** (Google Auth Platform → Público-alvo)?
+3. **A Google Drive API está ativada** nesse projeto? Sem ela, o escopo `drive.file` nem
+   aparece em "Acesso a dados".
+
+> A "chave secreta do cliente" (`GOCSPX-…`) não é usada pelo site. Não a compartilhe;
+> se ela vazar, crie outra e exclua a antiga em Clientes.
+
 ## 6. Depois dos testes: liberar para todo mundo
 
 Quando estiver tudo certo, volte em **Público / Audience** e clique em **Publicar app**
