@@ -6,6 +6,7 @@ import type { Tecido } from '../estado';
 import { SEM_PONTO, type Grafico } from '../processamento/converter';
 import { formatarCm, MARGEM_CM, pontosParaCm } from '../processamento/medidas';
 import { corDoSimbolo, simboloDa } from '../grafico/simbolos';
+import { equivalentes } from '../catalogo/equivalencias';
 import { CORES, Documento, PincelPdf } from './documento';
 import { agulhaRecomendada, fiosRecomendados, meadasNecessarias } from './estimativa';
 import {
@@ -136,22 +137,54 @@ function resumo(doc: Documento, g: Grafico, op: OpcoesPdf, imagens: ImagensPdf):
 
   if (paginas.length > 1) {
     doc.y += 3;
-    doc.subtitulo('Mapa das páginas do gráfico');
-    doc.paragrafo('Cada quadrado é uma folha. Junte as folhas nesta posição para ver o desenho inteiro.', { tamanhoPt: 11 });
-    const ny = Math.max(...paginas.map((p) => p.posicaoY)) + 1;
-    const nx = Math.max(...paginas.map((p) => p.posicaoX)) + 1;
-    const alturaMapa = Math.min(12, doc.larguraUtil / nx, 42 / ny) * ny;
-    mapaDePaginas(doc, paginas, MARGEM, doc.y, doc.larguraUtil, 42);
-    doc.y += alturaMapa + 4;
+    doc.caixa('Várias folhas', 'Seu gráfico ocupa mais de uma folha. Na página "Mapa do gráfico inteiro" você vê o desenho todo e onde fica cada folha.');
   }
 }
 
 // ---------- Legenda e lista de compras ----------
 
+/** Quadradinho da legenda: símbolo sobre a cor, ou em preto e branco. */
+function amostraPdf(d: Documento['doc'], pincel: PincelPdf, g: Grafico, i: number, x: number, y: number, lado: number, colorido: boolean): void {
+  d.setFillColor(colorido ? g.paleta[i].hex : '#FFFFFF');
+  d.setDrawColor(CORES.bordaForte);
+  d.setLineWidth(0.2);
+  d.rect(x, y, lado, lado, 'FD');
+  pincel.cor(colorido ? corDoSimbolo(g.paleta[i].lab.L) : '#000000');
+  simboloDa(i).desenhar(pincel, x, y, lado);
+}
+
+/** Código de outra marca em duas linhas: "376" + "ou 388", ou "sem cor" + "correlata". */
+function codigoDeOutraMarca(doc: Documento, codigos: readonly string[], x: number, y: number): void {
+  const d = doc.doc;
+  if (codigos.length === 0) {
+    doc.fonte(10, false, CORES.suave);
+    d.text(['sem cor', 'correlata'], x, y + 1.6, { baseline: 'top', lineHeightFactor: 1.15 });
+    return;
+  }
+  doc.fonte(12.5, true);
+  d.text(codigos[0], x, y + 1.6, { baseline: 'top' });
+  if (codigos.length > 1) {
+    doc.fonte(10, false, CORES.suave);
+    d.text(`ou ${codigos.slice(1).join(' ou ')}`, x, y + 6.8, { baseline: 'top' });
+  }
+}
+
+/** Cabeçalho de tabela com linha embaixo. */
+function cabecalhoDeTabela(doc: Documento, colunas: [string, number][]): void {
+  const d = doc.doc;
+  doc.fonte(11, true, CORES.suave);
+  for (const [texto, x] of colunas) d.text(texto, x, doc.y, { baseline: 'top' });
+  doc.y += 7;
+  d.setDrawColor(CORES.bordaForte);
+  d.setLineWidth(0.6);
+  d.line(MARGEM, doc.y - 1.5, A4.largura - MARGEM, doc.y - 1.5);
+}
+
 function legenda(doc: Documento, g: Grafico, op: OpcoesPdf): void {
   const d = doc.doc;
   const total = g.contagem.reduce((s, n) => s + n, 0);
-  const colunas = { simbolo: MARGEM, pb: MARGEM + 14, linha: MARGEM + 30, pontos: MARGEM + 128, meadas: MARGEM + 160 };
+  const colunas = { simbolo: MARGEM, pb: MARGEM + 12, linha: MARGEM + 26, anchor: MARGEM + 92, maxi: MARGEM + 122, pontos: MARGEM + 148, meadas: MARGEM + 172 };
+  const larguraNome = colunas.anchor - colunas.linha - 4;
   const alturaFila = 11.5;
   const pincel = new PincelPdf(d);
 
@@ -159,15 +192,7 @@ function legenda(doc: Documento, g: Grafico, op: OpcoesPdf): void {
     if (i % LINHAS_LEGENDA_POR_PAGINA === 0) {
       doc.novaPagina();
       doc.titulo(i === 0 ? 'Legenda e lista de compras' : 'Legenda (continuação)');
-      doc.fonte(11, true, CORES.suave);
-      d.text('Símbolo', colunas.simbolo, doc.y, { baseline: 'top' });
-      d.text('Linha DMC', colunas.linha, doc.y, { baseline: 'top' });
-      d.text('Pontos', colunas.pontos, doc.y, { baseline: 'top' });
-      d.text('Meadas', colunas.meadas, doc.y, { baseline: 'top' });
-      doc.y += 7;
-      d.setDrawColor(CORES.bordaForte);
-      d.setLineWidth(0.6);
-      d.line(MARGEM, doc.y - 1.5, A4.largura - MARGEM, doc.y - 1.5);
+      cabecalhoDeTabela(doc, [['Símbolo', colunas.simbolo], ['Linha DMC', colunas.linha], ['Anchor', colunas.anchor], ['Maxi', colunas.maxi], ['Pontos', colunas.pontos], ['Meadas', colunas.meadas]]);
     }
     const y = doc.y;
     if (i % 2 === 1) {
@@ -176,32 +201,25 @@ function legenda(doc: Documento, g: Grafico, op: OpcoesPdf): void {
     }
     const lado = 9;
     const ys = y + (alturaFila - lado) / 2;
-    // símbolo sobre a cor
-    d.setFillColor(linha.hex);
-    d.setDrawColor(CORES.bordaForte);
-    d.setLineWidth(0.2);
-    d.rect(colunas.simbolo, ys, lado, lado, 'FD');
-    pincel.cor(corDoSimbolo(linha.lab.L));
-    simboloDa(i).desenhar(pincel, colunas.simbolo, ys, lado);
-    // símbolo em preto e branco
-    d.setFillColor('#FFFFFF');
-    d.setDrawColor(CORES.bordaForte);
-    d.setLineWidth(0.2);
-    d.rect(colunas.pb, ys, lado, lado, 'FD');
-    pincel.cor('#000000');
-    simboloDa(i).desenhar(pincel, colunas.pb, ys, lado);
+    amostraPdf(d, pincel, g, i, colunas.simbolo, ys, lado, true);
+    amostraPdf(d, pincel, g, i, colunas.pb, ys, lado, false);
 
     doc.fonte(12.5, true);
-    d.text(`DMC ${linha.codigo}`, colunas.linha, y + 1.6, { baseline: 'top' });
+    d.text(`DMC ${linha.codigo}${linha.conferir ? ' *' : ''}`, colunas.linha, y + 1.6, { baseline: 'top' });
     doc.fonte(10.5, false, CORES.suave);
-    const nome = linha.nome || 'sem nome oficial';
-    d.text(linha.conferir ? `${nome} · confira a cor na loja` : nome, colunas.linha, y + 6.6, { baseline: 'top' });
+    const partes: string[] = d.splitTextToSize(linha.nome || 'sem nome oficial', larguraNome);
+    d.text(partes.length > 1 ? `${partes[0]}…` : partes[0], colunas.linha, y + 6.6, { baseline: 'top' });
+
+    const outras = equivalentes(linha.codigo);
+    codigoDeOutraMarca(doc, outras.anchor, colunas.anchor, y);
+    codigoDeOutraMarca(doc, outras.maxi ? [outras.maxi] : [], colunas.maxi, y);
+
     doc.fonte(12);
     d.text(fmt(g.contagem[i]), colunas.pontos, y + 2, { baseline: 'top' });
     doc.fonte(9.5, false, CORES.suave);
     d.text(`${((g.contagem[i] / total) * 100).toFixed(1).replace('.', ',')}%`, colunas.pontos, y + 7, { baseline: 'top' });
     doc.fonte(12.5, true);
-    d.text(String(meadasNecessarias(g.contagem[i], op.tecido)), colunas.meadas + 6, y + alturaFila / 2, { baseline: 'middle', align: 'center' });
+    d.text(String(meadasNecessarias(g.contagem[i], op.tecido)), colunas.meadas + 7, y + alturaFila / 2, { baseline: 'middle', align: 'center' });
     doc.y += alturaFila;
   });
 
@@ -211,16 +229,113 @@ function legenda(doc: Documento, g: Grafico, op: OpcoesPdf): void {
   doc.subtitulo('Materiais');
   doc.lista([
     `Tecido Etamine ${op.tecido}: um pedaço de pelo menos ${Math.ceil(lCm + 2 * MARGEM_CM)} × ${Math.ceil(aCm + 2 * MARGEM_CM)} cm.`,
-    `Linhas DMC Mouliné: as cores e as quantidades da tabela acima. Use ${fiosRecomendados(op.tecido)} ${fiosRecomendados(op.tecido) === 1 ? 'fio' : 'fios'} da meada.`,
+    `Linhas de bordar: as cores e as quantidades da tabela acima. Use ${fiosRecomendados(op.tecido)} ${fiosRecomendados(op.tecido) === 1 ? 'fio' : 'fios'} da meada.`,
     `Agulha de tapeçaria (ponta arredondada) nº ${agulhaRecomendada(op.tecido)}.`,
     'Bastidor, tesoura pequena e um lápis ou marca-texto.',
   ]);
   doc.caixa(
-    'Sobre as quantidades e as cores',
+    'Sobre as quantidades e as marcas',
     'O número de meadas é uma estimativa com sobra de 50% (cada meada DMC tem 8 m). Nas cores com muitos pontos, vale comprar uma a mais. ' +
-      'As cores impressas são aproximadas: compre pelo código.',
+      'Anchor e Maxi são cores aproximadas, tiradas das tabelas de conversão dos fabricantes; "sem cor correlata" quer dizer que a tabela não indica uma cor parecida. ' +
+      'Para o bordado ficar igual ao gráfico, prefira uma marca só. As cores impressas também são aproximadas: compre pelo código.' +
+      (g.paleta.some((l) => l.conferir) ? ' * Cor difícil de mostrar na tela e no papel: confira com a meada na loja.' : ''),
     CORES.acento,
   );
+}
+
+// ---------- Folha de acompanhamento ----------
+
+function caixaDeMarcar(d: Documento['doc'], x: number, y: number, lado: number): void {
+  d.setFillColor('#FFFFFF');
+  d.setDrawColor('#000000');
+  d.setLineWidth(0.4);
+  d.rect(x, y, lado, lado, 'FD');
+}
+
+function acompanhamento(doc: Documento, g: Grafico, op: OpcoesPdf): void {
+  const d = doc.doc;
+  const colunas = { simbolo: MARGEM, linha: MARGEM + 22, anchor: MARGEM + 46, maxi: MARGEM + 76, meadas: MARGEM + 100, comprei: MARGEM + 128, terminei: MARGEM + 158 };
+  const alturaFila = 11.5;
+  const pincel = new PincelPdf(d);
+
+  g.paleta.forEach((linha, i) => {
+    if (i % LINHAS_LEGENDA_POR_PAGINA === 0) {
+      doc.novaPagina();
+      doc.titulo(i === 0 ? 'Folha de acompanhamento' : 'Folha de acompanhamento (continuação)');
+      if (i === 0) {
+        doc.paragrafo('Leve esta folha à loja e marque um X quando comprar cada linha. Depois, marque quando terminar de bordar aquela cor.', { tamanhoPt: 11.5 });
+      }
+      cabecalhoDeTabela(doc, [['Símbolo', colunas.simbolo], ['DMC', colunas.linha], ['Anchor', colunas.anchor], ['Maxi', colunas.maxi], ['Meadas', colunas.meadas], ['Comprei', colunas.comprei], ['Terminei', colunas.terminei]]);
+    }
+    const y = doc.y;
+    if (i % 2 === 1) {
+      d.setFillColor(CORES.fundo);
+      d.rect(MARGEM, y, doc.larguraUtil, alturaFila, 'F');
+    }
+    amostraPdf(d, pincel, g, i, colunas.simbolo, y + 1.25, 9, true);
+    doc.fonte(12.5, true);
+    d.text(linha.codigo, colunas.linha, y + 1.6, { baseline: 'top' });
+    const outras = equivalentes(linha.codigo);
+    codigoDeOutraMarca(doc, outras.anchor, colunas.anchor, y);
+    codigoDeOutraMarca(doc, outras.maxi ? [outras.maxi] : [], colunas.maxi, y);
+    doc.fonte(12.5, true);
+    d.text(String(meadasNecessarias(g.contagem[i], op.tecido)), colunas.meadas + 7, y + alturaFila / 2, { baseline: 'middle', align: 'center' });
+    caixaDeMarcar(d, colunas.comprei + 5, y + 2.25, 7);
+    caixaDeMarcar(d, colunas.terminei + 5, y + 2.25, 7);
+    doc.y += alturaFila;
+  });
+}
+
+// ---------- Mapa do gráfico inteiro ----------
+
+function mapaDoGrafico(doc: Documento, g: Grafico, paginas: PaginaDoGrafico[]): void {
+  const d = doc.doc;
+  doc.novaPagina();
+  doc.titulo('Mapa do gráfico inteiro');
+  doc.paragrafo(
+    'O desenho todo numa página só. Os números mostram em que folha do gráfico fica cada parte. Junte as folhas nesta posição.',
+    { tamanhoPt: 11.5 },
+  );
+  const larguraMax = doc.larguraUtil;
+  const alturaMax = doc.limiteInferior - doc.y - 4;
+  const mm = Math.min(larguraMax / g.largura, alturaMax / g.altura);
+  const x0 = MARGEM + (larguraMax - g.largura * mm) / 2;
+  const y0 = doc.y + 2;
+
+  d.setFillColor('#FFFFFF');
+  d.rect(x0, y0, g.largura * mm, g.altura * mm, 'F');
+  for (let l = 0; l < g.altura; l++) {
+    let c = 0;
+    while (c < g.largura) {
+      const i = g.celulas[l * g.largura + c];
+      let fim = c + 1;
+      while (fim < g.largura && g.celulas[l * g.largura + fim] === i) fim++;
+      if (i !== SEM_PONTO) {
+        d.setFillColor(g.paleta[i].hex);
+        // um pouco maior que o quadradinho, para não aparecerem frestas entre as fileiras
+        d.rect(x0 + c * mm, y0 + l * mm, (fim - c) * mm + mm * 0.2, mm * 1.2, 'F');
+      }
+      c = fim;
+    }
+  }
+  // folhas: cada uma é contornada a partir de onde começa a parte nova dela
+  for (const p of paginas) {
+    const px = x0 + (p.coluna0 + p.repeteColunas) * mm;
+    const py = y0 + (p.linha0 + p.repeteLinhas) * mm;
+    const pl = (p.coluna1 - p.coluna0 - p.repeteColunas) * mm;
+    const pa = (p.linha1 - p.linha0 - p.repeteLinhas) * mm;
+    d.setDrawColor('#000000');
+    d.setLineWidth(0.9);
+    d.rect(px, py, pl, pa, 'S');
+    const raio = Math.min(7, pl / 3, pa / 3);
+    d.setFillColor('#FFFFFF');
+    d.setDrawColor(CORES.acento);
+    d.setLineWidth(0.6);
+    d.circle(px + pl / 2, py + pa / 2, raio, 'FD');
+    doc.fonte(Math.min(18, raio * 3.2), true, CORES.acento);
+    d.text(String(p.numero), px + pl / 2, py + pa / 2, { align: 'center', baseline: 'middle' });
+  }
+  doc.y = y0 + g.altura * mm + 4;
 }
 
 // ---------- Páginas do gráfico ----------
@@ -242,7 +357,8 @@ function paginaDoGrafico(
   d.text(`Gráfico ${colorido ? 'colorido' : 'em preto e branco'} — página ${pagina.numero} de ${todas.length}`, MARGEM, MARGEM, { baseline: 'top' });
   doc.fonte(10.5, false, CORES.suave);
   d.text(
-    `Colunas ${pagina.coluna0 + 1} a ${pagina.coluna1} · Linhas ${pagina.linha0 + 1} a ${pagina.linha1} · ${doc.nomeProjeto}`,
+    `Colunas ${pagina.coluna0 + 1} a ${pagina.coluna1} · Linhas ${pagina.linha0 + 1} a ${pagina.linha1}` +
+      (pagina.repeteColunas || pagina.repeteLinhas ? ' · faixa cinza: repete a folha vizinha' : ` · ${doc.nomeProjeto}`),
     MARGEM,
     MARGEM + 7.5,
     { baseline: 'top' },
@@ -261,6 +377,16 @@ function paginaDoGrafico(
   const y0 = MARGEM + CABECALHO + REGUA;
   const px = (c: number) => x0 + (c - pagina.coluna0) * mm;
   const py = (l: number) => y0 + (l - pagina.linha0) * mm;
+
+  // faixa repetida da folha vizinha: fundo cinza (no preto e branco) e marca cinza na régua
+  const faixas: [number, number, number, number][] = [];
+  if (pagina.repeteColunas) faixas.push([px(pagina.coluna0), py(pagina.linha0), pagina.repeteColunas * mm, (pagina.linha1 - pagina.linha0) * mm]);
+  if (pagina.repeteLinhas) faixas.push([px(pagina.coluna0), py(pagina.linha0), (pagina.coluna1 - pagina.coluna0) * mm, pagina.repeteLinhas * mm]);
+  d.setFillColor('#E2E2E2');
+  if (!colorido) for (const [x, y, l, a] of faixas) d.rect(x, y, l, a, 'F');
+  d.setFillColor('#9A9A9A');
+  if (pagina.repeteColunas) d.rect(px(pagina.coluna0), y0 - 3.2, pagina.repeteColunas * mm, 2.6, 'F');
+  if (pagina.repeteLinhas) d.rect(x0 - 3.2, py(pagina.linha0), 2.6, pagina.repeteLinhas * mm, 'F');
 
   // cores (quadradinhos vizinhos da mesma cor viram um retângulo só)
   if (colorido) {
@@ -315,6 +441,18 @@ function paginaDoGrafico(
   if (cx >= pagina.coluna0 && cx <= pagina.coluna1) d.line(px(cx), py(pagina.linha0), px(cx), py(pagina.linha1));
   if (cy >= pagina.linha0 && cy <= pagina.linha1) d.line(px(pagina.coluna0), py(cy), px(pagina.coluna1), py(cy));
   d.setLineDashPattern([], 0);
+  // divisa da faixa repetida: tracejado preto sobre branco, visível em qualquer cor
+  const divisa = (cor: string, largura: number, tracejado: number[]) => {
+    d.setDrawColor(cor);
+    d.setLineWidth(largura);
+    d.setLineDashPattern(tracejado, 0);
+    if (pagina.repeteColunas) d.line(px(pagina.coluna0 + pagina.repeteColunas), py(pagina.linha0), px(pagina.coluna0 + pagina.repeteColunas), py(pagina.linha1));
+    if (pagina.repeteLinhas) d.line(px(pagina.coluna0), py(pagina.linha0 + pagina.repeteLinhas), px(pagina.coluna1), py(pagina.linha0 + pagina.repeteLinhas));
+  };
+  divisa('#FFFFFF', 1.3, []);
+  divisa('#000000', 0.7, [1.2, 1]);
+  d.setLineDashPattern([], 0);
+  d.setFillColor(CORES.acento);
   if (cx >= pagina.coluna0 && cx <= pagina.coluna1) d.triangle(px(cx) - 1.8, y0 - 4, px(cx) + 1.8, y0 - 4, px(cx), y0 - 0.6, 'F');
   if (cy >= pagina.linha0 && cy <= pagina.linha1) d.triangle(x0 - 4, py(cy) - 1.8, x0 - 4, py(cy) + 1.8, x0 - 0.6, py(cy), 'F');
 
@@ -359,7 +497,9 @@ function instrucoes(doc: Documento): void {
 
   doc.subtitulo('Juntando as folhas');
   doc.paragrafo(
-    'Use o mapa das páginas (no resumo) e os números das réguas para encaixar as folhas. Se quiser, una com fita adesiva pelo verso.',
+    'Use o "Mapa do gráfico inteiro" e os números das réguas para encaixar as folhas. Cada folha repete as 2 últimas colunas ou linhas ' +
+      'da folha vizinha (marcadas em cinza na régua e separadas por uma linha pontilhada): coloque uma folha sobre a outra nessa faixa. ' +
+      'Se quiser, una com fita adesiva pelo verso.',
   );
   doc.subtitulo('Bordando');
   doc.lista(
@@ -384,9 +524,11 @@ export async function escreverParte2(
   imagens: ImagensPdf,
   aoProgredir?: (fracao: number) => void,
 ): Promise<void> {
-  resumo(doc, g, op, imagens);
-  legenda(doc, g, op);
   const paginas = paginasDoGrafico(g, op.tamanho);
+  resumo(doc, g, op, imagens);
+  if (paginas.length > 1) mapaDoGrafico(doc, g, paginas);
+  legenda(doc, g, op);
+  acompanhamento(doc, g, op);
   const versoes = op.versoes === 'ambos' ? [true, false] : [op.versoes === 'colorido'];
   const total = versoes.length * paginas.length;
   let feitas = 0;

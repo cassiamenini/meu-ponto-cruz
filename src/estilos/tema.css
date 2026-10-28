@@ -935,6 +935,11 @@ h2:focus {
   font-style: italic;
 }
 
+.outras-marcas {
+  display: block;
+  font-size: 0.95rem;
+}
+
 .conferir-linha {
   display: block;
   font-size: 0.95rem;

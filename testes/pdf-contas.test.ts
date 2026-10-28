@@ -35,6 +35,28 @@ describe('páginas do gráfico', () => {
     expect(p.map((x) => [x.posicaoX, x.posicaoY])).toEqual([[0, 0], [1, 0], [0, 1], [1, 1]]);
     expect(p.map((x) => x.numero)).toEqual([1, 2, 3, 4]);
   });
+
+  it('com sobreposição, cada folha repete 2 colunas e 2 linhas da vizinha e nada fica de fora', () => {
+    const paginas = dividirEmPaginas(123, 171, 60, 80, 2);
+    const cobertos = new Uint8Array(123 * 171);
+    for (const p of paginas) {
+      expect(p.coluna1 - p.coluna0).toBeLessThanOrEqual(60);
+      expect(p.repeteColunas).toBe(p.posicaoX > 0 ? 2 : 0);
+      expect(p.repeteLinhas).toBe(p.posicaoY > 0 ? 2 : 0);
+      // a parte "nova" de cada folha não se repete em outra
+      for (let l = p.linha0 + p.repeteLinhas; l < p.linha1; l++)
+        for (let c = p.coluna0 + p.repeteColunas; c < p.coluna1; c++) cobertos[l * 123 + c]++;
+    }
+    expect(cobertos.every((n) => n === 1)).toBe(true);
+    // e o que se repete é mesmo o fim da folha anterior
+    expect(paginas[1].coluna0).toBe(paginas[0].coluna1 - 2);
+  });
+
+  it('gráfico que cabe numa folha não ganha sobreposição', () => {
+    const p = dividirEmPaginas(60, 80, 60, 80, 2);
+    expect(p).toHaveLength(1);
+    expect(p[0].repeteColunas + p[0].repeteLinhas).toBe(0);
+  });
 });
 
 describe('estimativa de meadas', () => {

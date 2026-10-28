@@ -28,6 +28,7 @@ import {
   trocarCor,
 } from '../grafico/edicao';
 import { LINHAS_DMC, type Linha } from '../catalogo/dmc';
+import { textoAnchor, textoMaxi } from '../catalogo/equivalencias';
 import { caixaDeErro, el } from './dom';
 import type { ContextoTela } from './etapas';
 
@@ -555,7 +556,14 @@ function montarLegenda(g: Grafico, total: number, aoMudarDestaque: () => void): 
     pb.setAttribute('aria-hidden', 'true');
 
     const nome = linha.nome ? el('span', { className: 'nome-linha' }, linha.nome) : el('span', { className: 'nome-linha sem-nome' }, 'sem nome oficial');
-    const celulaLinha = el('td', {}, el('strong', { className: 'codigo-linha' }, `DMC ${linha.codigo}`), nome);
+    const celulaLinha = el(
+      'td',
+      {},
+      el('strong', { className: 'codigo-linha' }, `DMC ${linha.codigo}`),
+      nome,
+      el('span', { className: 'outras-marcas' }, `Anchor: ${textoAnchor(linha.codigo)}`),
+      el('span', { className: 'outras-marcas' }, `Maxi: ${textoMaxi(linha.codigo)}`),
+    );
     if (linha.conferir) celulaLinha.append(el('span', { className: 'conferir-linha' }, '⚠ Confira a cor com a meada'));
 
     const destacar = el('button', { type: 'button', className: 'botao-destacar' }, 'Destacar');
@@ -620,7 +628,9 @@ function montarLegenda(g: Grafico, total: number, aoMudarDestaque: () => void): 
       'p',
       { className: 'dica' },
       'Cada símbolo corresponde a uma linha. Use "Destacar" para ver no gráfico só os pontos de uma cor, e "Trocar cor" para escolher outra linha DMC. ' +
-        'As cores na tela são aproximadas: confira sempre com a linha.',
+        'As cores na tela são aproximadas: confira sempre com a linha. ' +
+        'Os códigos Anchor e Maxi vêm das tabelas de conversão dos fabricantes e também são cores aproximadas; ' +
+        '"sem cor correlata" quer dizer que a tabela não indica uma cor parecida nessa marca.',
     ),
     ...(vazios
       ? [el('p', { className: 'aviso-fundo' }, `Quadradinhos em branco (sem símbolo) ficam sem bordar: ali aparece o tecido. São ${vazios.toLocaleString('pt-BR')} quadradinhos.`)]

@@ -133,7 +133,7 @@ function materiais(doc: Documento): void {
   doc.titulo('2. Materiais necessários');
   doc.lista([
     'Tecido próprio para ponto cruz, chamado Etamine (ou Aida). Ele já tem os furinhos marcados em quadradinhos.',
-    'Linhas de bordar em meadas. Este gráfico usa linhas DMC Mouliné: a lista de compras está na Parte 2.',
+    'Linhas de bordar em meadas. Este gráfico usa linhas DMC Mouliné; a lista de compras, na Parte 2, também mostra as cores parecidas das marcas Anchor e Maxi.',
     'Agulha de tapeçaria: tem a ponta arredondada (não fura o dedo nem o tecido) e o buraco maior.',
     'Tesoura pequena e bem afiada.',
     'Bastidor: um aro de madeira ou plástico que deixa o tecido esticado. Ajuda bastante, mas não é obrigatório.',
@@ -334,12 +334,14 @@ function legendaExplicada(doc: Documento): void {
     'a cor (aproximada, só para orientar);',
     'o código da linha, por exemplo DMC 310 — é por ele que você compra;',
     'o nome da cor, quando o fabricante informa;',
+    'os códigos parecidos nas marcas Anchor e Maxi. Quando aparece "sem cor correlata", a tabela do fabricante não indica uma cor parecida naquela marca;',
     'quantos pontos dessa cor existem no bordado;',
     'quantas meadas comprar (uma estimativa).',
   ]);
   doc.caixa(
     'Atenção às cores',
-    'A cor impressa e a cor na tela são sempre aproximadas. O que vale é o código. Se puder, compare com a meada na loja antes de comprar.',
+    'A cor impressa e a cor na tela são sempre aproximadas. O que vale é o código. Se puder, compare com a meada na loja antes de comprar. ' +
+      'Prefira usar uma marca só no mesmo bordado: as cores de marcas diferentes são parecidas, mas não idênticas.',
     CORES.acento,
   );
 }
@@ -405,6 +407,50 @@ function dicas(doc: Documento): void {
   ]);
 }
 
+function outrosPontos(doc: Documento): void {
+  doc.titulo('11. Outros pontos que você pode encontrar');
+  doc.paragrafo(
+    'Seu gráfico usa só o X completo. Mas, em outros gráficos, aparecem estes dois pontos. É bom conhecê-los.',
+  );
+  const d = doc.doc;
+  const passo = 9;
+  const y0 = doc.y + 2;
+  const larguraDesenho = 7 * passo;
+  const xa = MARGEM + 6;
+  const xb = A4.largura - MARGEM - larguraDesenho - 6;
+
+  // meio ponto: só a primeira perna do X
+  tecido(d, xa, y0, 7, 3, passo);
+  for (let k = 1; k <= 5; k++) pontoX(d, xa + k * passo, y0 + passo, passo, CORES.verde, true);
+  legendaDesenho(doc, 'Meio ponto: só a perna " / " do X. Dá um efeito mais leve, como sombra.', xa - 4, y0 + 3 * passo + 2, larguraDesenho + 8);
+
+  // ponto atrás: linha contínua que contorna o desenho
+  tecido(d, xb, y0, 7, 3, passo);
+  d.setDrawColor('#2B2B2B');
+  d.setLineWidth(passo * 0.16);
+  d.setLineCap('round');
+  // furos numa fileira só; cada passada fica um pouco mais curta, para ver onde uma termina e a outra começa
+  const furo = (k: number): [number, number] => [xb + (k + 1) * passo, y0 + 2 * passo];
+  for (let k = 0; k < 4; k++) {
+    const [x1, y1] = furo(k);
+    const [x2] = furo(k + 1);
+    d.line(x1 + 0.8, y1, x2 - 0.8, y1);
+  }
+  const [x2, y2] = furo(1);
+  numeroNoFuro(d, doc, 1, x2, y2);
+  const [x1, y1] = furo(0);
+  numeroNoFuro(d, doc, 2, x1, y1);
+  const [x3, y3] = furo(2);
+  numeroNoFuro(d, doc, 3, x3, y3);
+  legendaDesenho(doc, 'Ponto atrás: suba no 1, desça no 2 (para trás), suba no 3 e desça de novo no 1.', xb - 4, y0 + 3 * passo + 2, larguraDesenho + 8);
+  doc.y = y0 + 3 * passo + 16;
+
+  doc.lista([
+    'Meio ponto: no gráfico, costuma aparecer como um triângulo ou meio quadradinho colorido.',
+    'Ponto atrás: no gráfico, aparece como uma linha reta por cima dos quadradinhos. É feito no fim, depois dos X, com 1 fio só, para contornar e dar detalhes.',
+  ]);
+}
+
 // ---------- Tudo junto ----------
 
 export function escreverApostila(doc: Documento, imagemPrevia?: { dados: string; largura: number; altura: number }): void {
@@ -425,4 +471,5 @@ export function escreverApostila(doc: Documento, imagemPrevia?: { dados: string;
   centro(doc);
   doc.novaPagina();
   dicas(doc);
+  outrosPontos(doc);
 }

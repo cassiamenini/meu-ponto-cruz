@@ -62,11 +62,42 @@ Regras usadas:
    - 3 cores ficaram muito longe da foto (3705, 995, 840). O valor não foi trocado, porque a
      foto tem iluminação própria, mas essas cores levam um aviso `conferir` no catálogo.
 
-## 4. O que não foi possível verificar
+## 4. Equivalências Anchor e Maxi (`equivalencias.json`)
+
+Gerado por `scripts/montar-equivalencias.ts`. **Só entram códigos impressos nas tabelas dos
+fabricantes**; quando a tabela não traz a cor, o aplicativo mostra "sem cor correlata".
+As transcrições ficam em `dados/equivalencias/` (as fotos das tabelas não são publicadas).
+
+| Marca | Fonte | Cobertura |
+|---|---|---|
+| Anchor | "Tabela de Conversão DMC-Anchor", impressa pela Anchor (2 páginas) | 293 das 489 cores DMC |
+| Maxi Mouliné | "Tabela de conversão DMC / Maxi Mouliné – cores aproximadas", Círculo S.A., duas edições com a numeração nova | 441 das 489 cores DMC |
+
+**Anchor.** Uma cor DMC pode ter várias opções Anchor na tabela. Mostramos no máximo duas,
+da mais parecida para a menos parecida, comparando a cor da DMC (catálogo acima) com a cor
+de tela de cada Anchor listada na ferramenta de conversão do Stitchmate
+(stitchmate.app/pt/ferramentas/tabela-de-conversao-de-linhas, consultada em 28/10/2026).
+Essas cores servem só para ordenar: o código mostrado é sempre o da tabela. A transcrição
+foi conferida com `scripts/conferir-anchor.ts` (diferença mediana ΔE00 7,8 entre a DMC e a
+Anchor indicada); os casos de diferença grande foram conferidos de novo na imagem e estão
+iguais ao impresso.
+
+**Maxi.** As duas edições da tabela da Círculo discordam em 165 cores. Para cada cor DMC:
+
+1. os candidatos são os códigos das duas edições ("x" = sem cor);
+2. só vale um código que existe na cartela atual da Círculo (300 cores, site oficial);
+3. entre os válidos, fica o de foto mais parecida com a foto da DMC (ΔE00, mesmo método de
+   média das fotos usado acima; fotos não redistribuídas);
+4. se mesmo o melhor ficar com ΔE00 acima de 25, a cor fica "sem cor correlata".
+
+Comparações feitas com `scripts/analisar-maxi.ts`.
+
+## 5. O que não foi possível verificar
 
 - A cor **física** de cada linha: isso exigiria medir as meadas com um espectrofotômetro.
-- Correspondências com **Anchor** e **Maxi**: ainda não entram (Fase 3), e só entrarão
-  com tabelas publicadas e conferidas.
+- As equivalências entre marcas são **aproximadas** (os próprios fabricantes dizem isso).
+- Códigos Anchor que aparecem na tabela, mas não na lista do Stitchmate (por exemplo 406,
+  3324), foram mantidos como estão impressos; eles vão por último quando há outra opção.
 - A tabela de conversão em PDF enviada como referência não foi usada como fonte de dados.
 
 ## Comparação das cores

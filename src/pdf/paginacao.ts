@@ -39,29 +39,55 @@ export interface PaginaDoGrafico {
   coluna1: number;
   linha0: number;
   linha1: number;
+  /** Primeiras colunas e linhas que repetem o fim da folha vizinha (ficam acinzentadas). */
+  repeteColunas: number;
+  repeteLinhas: number;
+}
+
+/** Colunas e linhas repetidas entre folhas vizinhas, para ajudar a emendar. */
+export const SOBREPOSICAO = 2;
+
+/** Onde começa cada folha numa direção: a partir da segunda, recua a sobreposição. */
+function cortes(total: number, porPagina: number, sobra: number): number[] {
+  if (total <= porPagina) return [0];
+  const passo = porPagina - sobra;
+  const inicios: number[] = [];
+  for (let i = 0; ; i += passo) {
+    inicios.push(i);
+    if (i + porPagina >= total) return inicios;
+  }
 }
 
 /**
  * Divide o gráfico em páginas, da esquerda para a direita e de cima para baixo
- * (como se lê um livro).
+ * (como se lê um livro). Cada folha repete as últimas `sobra` colunas/linhas da
+ * folha anterior.
  */
-export function dividirEmPaginas(largura: number, altura: number, colunasPorPagina: number, linhasPorPagina: number): PaginaDoGrafico[] {
+export function dividirEmPaginas(
+  largura: number,
+  altura: number,
+  colunasPorPagina: number,
+  linhasPorPagina: number,
+  sobra = 0,
+): PaginaDoGrafico[] {
   const paginas: PaginaDoGrafico[] = [];
-  const nx = Math.ceil(largura / colunasPorPagina);
-  const ny = Math.ceil(altura / linhasPorPagina);
-  for (let y = 0; y < ny; y++) {
-    for (let x = 0; x < nx; x++) {
+  const xs = cortes(largura, colunasPorPagina, sobra);
+  const ys = cortes(altura, linhasPorPagina, sobra);
+  ys.forEach((linha0, y) => {
+    xs.forEach((coluna0, x) => {
       paginas.push({
         numero: paginas.length + 1,
         posicaoX: x,
         posicaoY: y,
-        coluna0: x * colunasPorPagina,
-        coluna1: Math.min(largura, (x + 1) * colunasPorPagina),
-        linha0: y * linhasPorPagina,
-        linha1: Math.min(altura, (y + 1) * linhasPorPagina),
+        coluna0,
+        coluna1: Math.min(largura, coluna0 + colunasPorPagina),
+        linha0,
+        linha1: Math.min(altura, linha0 + linhasPorPagina),
+        repeteColunas: x > 0 ? sobra : 0,
+        repeteLinhas: y > 0 ? sobra : 0,
       });
-    }
-  }
+    });
+  });
   return paginas;
 }
 
@@ -79,16 +105,17 @@ export function quantasVersoes(v: Versoes): number {
 
 export function paginasDoGrafico(largura: number, altura: number, tamanho: TamanhoQuadradinho): PaginaDoGrafico[] {
   const { colunas, linhas } = pontosPorPagina(MM_POR_PONTO[tamanho]);
-  return dividirEmPaginas(largura, altura, colunas, linhas);
+  return dividirEmPaginas(largura, altura, colunas, linhas, SOBREPOSICAO);
 }
 
 /** Total de páginas do PDF (para avisar antes de gerar). */
 export function contarPaginas(
   g: { largura: number; altura: number; paleta: readonly unknown[] },
   op: { versoes: Versoes; tamanho: TamanhoQuadradinho },
-): { total: number; apostila: number; resumo: number; legenda: number; grafico: number; instrucoes: number } {
+): { total: number; apostila: number; resumo: number; mapa: number; legenda: number; acompanhamento: number; grafico: number; instrucoes: number } {
   const legenda = Math.ceil(g.paleta.length / LINHAS_LEGENDA_POR_PAGINA);
-  const grafico = quantasVersoes(op.versoes) * paginasDoGrafico(g.largura, g.altura, op.tamanho).length;
-  const partes = { apostila: PAGINAS_DA_APOSTILA, resumo: 1, legenda, grafico, instrucoes: 1 };
-  return { total: partes.apostila + partes.resumo + partes.legenda + partes.grafico + partes.instrucoes, ...partes };
+  const folhas = paginasDoGrafico(g.largura, g.altura, op.tamanho).length;
+  const grafico = quantasVersoes(op.versoes) * folhas;
+  const partes = { apostila: PAGINAS_DA_APOSTILA, resumo: 1, mapa: folhas > 1 ? 1 : 0, legenda, acompanhamento: legenda, grafico, instrucoes: 1 };
+  return { total: Object.values(partes).reduce((s, n) => s + n, 0), ...partes };
 }

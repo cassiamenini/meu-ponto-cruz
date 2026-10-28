@@ -39,13 +39,13 @@ async function paginasDoPdf(blob: Blob): Promise<number> {
 }
 
 describe('PDF', () => {
-  it('gráfico pequeno: apostila + resumo + legenda + 1 página colorida + 1 P&B + instruções', async () => {
+  it('gráfico pequeno: apostila + resumo + legenda + acompanhamento + 1 página colorida + 1 P&B + instruções', async () => {
     const g = graficoDeTeste(40, 30, 8);
     const blob = await gerarPdf(g, opcoes(), {}, fontes);
     expect(blob.type).toBe('application/pdf');
     const paginas = await paginasDoPdf(blob);
     expect(paginas).toBe(contarPaginas(g, opcoes()));
-    expect(paginas).toBe(7 + 1 + 1 + 2 + 1);
+    expect(paginas).toBe(7 + 1 + 1 + 1 + 2 + 1);
     // guarda uma cópia para conferência visual
     mkdirSync('dados/testes', { recursive: true });
     writeFileSync('dados/testes/exemplo-pequeno.pdf', Buffer.from(await blob.arrayBuffer()));
@@ -54,7 +54,7 @@ describe('PDF', () => {
   it('a apostila está sempre presente, mesmo com só uma versão do gráfico', async () => {
     const g = graficoDeTeste(20, 20, 3);
     const blob = await gerarPdf(g, opcoes({ versoes: 'pb' }), {}, fontes);
-    expect(await paginasDoPdf(blob)).toBe(7 + 1 + 1 + 1 + 1);
+    expect(await paginasDoPdf(blob)).toBe(7 + 1 + 1 + 1 + 1 + 1);
   }, 30000);
 
   it('o maior gráfico (250 × 188, 40 cores) é dividido em páginas e termina a tempo', async () => {
@@ -93,6 +93,7 @@ describe('PDF', () => {
       'Como interpretar a legenda',
       'Como localizar o centro',
       'Dicas para iniciantes e erros comuns',
+      'Outros pontos que você pode encontrar',
     ];
     let posicao = -1;
     for (const t of topicos) {
@@ -104,6 +105,9 @@ describe('PDF', () => {
     expect(todas[7]).toContain('PARTE 2');
     expect(todas[7]).toContain('40 × 30 pontos');
     expect(tudo).toContain('Legenda e lista de compras');
+    expect(tudo).toContain('Folha de acompanhamento');
+    expect(tudo).toContain('Anchor');
+    expect(tudo).toContain('Maxi');
     for (const linha of g.paleta) expect(tudo).toContain(`DMC ${linha.codigo}`);
     expect(tudo).toContain('Gráfico colorido — página 1 de 1');
     expect(tudo).toContain('Gráfico em preto e branco — página 1 de 1');
