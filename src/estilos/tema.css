@@ -1378,6 +1378,10 @@ h2:focus {
   margin: 0 auto;
 }
 
+.rodape .sobre {
+  margin-top: 0.75rem;
+}
+
 .rodape .creditos {
   margin-top: 0.75rem;
   font-size: 0.95rem;
