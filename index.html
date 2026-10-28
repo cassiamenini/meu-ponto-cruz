@@ -8,10 +8,12 @@
       content="Transforme uma imagem em gráfico de ponto cruz, com apostila em PDF. Gratuito e sem cadastro."
     />
     <meta name="theme-color" content="#FBF6EE" />
-    <!-- Regras de proteção: o site só carrega arquivos dele mesmo e não envia dados a ninguém. -->
+    <!-- Regras de proteção: o site só carrega arquivos dele mesmo. A única exceção é o Google
+         (biblioteca de login e API do Drive), usado apenas quando a pessoa pede para salvar
+         no próprio Google Drive. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self'; connect-src 'self' ws://localhost:*; object-src 'none'; base-uri 'self'; form-action 'none'"
+      content="default-src 'self'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' blob: data:; font-src 'self'; connect-src 'self' https://www.googleapis.com https://accounts.google.com/gsi/ ws://localhost:*; frame-src https://accounts.google.com/gsi/; object-src 'none'; base-uri 'self'; form-action 'none'"
     />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <title>Meu Ponto Cruz</title>
@@ -50,6 +52,7 @@
       <p>
         <strong>Sua imagem não sai do seu aparelho.</strong>
         Todo o trabalho é feito aqui mesmo, no seu navegador. Gratuito e sem cadastro.
+        <a href="./privacidade.html">Privacidade</a>
       </p>
       <p class="creditos">
         Códigos das linhas conferidos no site oficial da DMC. As cores na tela são aproximadas:

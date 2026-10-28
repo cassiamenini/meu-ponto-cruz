@@ -1281,6 +1281,40 @@ h2:focus {
   clip-path: polygon(35% 0, 65% 0, 65% 45%, 90% 45%, 50% 85%, 10% 45%, 35% 45%);
 }
 
+.bloco-drive {
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--borda);
+  border-radius: var(--raio);
+}
+
+.bloco-drive .subtitulo {
+  margin-bottom: 0.25rem;
+}
+
+.botao-drive {
+  margin: 0.25rem 0 0;
+}
+
+.situacao-drive p {
+  margin: 0.75rem 0 0;
+}
+
+.drive-salvo {
+  font-weight: 700;
+  color: var(--verde);
+}
+
+.link-drive {
+  color: var(--acento-escuro);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.situacao-drive .botao-destacar {
+  margin-top: 0.75rem;
+}
+
 .lista-dicas {
   padding-left: 1.4rem;
 }

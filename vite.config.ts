@@ -8,7 +8,7 @@ function cspDePublicacao(): Plugin {
   return {
     name: 'csp-de-publicacao',
     apply: 'build',
-    transformIndexHtml: (html) => html.replace(" connect-src 'self' ws://localhost:*;", " connect-src 'self';"),
+    transformIndexHtml: (html) => html.replace(' ws://localhost:*', ''),
   };
 }
 

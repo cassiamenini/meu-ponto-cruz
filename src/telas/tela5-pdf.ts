@@ -6,6 +6,8 @@ import type { Grafico } from '../processamento/converter';
 import type { ImagemPdf, ImagensPdf } from '../pdf/grafico-pdf';
 import { contarPaginas } from '../pdf/paginacao';
 import { imagemDosPontos } from '../grafico/desenhar';
+import { PASTA_NO_DRIVE } from '../config';
+import { conectadoAoDrive, desconectarDrive, driveDisponivel, ErroDrive, prepararGoogle, salvarNoDrive } from '../nuvem/google-drive';
 import { caixaDeErro, el } from './dom';
 import type { ContextoTela } from './etapas';
 
@@ -118,6 +120,68 @@ async function gerar(container: HTMLElement, ctx: ContextoTela, g: Grafico, imag
   }
 }
 
+/** "Salvar no meu Google Drive": só aparece quando o aplicativo tem um ID do Google configurado. */
+function blocoDoDrive(pdf: Blob, nome: string): HTMLElement {
+  const botao = el('button', { type: 'button', className: 'botao botao-secundario botao-drive' }, 'Salvar no meu Google Drive');
+  const situacao = el('div', { className: 'situacao-drive' });
+  situacao.setAttribute('role', 'status');
+  const erro = caixaDeErro();
+
+  // carrega a biblioteca do Google só quando a pessoa mostra interesse no botão
+  botao.addEventListener('pointerenter', prepararGoogle, { once: true });
+  botao.addEventListener('focus', prepararGoogle, { once: true });
+
+  function mostrarSalvo(link: string): void {
+    const abrir = el('a', { href: link, target: '_blank', rel: 'noopener noreferrer', className: 'link-drive' }, 'Abrir no Google Drive');
+    const sair = el('button', { type: 'button', className: 'botao-destacar' }, 'Desconectar o Google deste site');
+    sair.addEventListener('click', () => {
+      desconectarDrive();
+      sair.remove();
+      situacao.append(el('p', { className: 'dica' }, 'Pronto: este site não tem mais acesso ao seu Google Drive. O PDF salvo continua lá.'));
+    });
+    situacao.replaceChildren(
+      el('p', { className: 'drive-salvo' }, `✓ Salvo na pasta "${PASTA_NO_DRIVE}" do seu Google Drive.`),
+      el('p', {}, abrir, el('span', { className: 'so-leitor' }, ' (abre em outra aba)')),
+      ...(conectadoAoDrive() ? [sair] : []),
+    );
+  }
+
+  botao.addEventListener('click', async () => {
+    botao.disabled = true;
+    erro.hidden = true;
+    try {
+      const { link } = await salvarNoDrive(pdf, nome, (etapa) => {
+        situacao.replaceChildren(
+          el('p', {}, etapa === 'conectando' ? 'Abrindo a janela do Google… autorize por lá.' : 'Salvando o PDF no seu Google Drive…'),
+        );
+      });
+      mostrarSalvo(link);
+    } catch (e) {
+      situacao.replaceChildren();
+      erro.textContent = e instanceof ErroDrive ? e.message : 'Não foi possível salvar no Google Drive. Tente de novo ou use "Baixar PDF".';
+      erro.hidden = false;
+    } finally {
+      botao.disabled = false;
+    }
+  });
+
+  return el(
+    'section',
+    { className: 'bloco-drive' },
+    el('h2', { className: 'subtitulo' }, 'Guardar na nuvem (opcional)'),
+    el(
+      'p',
+      { className: 'dica' },
+      'Abre uma janela do Google para você autorizar. O PDF vai direto para o seu Google Drive, na pasta "' +
+        PASTA_NO_DRIVE +
+        '". Este site só consegue ver os arquivos que ele mesmo salvar lá, nunca o resto do seu Drive.',
+    ),
+    botao,
+    situacao,
+    erro,
+  );
+}
+
 function mostrarPronto(container: HTMLElement, ctx: ContextoTela, anunciar: boolean): void {
   if (!ultimo || !estado.grafico) return;
   const pdf = ultimo;
@@ -143,6 +207,7 @@ function mostrarPronto(container: HTMLElement, ctx: ContextoTela, anunciar: bool
     el('p', { className: 'pdf-pronto' }, '✓ Sua apostila está pronta!'),
     el('p', { className: 'dica' }, `${pdf.nome} · ${paginas} páginas · ${tamanhoTexto}`),
     acoes,
+    ...(driveDisponivel() ? [blocoDoDrive(pdf.blob, pdf.nome)] : []),
     el('h2', { className: 'subtitulo' }, 'Antes de imprimir'),
     el(
       'ul',

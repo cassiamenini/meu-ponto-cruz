@@ -3,6 +3,8 @@ dist/
 *.log
 .DS_Store
 .claude/
+# configurações locais (ex.: ID de teste do Google)
+*.local
 # fotos oficiais da DMC: só para conferência local, não redistribuir
 dados/amostras-dmc/
 # PDFs gerados pelos testes
